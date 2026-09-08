@@ -4,7 +4,7 @@ trigger: always_on
 
 # TAFAWOK — Project Rules & Standards
 
-> Multilingual (AR/EN) Enterprise Platform & Corporate Showcase for **TAFAWOK Real Estate Investment & Contracting Company** (Civil, Oil & Gas, Infrastructure, MEP, Turnkey EPC, Precision Procurement).
+> Multilingual (AR/EN) Enterprise Platform & Corporate Showcase for **TAFAWOK Real Estate Investment & Contracting Company** — specialized in **Commercial Real Estate (CRE)**: Prime Office Developments, Business Parks, Retail Hubs, Mixed-Use Commercial Assets, and Turnkey EPC Execution.
 
 ---
 
@@ -22,27 +22,27 @@ trigger: always_on
 
 **State Rule:**
 - **Static Content:** Typed JSON/TS layer is the single source of truth (`content/` or `TAFAWOK_ASSETS_AND_CONTENT.md`).
-- **UI State Only:** Locale toggle, mobile drawer, active sector filters, RFQ dialogs live in Zustand.
+- **UI State Only:** Locale toggle, mobile drawer, active property/sector filters, RFQ dialogs live in Zustand.
 - **Never** put static text or mock databases in Zustand. No Redux.
 
 ---
 
-## Modules & Sections (Information Architecture)
+## Modules & Sections (CRE Information Architecture)
 
 | Module / Section           | Scope & Authority                                                            |
 | -------------------------- | ---------------------------------------------------------------------------- |
-| **Hero & Corporate**       | 25+ yrs track record, 5 decades regional heritage, key stats, CEO statement   |
-| **Divisions & Scope**      | 8 core sectors (Civil, Oil & Gas, Infrastructure, Buildings, MEP, Power, etc.)|
-| **Project Portfolio**      | Flagship case studies (Adan Hospital, 440M Gallon Reservoirs, Retail hubs)   |
-| **Industrial Procurement** | 40+ global manufacturers, pipes, valves, fittings, Aramco/ADNOC specs        |
-| **HSE & Quality**          | Zero-Harm policy, 10 HSE golden rules, safety charters, ISO compliance       |
-| **Clients & Partners**     | Tier-1 client credentials (Saudi Aramco, ADNOC, Bechtel, Petrofac, Samsung)  |
-| **Contact & RFQ Portal**   | Egypt HQ coordinates, regional offices, direct inquiry & RFQ dialogs         |
+| **Hero & Corporate**       | 25+ yrs track record, regional CRE heritage, key metrics, CEO vision         |
+| **Commercial Disciplines** | Office Towers, Retail Hubs, Mixed-Use Assets, Business Parks, Turnkey EPC   |
+| **Featured CRE Portfolio** | Flagship commercial assets, retail flagships, medical hubs, strategic specs  |
+| **Engineering & Materials**| Precision MEP, industrial sourcing, structural specs, certified suppliers    |
+| **HSE & Quality**          | Zero-Harm policy, safety charters, ISO & commercial quality compliance       |
+| **Clients & Partners**     | Tier-1 institutional credentials (Energy, EPC, commercial tenants, partners) |
+| **Contact & RFQ Portal**   | Cairo HQ coordinates, regional offices, investor & tenant inquiry dialogs    |
 
 **Architecture Rules:**
 - Modular sections live under `/components/sections/<section-name>/`.
 - Shared UI primitives live in `/components/ui/` (shadcn) and `/components/shared/`.
-- No duplicate content strings: All corporate metrics, case studies, and specs derive from typed bilingual content files.
+- No duplicate content strings: All corporate metrics, asset specs, and case studies derive from typed bilingual content files.
 
 ---
 
@@ -52,9 +52,9 @@ Always load the relevant skill before performing a task — never rely on memory
 
 | Skill | When to Use | Core Directive |
 | --- | --- | --- |
-| `frontend-design` | Building any UI, page, layout, or section | Industrial, high-authority engineering aesthetic; dense & authoritative |
+| `frontend-design` | Building any UI, page, layout, or section | High-end CRE aesthetic: architectural, institutional, prestigious, and dense |
 | `web-design-guidelines` | Auditing design, accessibility, and layouts | High contrast (WCAG), responsive across all breakpoints (`sm` to `2xl`) |
-| `emil-design-eng` | Micro-interactions, transitions, hover states | Physical, snappy transitions; subtle hover/active feedback without lag |
+| `emil-design-eng` | Micro-interactions, transitions, hover states | Refined, snappy transitions; subtle hover/active feedback without lag |
 | `vercel-react-best-practices` | Writing or reviewing React/Next.js components | RSC by default; `"use client"` only for interactivity; no barrel imports |
 | `vercel-composition-patterns` | Designing component APIs & layouts | Compound components, flexible layouts, clean prop interfaces |
 | `nextjs-app-router-patterns` | App Router routing, layouts, metadata, SSG | Static generation (SSG), layout nesting, SEO metadata |
@@ -64,20 +64,21 @@ Always load the relevant skill before performing a task — never rely on memory
 
 ---
 
-## Theme & Styling
+## Brand Identity & Theme Styling
 
-| Role / Semantic | Light | Dark | CSS Variable Token |
-| --- | --- | --- | --- |
-| Background | `#FFFFFF` | `#0A0A0A` | `--background` |
-| Foreground | `#1A1A1A` | `#F5F5F5` | `--foreground` |
-| Primary (Brand) | Industrial Rust | Deep Warm Accent | `--primary` |
-| Border / Muted | `#E5E5E5` | `#1F1F1F` | `--border` / `--muted` |
-| Destructive | `#DC2626` | `#EF4444` | `--destructive` |
+**Single Source of Truth:** `app/globals.css` showcases and defines the authoritative brand color selection for TAFAWOK CRE.
 
-- **Tokens Only:** Reference CSS variables defined in `@theme inline` (`globals.css`). Never hardcode hex codes.
-- **Dark Mode:** Seamless dark mode via `dark:` variants and `next-themes` (`ThemeProvider`).
-- **Responsive:** Test across standard breakpoints (`sm`, `md`, `lg`, `xl`, `2xl`).
-- **Aesthetic:** Clean borders, subtle shadows, crisp metadata badges, dense data presentation.
+**CRE Brand Aesthetic:**
+- **Tone:** Prestigious Commercial Real Estate (CRE) developer & investment authority — architectural elegance, structural permanence, institutional gravitas.
+- **Brand Palette (Defined in `globals.css` via OKLCH):**
+  - **Primary (`--primary`):** Architectural Bronze/Copper (`oklch(0.553 0.195 38.402)` light / `oklch(0.47 0.157 37.304)` dark).
+  - **Surfaces (`--background` / `--card`):** Pure white / dark obsidian (`oklch(0.141 0.005 285.823)`).
+  - **Text (`--foreground`):** Deep obsidian / crisp light (`oklch(0.985 0 0)`).
+  - **Borders & Muted (`--border`, `--muted`):** Architectural framing with high contrast ratios.
+  - **Data/Chart Accents (`--chart-1` to `--chart-5`):** Warm ochre, bronze, and amber scale.
+- **Strict Enforcement:** Consume tokens via `@theme inline` classes (`bg-primary`, `text-foreground`, `border-border`). Never hardcode hex codes or invent arbitrary colors.
+- **Dark Mode:** Seamless light/dark support via `dark:` variants and `ThemeProvider`.
+- **Visual Polish:** Refined architectural borders, crisp property badges, elevated card elevations.
 
 ---
 
@@ -156,6 +157,7 @@ Supports **Arabic (`ar`, RTL)** and **English (`en`, LTR)**.
 - [ ] shadcn/ui components customized via design tokens, never editing generated internals
 - [ ] Responsive across all breakpoints (`sm` to `2xl`)
 - [ ] `frontend-design` skill consulted for visual hierarchy and layout density
+- [ ] CRE brand identity verified: Prestigious, architectural, and institutional commercial real estate aesthetic
 - [ ] `web-design-guidelines` skill consulted for accessibility and responsive layout
 - [ ] `emil-design-eng` skill consulted for micro-interactions and transitions
 - [ ] `vercel-react-best-practices` skill consulted before writing/reviewing React components
