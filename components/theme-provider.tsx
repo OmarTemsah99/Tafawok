@@ -59,7 +59,8 @@ function ThemeHotkey() {
         return
       }
 
-      if (event.metaKey || event.ctrlKey || event.altKey) {
+      const isModifierPressed = event.ctrlKey || event.metaKey
+      if (!isModifierPressed || event.altKey || event.shiftKey) {
         return
       }
 
@@ -71,6 +72,7 @@ function ThemeHotkey() {
         return
       }
 
+      event.preventDefault()
       setTheme(resolvedTheme === "dark" ? "light" : "dark")
     }
 

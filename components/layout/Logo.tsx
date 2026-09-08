@@ -15,17 +15,21 @@ interface LogoProps {
  * Architectural Emblem SVG for TAFAWOK CRE
  * Vector geometry representing structural precision, isometric towers, and foundation stones.
  */
-export function TafawokEmblem({ className }: { className?: string }) {
+export function TafawokEmblem({
+  className,
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="72 31 456.9 454.9"
+      preserveAspectRatio="xMidYMid meet"
       className={cn(
-        "h-9 w-9 transition-transform duration-200 group-hover:scale-105",
+        "h-8 w-8 shrink-0 text-black dark:text-white transition-colors duration-150",
         className
       )}
-      fill="currentColor"
       aria-hidden="true"
+      {...props}
     >
       <g
         transform="translate(0.000000,600.000000) scale(0.100000,-0.100000)"
@@ -44,7 +48,7 @@ export function TafawokEmblem({ className }: { className?: string }) {
 
 /**
  * Enterprise Brand Logo for TAFAWOK CRE
- * Features architectural mark and high-contrast bilingual typography.
+ * Features pure architectural emblem (without container box) and high-contrast typography.
  */
 export function Logo({ className, iconOnly = false, onClick }: LogoProps) {
   const { locale } = useLocaleStore()
@@ -55,31 +59,26 @@ export function Logo({ className, iconOnly = false, onClick }: LogoProps) {
       href="/"
       onClick={onClick}
       className={cn(
-        "group -m-1 inline-flex items-center gap-3 rounded-md p-1 transition-opacity outline-none select-none focus-visible:ring-2 focus-visible:ring-primary",
+        "group inline-flex items-center gap-2.5 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm",
         className
       )}
       aria-label="TAFAWOK Real Estate Investment & Contracting - Home"
     >
-      {/* Brand Icon Emblem */}
-      <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary transition-colors group-hover:border-primary/30 group-hover:bg-primary/15">
-        <TafawokEmblem className="h-6 w-6 text-primary" />
-      </div>
+      {/* Brand Icon Emblem - rendered as-is in black, unboxed */}
+      <TafawokEmblem className="h-8 w-8 group-hover:opacity-85 transition-opacity" />
 
       {/* Brand Typography */}
       {!iconOnly && (
         <div className="flex flex-col justify-center">
-          <div className="flex items-baseline gap-1.5 leading-none">
-            <span className="text-lg font-extrabold tracking-wider text-foreground uppercase transition-colors group-hover:text-primary lg:text-xl">
+          <div className="flex items-center leading-none">
+            <span className="text-[17px] sm:text-lg font-black tracking-[0.12em] text-foreground uppercase transition-colors group-hover:text-primary">
               {isArabic ? "تَفَـوُّق" : "TAFAWOK"}
             </span>
-            <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-widest text-primary uppercase">
-              CRE
-            </span>
           </div>
-          <span className="mt-0.5 text-[10px] font-medium tracking-tight whitespace-nowrap text-muted-foreground sm:text-[11px]">
+          <span className="mt-0.5 text-[9.5px] sm:text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
             {isArabic
               ? "للاستثمار العقاري والمقاولات"
-              : "Real Estate & Contracting Co."}
+              : "Real Estate & Contracting"}
           </span>
         </div>
       )}

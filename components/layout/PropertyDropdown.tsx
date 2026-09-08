@@ -12,6 +12,13 @@ import {
   Warehouse,
   Phone,
 } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 import { PROPERTIES } from "@/content/cre-data"
 import { useLocaleStore } from "@/stores/useLocaleStore"
 import { PhoneNumber } from "@/components/shared/PhoneNumber"
@@ -32,94 +39,44 @@ export function PropertyDropdown({
   className,
   onItemClick,
 }: PropertyDropdownProps) {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
-  const containerRef = React.useRef<HTMLDivElement>(null)
+  const [open, setOpen] = React.useState(false)
   const { locale, t } = useLocaleStore()
   const isArabic = locale === "ar"
 
   const ArrowIcon = isArabic ? ArrowLeft : ArrowRight
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    setIsOpen(true)
-  }
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(false)
-    }, 150)
-  }
-
-  // Close on Escape or click outside
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false)
-    }
-
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyDown)
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown)
-      document.removeEventListener("mousedown", handleClickOutside)
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
-  }, [])
-
   const handleLinkClick = () => {
-    setIsOpen(false)
+    setOpen(false)
     onItemClick?.()
   }
 
   return (
-    <div
-      ref={containerRef}
-      className={cn("relative inline-block", className)}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Dropdown Trigger */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-        aria-haspopup="true"
+    <DropdownMenu open={open} onOpenChange={setOpen}>
+      <DropdownMenuTrigger
         className={cn(
-          "inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors select-none",
-          isOpen
-            ? "bg-primary/5 text-primary"
-            : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
+          "inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none hover:bg-secondary/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none",
+          open
+            ? "bg-secondary/80 text-foreground font-semibold"
+            : "text-foreground/75",
+          className
         )}
       >
         <span>{isArabic ? "الأصول التجارية" : "Commercial Assets"}</span>
         <ChevronDown
           className={cn(
-            "h-4 w-4 text-muted-foreground transition-transform duration-200 ease-out",
-            isOpen && "rotate-180 text-primary"
+            "h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ease-out",
+            open && "rotate-180 text-foreground"
           )}
         />
-      </button>
+      </DropdownMenuTrigger>
 
-      {/* Origin-aware Mega-Menu Card */}
-      <div
-        className={cn(
-          "absolute top-full left-1/2 z-50 mt-2 w-[92vw] max-w-[620px] origin-top -translate-x-1/2 rounded-2xl border border-border bg-background p-4 text-foreground shadow-2xl transition-all duration-200 ease-out sm:w-[580px]",
-          isOpen
-            ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
-            : "pointer-events-none -translate-y-2 scale-95 opacity-0"
-        )}
+      <DropdownMenuContent
+        align="center"
+        sideOffset={8}
+        className="w-[92vw] sm:w-[580px] max-w-[620px] rounded-2xl border border-border bg-background p-4 text-foreground shadow-2xl overflow-hidden"
       >
         {/* Header summary */}
-        <div className="mb-2 flex items-center justify-between border-b border-border/50 px-3 py-2">
+        <div className="mb-2 flex items-center justify-between border-b border-border/50 px-2 py-1.5">
           <div>
             <span className="text-xs font-semibold tracking-wider text-primary uppercase">
               {isArabic ? "محفظة تفوق العقارية" : "TAFAWOK Asset Portfolio"}
@@ -149,7 +106,7 @@ export function PropertyDropdown({
                 key={prop.id}
                 href={`/properties/${prop.slug}`}
                 onClick={handleLinkClick}
-                className="group flex items-start gap-3 rounded-xl border border-transparent p-2.5 transition-all duration-150 hover:border-border/60 hover:bg-secondary/70"
+                className="group flex items-start gap-3 rounded-xl border border-transparent p-2.5 transition-all duration-150 hover:border-border/60 hover:bg-secondary/70 cursor-pointer"
               >
                 {/* Thumbnail Image */}
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-border/50 bg-muted">
@@ -172,9 +129,12 @@ export function PropertyDropdown({
                     <h4 className="truncate text-sm font-bold text-foreground transition-colors group-hover:text-primary">
                       {t(prop.name)}
                     </h4>
-                    <span className="shrink-0 rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                    <Badge
+                      variant="outline"
+                      className="border-primary/30 bg-primary/10 text-[10px] font-semibold text-primary px-2 py-0.5 h-5"
+                    >
                       {prop.keyStats.gla}
-                    </span>
+                    </Badge>
                   </div>
                   <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
                     {t(prop.tagline)}
@@ -195,8 +155,10 @@ export function PropertyDropdown({
           })}
         </div>
 
+        <Separator className="my-2" />
+
         {/* Bottom Fast Action Bar */}
-        <div className="mt-3 flex flex-col items-center justify-between gap-2 border-t border-border/50 px-2 pt-2.5 text-xs sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-2 px-1 pt-1 text-xs sm:flex-row">
           <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
             <Phone className="phone-icon h-3 w-3 text-primary" />
             <span>
@@ -219,7 +181,7 @@ export function PropertyDropdown({
             <ArrowIcon className="h-3 w-3" />
           </Link>
         </div>
-      </div>
-    </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

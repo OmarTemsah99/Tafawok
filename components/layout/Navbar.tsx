@@ -3,16 +3,14 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Sparkles } from "lucide-react"
+import { Menu, ArrowRight, ArrowLeft } from "lucide-react"
 import { Logo } from "@/components/layout/Logo"
 import { PropertyDropdown } from "@/components/layout/PropertyDropdown"
 import { LanguageToggle } from "@/components/layout/LanguageToggle"
 import { ThemeToggle } from "@/components/layout/ThemeToggle"
 import { MobileNav } from "@/components/layout/MobileNav"
-import { PhoneNumber } from "@/components/shared/PhoneNumber"
 import { useLocaleStore } from "@/stores/useLocaleStore"
 import { useUiStore } from "@/stores/useUiStore"
-import { COMPANY_IDENTITY } from "@/content/cre-data"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -21,6 +19,8 @@ export function Navbar() {
   const { setMobileNavOpen } = useUiStore()
   const [scrolled, setScrolled] = React.useState(false)
   const isArabic = locale === "ar"
+
+  const ArrowIcon = isArabic ? ArrowLeft : ArrowRight
 
   // Detect scroll to heighten border contrast / shadow
   React.useEffect(() => {
@@ -35,26 +35,26 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "sticky top-0 z-40 w-full border-b bg-background/85 backdrop-blur-md transition-all duration-200",
-          scrolled ? "border-border py-2 shadow-sm" : "border-border/60 py-3"
+          "sticky top-0 z-40 w-full border-b bg-background/90 backdrop-blur-md transition-all duration-200",
+          scrolled ? "border-border py-2 shadow-sm" : "border-border/60 py-2.5 lg:py-3"
         )}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4 xl:px-8">
+          <div className="flex items-center justify-between gap-2 lg:gap-3 xl:gap-6">
             {/* Start: Brand Identity */}
             <div className="shrink-0">
               <Logo />
             </div>
 
-            {/* Center: Desktop Navigation */}
-            <nav className="hidden items-center gap-1 text-sm font-medium lg:flex xl:gap-2">
+            {/* Center: Desktop Navigation - tuned for lg (1024px) and xl */}
+            <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1.5 text-xs xl:text-sm font-medium">
               <Link
                 href="/"
                 className={cn(
-                  "rounded-lg px-3 py-2 transition-colors duration-150",
+                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
                   pathname === "/"
-                    ? "bg-primary/10 font-semibold text-primary"
-                    : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
+                    ? "bg-secondary/80 font-semibold text-foreground"
+                    : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
                 {isArabic ? "الرئيسية" : "Home"}
@@ -63,10 +63,10 @@ export function Navbar() {
               <Link
                 href="/about"
                 className={cn(
-                  "rounded-lg px-3 py-2 transition-colors duration-150",
+                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
                   pathname === "/about"
-                    ? "bg-primary/10 font-semibold text-primary"
-                    : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
+                    ? "bg-secondary/80 font-semibold text-foreground"
+                    : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
                 {isArabic ? "من نحن" : "About Us"}
@@ -78,10 +78,10 @@ export function Navbar() {
               <Link
                 href="/ceo-message"
                 className={cn(
-                  "rounded-lg px-3 py-2 transition-colors duration-150",
+                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
                   pathname === "/ceo-message"
-                    ? "bg-primary/10 font-semibold text-primary"
-                    : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
+                    ? "bg-secondary/80 font-semibold text-foreground"
+                    : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
                 {isArabic ? "رسالة الرئيس التنفيذي" : "CEO Message"}
@@ -90,52 +90,39 @@ export function Navbar() {
               <Link
                 href="/contact"
                 className={cn(
-                  "rounded-lg px-3 py-2 transition-colors duration-150",
+                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
                   pathname === "/contact"
-                    ? "bg-primary/10 font-semibold text-primary"
-                    : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
+                    ? "bg-secondary/80 font-semibold text-foreground"
+                    : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
                 {isArabic ? "اتصل بنا" : "Contact"}
               </Link>
             </nav>
 
-            {/* End: Utilities, Contact & CTA */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Executive phone hotline (visible on xl screens) */}
-              <div className="hidden items-center gap-2 border-e border-border/70 pe-2 text-xs xl:flex">
-                <span className="text-muted-foreground">
-                  {isArabic ? "المكتب الرئيسي:" : "Central Office:"}
-                </span>
-                <PhoneNumber
-                  phone={COMPANY_IDENTITY.contact.primaryPhone}
-                  className="text-xs font-bold text-foreground transition-colors hover:text-primary"
-                />
-              </div>
-
+            {/* End: Utilities & Primary CTA - all sharing exact h-9 height */}
+            <div className="flex items-center gap-1.5 sm:gap-2 xl:gap-2.5 shrink-0">
               {/* Theme & Language Toggles */}
-              <div className="flex items-center gap-1.5">
-                <ThemeToggle />
-                <LanguageToggle />
-              </div>
+              <ThemeToggle />
+              <LanguageToggle />
 
-              {/* Primary CTA Button */}
+              {/* Primary Inquire CTA Button - matching h-9 height */}
               <Link
                 href="/contact"
-                className="hidden cursor-pointer items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-sm transition-all duration-150 select-none hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-95 sm:inline-flex"
+                className="hidden h-9 cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-primary px-3 xl:px-4 text-xs font-semibold whitespace-nowrap text-primary-foreground shadow-sm transition-all duration-150 select-none hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-95 sm:inline-flex"
               >
-                <Sparkles className="h-3.5 w-3.5 text-primary-foreground/90" />
                 <span>{isArabic ? "استفسر الآن" : "Inquire Now"}</span>
+                <ArrowIcon className="h-3.5 w-3.5 opacity-90 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
               </Link>
 
-              {/* Mobile Hamburger Trigger */}
+              {/* Mobile Hamburger Trigger - matching h-9 height */}
               <button
                 type="button"
                 onClick={() => setMobileNavOpen(true)}
                 aria-label={isArabic ? "فتح القائمة" : "Open navigation menu"}
-                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border/60 text-foreground transition-colors hover:bg-secondary active:scale-95 lg:hidden"
+                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border/70 text-foreground transition-colors hover:bg-secondary active:scale-95 lg:hidden"
               >
-                <Menu className="h-5 w-5" />
+                <Menu className="h-4.5 w-4.5" />
               </button>
             </div>
           </div>

@@ -4,23 +4,38 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
-  X,
   ChevronDown,
   Building2,
   ShoppingBag,
   Warehouse,
   MessageSquare,
-  ShieldCheck,
   ArrowRight,
   ArrowLeft,
+  Mail,
+  Phone,
+  MapPin,
 } from "lucide-react"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet"
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 import { useUiStore } from "@/stores/useUiStore"
 import { useLocaleStore } from "@/stores/useLocaleStore"
 import { Logo } from "@/components/layout/Logo"
 import { LanguageToggle } from "@/components/layout/LanguageToggle"
 import { ThemeToggle } from "@/components/layout/ThemeToggle"
 import { PhoneNumber } from "@/components/shared/PhoneNumber"
-import { PROPERTIES, OWNER_DETAILS } from "@/content/cre-data"
+import { PROPERTIES, OWNER_DETAILS, COMPANY_IDENTITY } from "@/content/cre-data"
 import { cn } from "@/lib/utils"
 
 const PROPERTY_ICONS: Record<string, React.ElementType> = {
@@ -37,260 +52,235 @@ export function MobileNav() {
   const isArabic = locale === "ar"
 
   const ArrowIcon = isArabic ? ArrowLeft : ArrowRight
-
-  // Prevent background scroll when mobile nav is open
-  React.useEffect(() => {
-    if (mobileNavOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
-    return () => {
-      document.body.style.overflow = ""
-    }
-  }, [mobileNavOpen])
-
-  // Close on Escape
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileNavOpen(false)
-    }
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [setMobileNavOpen])
-
   const close = () => setMobileNavOpen(false)
 
-  if (!mobileNavOpen) return null
-
   return (
-    <div className="fixed inset-0 z-50 flex lg:hidden">
-      {/* Backdrop overlay */}
-      <div
-        className="fixed inset-0 animate-in bg-black/60 backdrop-blur-sm transition-opacity duration-300 fade-in"
-        onClick={close}
-        aria-hidden="true"
-      />
-
-      {/* Drawer panel (slides from start side: right in RTL, left in LTR) */}
-      <div
-        className={cn(
-          "relative z-10 flex h-full w-[88vw] max-w-sm animate-in flex-col overflow-y-auto border-e border-border bg-background shadow-2xl duration-300",
-          isArabic ? "slide-in-from-right" : "slide-in-from-left"
-        )}
+    <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+      <SheetContent
+        side={isArabic ? "right" : "left"}
+        showCloseButton={false}
+        className="w-[90vw] sm:max-w-md p-0 flex flex-col gap-0 border-border/80 bg-background h-full shadow-2xl"
       >
-        {/* Top Header */}
-        <div className="flex shrink-0 items-center justify-between border-b border-border/70 p-4">
+        {/* Accessible screen reader header */}
+        <SheetHeader className="sr-only">
+          <SheetTitle>
+            {isArabic ? "قائمة التنقل الرئيسية" : "Main Navigation"}
+          </SheetTitle>
+          <SheetDescription>
+            {isArabic
+              ? "استعراض الأصول التجارية ومعلومات شركة تفوق للاستثمار العقاري"
+              : "Explore commercial assets and corporate directory of TAFAWOK CRE"}
+          </SheetDescription>
+        </SheetHeader>
+
+        {/* Top Header Bar */}
+        <div className="flex shrink-0 items-center justify-between border-b border-border/70 p-4 sm:px-6">
           <Logo onClick={close} />
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <ThemeToggle />
-            <LanguageToggle variant="compact" />
-            <button
-              type="button"
-              onClick={close}
-              aria-label={isArabic ? "إغلاق القائمة" : "Close navigation"}
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border/60 text-foreground transition-colors hover:bg-secondary active:scale-95"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            <LanguageToggle />
           </div>
         </div>
 
-        {/* Navigation Content */}
-        <div className="flex-1 space-y-6 overflow-y-auto px-4 py-5">
+        {/* Scrollable Navigation Body */}
+        <div className="flex-1 space-y-6 overflow-y-auto px-4 py-6 sm:px-6">
           {/* Main Links */}
           <nav className="space-y-1">
             <Link
               href="/"
               onClick={close}
               className={cn(
-                "flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-colors",
+                "block rounded-lg px-3.5 py-2.5 text-base font-medium transition-colors",
                 pathname === "/"
-                  ? "border border-primary/20 bg-primary/10 text-primary"
-                  : "text-foreground hover:bg-secondary/70"
+                  ? "bg-secondary font-bold text-foreground"
+                  : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
               )}
             >
-              <span>{isArabic ? "الرئيسية" : "Home"}</span>
-              <ArrowIcon className="h-4 w-4 text-muted-foreground" />
+              {isArabic ? "الرئيسية" : "Home"}
             </Link>
 
             <Link
               href="/about"
               onClick={close}
               className={cn(
-                "flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-colors",
+                "block rounded-lg px-3.5 py-2.5 text-base font-medium transition-colors",
                 pathname === "/about"
-                  ? "border border-primary/20 bg-primary/10 text-primary"
-                  : "text-foreground hover:bg-secondary/70"
+                  ? "bg-secondary font-bold text-foreground"
+                  : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
               )}
             >
-              <span>{isArabic ? "من نحن" : "About Us"}</span>
-              <ArrowIcon className="h-4 w-4 text-muted-foreground" />
+              {isArabic ? "من نحن ومسيرة الإنجاز" : "About TAFAWOK & Heritage"}
             </Link>
 
-            {/* Properties Accordion */}
-            <div className="overflow-hidden rounded-xl border border-border/60 bg-secondary/20">
-              <button
-                type="button"
-                onClick={() => setPropertiesExpanded(!propertiesExpanded)}
-                className="flex w-full items-center justify-between px-3.5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary/50"
-              >
+            {/* Commercial Assets Section using shadcn Collapsible */}
+            <Collapsible
+              open={propertiesExpanded}
+              onOpenChange={setPropertiesExpanded}
+              className="py-1"
+            >
+              <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg px-3.5 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-secondary/60 cursor-pointer">
                 <span>
-                  {isArabic
-                    ? "الأصول التجارية (3 مواقع)"
-                    : "Commercial Assets (3 Hubs)"}
+                  {isArabic ? "الأصول التجارية" : "Commercial Assets"}
                 </span>
                 <ChevronDown
                   className={cn(
                     "h-4 w-4 text-muted-foreground transition-transform duration-200",
-                    propertiesExpanded && "rotate-180 text-primary"
+                    propertiesExpanded && "rotate-180 text-foreground"
                   )}
                 />
-              </button>
+              </CollapsibleTrigger>
 
-              {propertiesExpanded && (
-                <div className="space-y-1 border-t border-border/40 px-2 pt-1 pb-2.5">
-                  {PROPERTIES.map((prop) => {
-                    const Icon = PROPERTY_ICONS[prop.slug] || Building2
-                    const isActive = pathname === `/properties/${prop.slug}`
-                    return (
-                      <Link
-                        key={prop.id}
-                        href={`/properties/${prop.slug}`}
-                        onClick={close}
-                        className={cn(
-                          "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
-                          isActive
-                            ? "bg-primary/15 font-semibold text-primary"
-                            : "text-foreground/80 hover:bg-secondary hover:text-foreground"
-                        )}
+              <CollapsibleContent className="mt-1 space-y-1 ps-3 border-s-2 border-border/60 ms-3.5">
+                {PROPERTIES.map((prop) => {
+                  const Icon = PROPERTY_ICONS[prop.slug] || Building2
+                  const isActive = pathname === `/properties/${prop.slug}`
+                  return (
+                    <Link
+                      key={prop.id}
+                      href={`/properties/${prop.slug}`}
+                      onClick={close}
+                      className={cn(
+                        "flex items-center justify-between rounded-lg px-3 py-2 text-xs transition-colors",
+                        isActive
+                          ? "bg-secondary/80 font-bold text-foreground"
+                          : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
+                      )}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <Icon className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                        <span className="truncate">{t(prop.name)}</span>
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className="font-mono text-[10px] px-1.5 py-0 h-5 font-normal shrink-0"
                       >
-                        <Icon className="h-4 w-4 shrink-0 text-primary" />
-                        <span className="flex-1 truncate">{t(prop.name)}</span>
-                        <span className="font-mono text-[10px] text-muted-foreground">
-                          {prop.keyStats.gla}
-                        </span>
-                      </Link>
-                    )
-                  })}
-                  <Link
-                    href="/properties"
-                    onClick={close}
-                    className="block pt-2 text-center text-xs font-semibold text-primary hover:underline"
-                  >
+                        {prop.keyStats.gla}
+                      </Badge>
+                    </Link>
+                  )
+                })}
+                <Link
+                  href="/properties"
+                  onClick={close}
+                  className="inline-flex items-center gap-1.5 pt-1.5 ps-3 text-xs font-semibold text-primary hover:underline"
+                >
+                  <span>
                     {isArabic
-                      ? "عرض كافة الأصول والمساحات"
-                      : "View All Commercial Assets"}
-                  </Link>
-                </div>
-              )}
-            </div>
+                      ? "استعراض كافة الأصول"
+                      : "View All Assets Directory"}
+                  </span>
+                  <ArrowIcon className="h-3 w-3" />
+                </Link>
+              </CollapsibleContent>
+            </Collapsible>
 
             <Link
               href="/ceo-message"
               onClick={close}
               className={cn(
-                "flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-colors",
+                "block rounded-lg px-3.5 py-2.5 text-base font-medium transition-colors",
                 pathname === "/ceo-message"
-                  ? "border border-primary/20 bg-primary/10 text-primary"
-                  : "text-foreground hover:bg-secondary/70"
+                  ? "bg-secondary font-bold text-foreground"
+                  : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
               )}
             >
-              <span>{isArabic ? "رسالة الرئيس التنفيذي" : "CEO Message"}</span>
-              <ArrowIcon className="h-4 w-4 text-muted-foreground" />
+              {isArabic ? "رسالة الرئيس التنفيذي" : "CEO Message & Vision"}
             </Link>
 
             <Link
               href="/contact"
               onClick={close}
               className={cn(
-                "flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-colors",
+                "block rounded-lg px-3.5 py-2.5 text-base font-medium transition-colors",
                 pathname === "/contact"
-                  ? "border border-primary/20 bg-primary/10 text-primary"
-                  : "text-foreground hover:bg-secondary/70"
+                  ? "bg-secondary font-bold text-foreground"
+                  : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
               )}
             >
-              <span>
-                {isArabic ? "اتصل بنا والاستفسارات" : "Contact & Inquiries"}
-              </span>
-              <ArrowIcon className="h-4 w-4 text-muted-foreground" />
+              {isArabic ? "اتصل بنا والاستفسارات" : "Contact & Official RFQ"}
             </Link>
           </nav>
 
-          {/* Direct Executive Reach Card */}
-          <div className="space-y-3 rounded-xl border border-primary/20 bg-primary/5 p-3.5">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
-              <div className="min-w-0">
-                <span className="block truncate text-xs font-bold text-foreground">
+          <Separator />
+
+          {/* Executive Contact Coordinates */}
+          <div className="space-y-3">
+            <span className="block text-[11px] font-bold tracking-wider text-muted-foreground uppercase">
+              {isArabic ? "المكتب التنفيذي والتأجير" : "Executive Leasing Desk"}
+            </span>
+
+            <div className="space-y-2 text-xs">
+              <div className="flex items-baseline justify-between">
+                <span className="font-semibold text-foreground">
                   {t(OWNER_DETAILS.name)}
                 </span>
-                <span className="block truncate text-[10px] text-muted-foreground">
+                <span className="text-[11px] text-muted-foreground">
                   {t(OWNER_DETAILS.role)}
                 </span>
               </div>
-            </div>
 
-            <div className="space-y-1.5 text-xs">
-              <div className="flex items-center justify-between text-muted-foreground">
-                <span className="text-[11px]">
-                  {isArabic ? "المكتب التنفيذي:" : "Direct Line:"}
-                </span>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Phone className="h-3.5 w-3.5 shrink-0 text-primary" />
                 <PhoneNumber
                   phone={OWNER_DETAILS.phone}
-                  className="text-xs font-bold text-foreground hover:text-primary"
+                  showIcon={false}
+                  className="font-medium text-foreground hover:text-primary transition-colors"
                 />
               </div>
-              <div className="flex items-center justify-between text-muted-foreground">
-                <span className="text-[11px]">
-                  {isArabic ? "البريد:" : "Email:"}
-                </span>
+
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Mail className="h-3.5 w-3.5 shrink-0 text-primary" />
                 <a
                   href={`mailto:${OWNER_DETAILS.email}`}
-                  className="max-w-[160px] truncate font-medium text-foreground transition-colors hover:text-primary"
+                  className="truncate text-foreground hover:text-primary transition-colors"
                 >
                   {OWNER_DETAILS.email}
                 </a>
               </div>
+
+              <div className="flex items-start gap-2 text-muted-foreground pt-0.5">
+                <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+                <span className="text-[11px] leading-relaxed">
+                  {t(COMPANY_IDENTITY.headquarters.address)}
+                </span>
+              </div>
             </div>
 
-            {/* WhatsApp Direct Action */}
-            <a
-              href={`https://wa.me/${OWNER_DETAILS.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-                isArabic
-                  ? "مرحباً، أود الاستفسار بخصوص الأصول التجارية لشركة تفوق."
-                  : "Hello, I would like to inquire regarding TAFAWOK commercial properties."
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 active:scale-98"
-            >
-              <MessageSquare className="h-3.5 w-3.5" />
-              <span>
-                {isArabic
-                  ? "محادثة واتساب مباشرة مع المالك"
-                  : "Direct WhatsApp with Owner"}
-              </span>
-            </a>
+            {/* Direct WhatsApp Reach */}
+            <div className="pt-1">
+              <a
+                href={`https://wa.me/${OWNER_DETAILS.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+                  isArabic
+                    ? "مرحباً، أود الاستفسار بخصوص الأصول التجارية لشركة تفوق."
+                    : "Hello, I would like to inquire regarding TAFAWOK commercial properties."
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-border/80 bg-secondary/40 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-secondary active:scale-[0.98]"
+              >
+                <MessageSquare className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>{isArabic ? "واتساب المالك المباشر" : "Direct WhatsApp with Owner"}</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Drawer Footer CTA */}
-        <div className="shrink-0 border-t border-border/70 bg-card p-4">
+        {/* Sheet Footer CTA */}
+        <div className="shrink-0 border-t border-border/70 bg-card p-4 sm:px-6">
           <Link
             href="/contact"
             onClick={close}
-            className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 active:scale-98"
+            className="inline-flex w-full h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-4 text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 active:scale-[0.98]"
           >
             <span>
               {isArabic
-                ? "تقديم طلب استئجار / استفسار"
+                ? "تقديم طلب استفسار / استئجار رسمي"
                 : "Submit Leasing Inquiry"}
             </span>
-            <ArrowIcon className="h-4 w-4" />
+            <ArrowIcon className="h-3.5 w-3.5 opacity-90" />
           </Link>
         </div>
-      </div>
-    </div>
+      </SheetContent>
+    </Sheet>
   )
 }
