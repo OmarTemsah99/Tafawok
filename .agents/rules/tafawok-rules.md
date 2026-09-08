@@ -97,6 +97,7 @@ Supports **Arabic (`ar`, RTL)** and **English (`en`, LTR)**.
    }
    ```
 5. **Locale State:** Manage active locale (`"en" | "ar"`) via a lightweight Zustand slice. Sync `lang` and `dir` on `<html>`.
+6. **Phone Numbers & Numeric Units:** Phone numbers, dial codes, and numbers with measuring units (e.g., m², %, tons) must never flip in RTL. Enforce BiDi isolation via `<PhoneNumber />`, `<FormattedUnit />`, and the `.unit-number` utility.
 
 ---
 

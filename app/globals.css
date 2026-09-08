@@ -119,14 +119,45 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
     @apply bg-background text-foreground;
-    }
+  }
   button:not(:disabled), [role="button"]:not(:disabled) {
     cursor: pointer;
-    }
-  html {
-    @apply font-sans;
-    }
+  }
+  html[dir="rtl"] {
+    font-family: var(--font-arabic), system-ui, sans-serif;
+  }
+  html[dir="ltr"] {
+    font-family: var(--font-sans), system-ui, sans-serif;
+  }
 }
+
+@layer utilities {
+  .phone-number, [data-phone] {
+    direction: ltr !important;
+    unicode-bidi: isolate;
+    display: inline-block;
+    text-align: left;
+  }
+  .unit-number, [data-unit-number] {
+    direction: ltr !important;
+    unicode-bidi: isolate;
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+  }
+  .bidi-isolate, [data-bidi] {
+    unicode-bidi: isolate;
+    display: inline-block;
+  }
+  .phone-icon, [data-phone-icon] {
+    display: inline-block;
+    transform-origin: center;
+  }
+  [dir="rtl"] .phone-icon, [dir="rtl"] [data-phone-icon] {
+    transform: scaleX(-1);
+  }
+}
+
+
