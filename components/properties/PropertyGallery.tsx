@@ -5,14 +5,25 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react"
 import { Property } from "@/types/cre"
 import { useLocaleStore } from "@/stores/useLocaleStore"
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
 interface PropertyGalleryProps {
   property: Property
   className?: string
+  showHeading?: boolean
 }
 
-export function PropertyGallery({ property, className }: PropertyGalleryProps) {
+export function PropertyGallery({
+  property,
+  className,
+  showHeading = true,
+}: PropertyGalleryProps) {
   const { locale, t } = useLocaleStore()
   const isArabic = locale === "ar"
 
@@ -38,9 +49,7 @@ export function PropertyGallery({ property, className }: PropertyGalleryProps) {
     if (!lightboxOpen) return
 
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setLightboxOpen(false)
-      } else if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight") {
         if (isArabic) handlePrev()
         else handleNext()
       } else if (e.key === "ArrowLeft") {
@@ -50,38 +59,31 @@ export function PropertyGallery({ property, className }: PropertyGalleryProps) {
     }
 
     window.addEventListener("keydown", onKeyDown)
-    // Lock body scroll
-    const origOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-
-    return () => {
-      window.removeEventListener("keydown", onKeyDown)
-      document.body.style.overflow = origOverflow
-    }
+    return () => window.removeEventListener("keydown", onKeyDown)
   }, [lightboxOpen, isArabic, handleNext, handlePrev])
 
   return (
     <div className={cn("space-y-4", className)}>
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-            {t("propertyDetail.galleryTitle")}
-          </h3>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {isArabic
-              ? "معاينة معمارية عالية الدقة للمشروع والواجهات والمساحات الداخلية"
-              : "High-resolution architectural photography of exteriors, atriums, and interior floorplates"}
-          </p>
-        </div>
+      {showHeading && (
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              {t("propertyDetail.galleryTitle")}
+            </h3>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {t("propertyGallery.gallerySubtitle")}
+            </p>
+          </div>
 
-        <button
-          onClick={() => setLightboxOpen(true)}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-secondary/40 px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/50 hover:bg-secondary"
-        >
-          <Maximize2 className="size-3.5 text-primary" />
-          <span>{isArabic ? "معاينة مكبرة" : "Fullscreen Gallery"}</span>
-        </button>
-      </div>
+          <button
+            onClick={() => setLightboxOpen(true)}
+            className="cursor-target inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-secondary/40 px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/50 hover:bg-secondary"
+          >
+            <Maximize2 className="size-3.5 text-primary" />
+            <span>{t("propertyGallery.fullscreenBtn")}</span>
+          </button>
+        </div>
+      )}
 
       {/* Main Feature Image */}
       <div className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-border/80 bg-muted sm:aspect-21/9">
@@ -95,6 +97,19 @@ export function PropertyGallery({ property, className }: PropertyGalleryProps) {
           onClick={() => setLightboxOpen(true)}
         />
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
+
+        {/* Floating Top Right Fullscreen Button when heading is omitted */}
+        {!showHeading && (
+          <div className="absolute inset-x-4 top-4 flex justify-end">
+            <button
+              onClick={() => setLightboxOpen(true)}
+              className="cursor-target inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3.5 py-1.5 text-xs font-semibold text-white backdrop-blur-md transition-colors hover:bg-black/80"
+            >
+              <Maximize2 className="size-3.5 text-primary" />
+              <span>{t("propertyGallery.fullscreenBtn")}</span>
+            </button>
+          </div>
+        )}
 
         {/* Floating Controls on Main Image */}
         <div className="absolute inset-x-4 bottom-4 flex items-center justify-between text-white">
@@ -122,16 +137,16 @@ export function PropertyGallery({ property, className }: PropertyGalleryProps) {
       </div>
 
       {/* Thumbnail Strip */}
-      <div className="grid grid-cols-5 gap-2 sm:gap-3">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:gap-3">
         {images.map((img, idx) => (
           <button
             key={idx}
             onClick={() => setActiveIndex(idx)}
             className={cn(
-              "relative aspect-16/10 overflow-hidden rounded-lg border-2 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+              "relative aspect-16/10 h-14 shrink-0 overflow-hidden rounded-lg border-2 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none sm:h-18",
               activeIndex === idx
-                ? "border-primary shadow-md"
-                : "border-transparent opacity-60 hover:opacity-100"
+                ? "border-primary opacity-100 shadow-md"
+                : "border-transparent opacity-50 hover:opacity-90"
             )}
           >
             <Image
@@ -145,20 +160,26 @@ export function PropertyGallery({ property, className }: PropertyGalleryProps) {
         ))}
       </div>
 
-      {/* Full-Screen Lightbox Modal */}
-      {lightboxOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 p-4 backdrop-blur-xl animate-in fade-in-0 duration-200"
+      {/* shadcn Dialog Full-Screen Lightbox Modal */}
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent
+          showCloseButton={false}
+          className="flex h-[92vh] max-h-[92vh] w-[96vw] max-w-[96vw] flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-background/98 p-0 shadow-2xl backdrop-blur-2xl sm:w-[92vw] sm:max-w-6xl"
         >
+          <DialogTitle className="sr-only">
+            {t(property.name)} — {t("propertyDetail.galleryTitle")}
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            High-resolution architectural photography showcase
+          </DialogDescription>
+
           {/* Top Bar with Counter & Close */}
-          <div className="absolute inset-x-6 top-6 flex items-center justify-between text-foreground">
+          <div className="flex items-center justify-between border-b border-border/60 bg-muted/20 px-6 py-3.5">
             <div className="flex items-center gap-2">
               <span className="font-mono text-sm font-bold text-primary">
                 {activeIndex + 1} / {images.length}
               </span>
-              <span className="hidden text-xs text-muted-foreground sm:inline">
+              <span className="text-xs text-muted-foreground">
                 • {t(property.name)}
               </span>
             </div>
@@ -166,42 +187,67 @@ export function PropertyGallery({ property, className }: PropertyGalleryProps) {
             <button
               onClick={() => setLightboxOpen(false)}
               aria-label={t("propertyGallery.close")}
-              className="flex size-10 items-center justify-center rounded-full border border-border/80 bg-secondary/80 text-foreground transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary"
+              className="flex size-9 items-center justify-center rounded-lg border border-border/70 bg-secondary/80 text-foreground transition-colors hover:border-primary/40 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <X className="size-5" />
+              <X className="size-4" />
             </button>
           </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={handlePrev}
-            aria-label={t("propertyGallery.prev")}
-            className="absolute inset-s-6 z-10 flex size-12 items-center justify-center rounded-full border border-border/70 bg-card/80 text-foreground shadow-lg backdrop-blur-md transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            <ChevronLeft className="size-6 rtl:rotate-180" />
-          </button>
+          {/* Main Modal Image Area with Navigation Arrows */}
+          <div className="relative flex flex-1 items-center justify-center overflow-hidden p-2 sm:p-4">
+            <button
+              onClick={handlePrev}
+              aria-label={t("propertyGallery.prev")}
+              className="cursor-target absolute inset-s-4 z-20 flex size-11 items-center justify-center rounded-full border border-border/80 bg-background/80 text-foreground shadow-lg backdrop-blur-md transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronLeft className="size-5 rtl:rotate-180" />
+            </button>
 
-          <button
-            onClick={handleNext}
-            aria-label={t("propertyGallery.next")}
-            className="absolute inset-e-6 z-10 flex size-12 items-center justify-center rounded-full border border-border/70 bg-card/80 text-foreground shadow-lg backdrop-blur-md transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            <ChevronRight className="size-6 rtl:rotate-180" />
-          </button>
+            <button
+              onClick={handleNext}
+              aria-label={t("propertyGallery.next")}
+              className="cursor-target absolute inset-e-4 z-20 flex size-11 items-center justify-center rounded-full border border-border/80 bg-background/80 text-foreground shadow-lg backdrop-blur-md transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronRight className="size-5 rtl:rotate-180" />
+            </button>
 
-          {/* Main Modal Image */}
-          <div className="relative h-[80vh] w-full max-w-6xl overflow-hidden rounded-2xl">
-            <Image
-              src={images[activeIndex]}
-              alt={`${t(property.name)} - ${activeIndex + 1}`}
-              fill
-              sizes="90vw"
-              className="object-contain"
-              priority
-            />
+            <div className="relative h-full w-full">
+              <Image
+                src={images[activeIndex]}
+                alt={`${t(property.name)} - ${activeIndex + 1}`}
+                fill
+                sizes="(max-width: 1200px) 95vw, 1200px"
+                className="object-contain select-none"
+                priority
+              />
+            </div>
           </div>
-        </div>
-      )}
+
+          {/* Bottom Filmstrip Thumbnails */}
+          <div className="flex items-center justify-center gap-2 overflow-x-auto border-t border-border/60 bg-muted/20 p-3">
+            {images.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                className={cn(
+                  "relative h-12 w-16 shrink-0 overflow-hidden rounded-md border-2 transition-all select-none sm:h-14 sm:w-20",
+                  activeIndex === idx
+                    ? "border-primary shadow-sm ring-1 ring-primary/40"
+                    : "border-transparent opacity-50 hover:opacity-100"
+                )}
+              >
+                <Image
+                  src={img}
+                  alt={`Thumbnail ${idx + 1}`}
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

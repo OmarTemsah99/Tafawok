@@ -56,8 +56,11 @@ export function ScrollExpandShowcase() {
       <ScrollExpand
         src={flagship.mainImage}
         alt={t(flagship.name)}
-        title={isArabic ? "مبنى 360 للأعمال // القاهرة الجديدة" : "BUILDING 360 // PRIME OFFICE CAMPUS"}
-        scrollHint={isArabic ? "مرر لفتح المشهد المعماري" : "SCROLL TO EXPAND ASSET"}
+        title={t({
+          en: "BUILDING 360 // PRIME OFFICE CAMPUS",
+          ar: "مبنى 360 للأعمال // القاهرة الجديدة",
+        })}
+        scrollHint={t("home.scrollToExpand")}
         useWindowScroll
         startWidth={isMobile ? 86 : 52}
         startHeight={isMobile ? 54 : 64}
@@ -70,55 +73,59 @@ export function ScrollExpandShowcase() {
         overlayScrim={0.55}
         className="w-full"
       >
-        <div className="mx-auto max-w-4xl px-3 sm:px-6 text-center text-white">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/40 px-3.5 py-1 text-[11px] sm:text-xs font-mono font-bold tracking-wider text-white backdrop-blur-md">
+        <div className="mx-auto max-w-4xl px-3 text-center text-white sm:px-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/40 px-3.5 py-1 font-mono text-[11px] font-bold tracking-wider text-white backdrop-blur-md sm:text-xs">
             <MapPin className="size-3 text-primary sm:size-3.5" />
             <span>{t(flagship.location.address)}</span>
           </div>
 
-          <h3 className="mt-3 text-2xl font-black tracking-tight sm:mt-4 sm:text-5xl md:text-6xl text-white drop-shadow-lg">
+          <h3 className="mt-3 text-2xl font-black tracking-tight text-white drop-shadow-lg sm:mt-4 sm:text-5xl md:text-6xl">
             {t(flagship.name)}
           </h3>
 
-          <p className="mt-2 text-xs leading-relaxed text-white/90 sm:mt-3 sm:text-lg max-w-2xl mx-auto drop-shadow-md">
+          <p className="mx-auto mt-2 max-w-2xl text-xs leading-relaxed text-white/90 drop-shadow-md sm:mt-3 sm:text-lg">
             {t(flagship.description)}
           </p>
 
           {/* Quick Specs Matrix — 3 Col Grid on Mobile, Flex on Tablet/Desktop */}
-          <div className="mt-6 sm:mt-8 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-6">
-            <div className="rounded-xl border border-white/20 bg-black/50 p-2.5 sm:rounded-2xl sm:px-5 sm:py-3 backdrop-blur-md">
-              <span className="block font-mono text-[10px] text-white/70 sm:text-xs">GLA</span>
-              <span className="font-mono text-xs sm:text-2xl font-black text-white">
+          <div className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-6">
+            <div className="rounded-xl border border-white/20 bg-black/50 p-2.5 backdrop-blur-md sm:rounded-2xl sm:px-5 sm:py-3">
+              <span className="block font-mono text-[10px] text-white/70 sm:text-xs">
+                GLA
+              </span>
+              <span className="font-mono text-xs font-black text-white sm:text-2xl">
                 <BiDiIsolate>{flagship.keyStats.gla}</BiDiIsolate>
               </span>
             </div>
 
-            <div className="rounded-xl border border-white/20 bg-black/50 p-2.5 sm:rounded-2xl sm:px-5 sm:py-3 backdrop-blur-md">
+            <div className="rounded-xl border border-white/20 bg-black/50 p-2.5 backdrop-blur-md sm:rounded-2xl sm:px-5 sm:py-3">
               <span className="block font-mono text-[10px] text-white/70 sm:text-xs">
-                {isArabic ? "نسبة الإشغال" : "OCCUPANCY"}
+                {t("propertyCard.buaLabel")}
               </span>
-              <span className="font-mono text-xs sm:text-2xl font-black text-primary">
-                <BiDiIsolate>{flagship.keyStats.occupancyRate}</BiDiIsolate>
+              <span className="font-mono text-xs font-black text-white sm:text-2xl">
+                <BiDiIsolate>{flagship.keyStats.builtUpArea}</BiDiIsolate>
               </span>
             </div>
 
-            <div className="rounded-xl border border-white/20 bg-black/50 p-2.5 sm:rounded-2xl sm:px-5 sm:py-3 backdrop-blur-md">
+            <div className="rounded-xl border border-white/20 bg-black/50 p-2.5 backdrop-blur-md sm:rounded-2xl sm:px-5 sm:py-3">
               <span className="block font-mono text-[10px] text-white/70 sm:text-xs">
-                {isArabic ? "مواقف السيارات" : "PARKING"}
+                {t("propertyCard.parkingLabel")}
               </span>
-              <span className="font-mono text-xs sm:text-2xl font-black text-white">
-                <BiDiIsolate>{flagship.keyStats.parkingCapacity}</BiDiIsolate>
+              <span className="font-mono text-xs font-black text-white sm:text-2xl">
+                <BiDiIsolate>
+                  {t(flagship.keyStats.parkingCapacity)}
+                </BiDiIsolate>
               </span>
             </div>
           </div>
 
           {/* Direct CTA */}
-          <div className="mt-6 sm:mt-8 flex items-center justify-center gap-4">
+          <div className="mt-6 flex items-center justify-center gap-4 sm:mt-8">
             <Link
               href={`/properties/${flagship.slug}`}
-              className="cursor-target inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-xs sm:px-7 sm:py-3.5 sm:text-sm font-bold text-primary-foreground shadow-2xl transition-all duration-200 hover:bg-primary/90 hover:scale-105 active:scale-95"
+              className="cursor-target inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-xs font-bold text-primary-foreground shadow-2xl transition-all duration-200 hover:scale-105 hover:bg-primary/90 active:scale-95 sm:px-7 sm:py-3.5 sm:text-sm"
             >
-              <span>{isArabic ? "استكشف أصل مبنى 360 بالتفصيل" : "Explore Building 360 Specs"}</span>
+              <span>{t("home.viewPropertyDetails")}</span>
               <ArrowIcon className="size-4" />
             </Link>
           </div>

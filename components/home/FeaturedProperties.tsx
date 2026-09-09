@@ -15,7 +15,10 @@ import {
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { MotionFade } from "@/components/motion/MotionFade"
-import { AccordionGallery, type AccordionGalleryItem } from "@/components/motion/AccordionGallery"
+import {
+  AccordionGallery,
+  type AccordionGalleryItem,
+} from "@/components/motion/AccordionGallery"
 import { BiDiIsolate } from "@/components/shared/FormattedUnit"
 import {
   ArrowRight,
@@ -87,7 +90,9 @@ export function FeaturedProperties() {
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-xs font-bold tracking-wider text-primary uppercase">
               <Building2 className="size-3.5" />
               <span>
-                {isRtl ? "الأصول التجارية الرائدة" : "Flagship Commercial Portfolio"}
+                {isRtl
+                  ? "الأصول التجارية الرائدة"
+                  : "Flagship Commercial Portfolio"}
               </span>
             </div>
             <h2 className="mt-3 text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-4xl">
@@ -108,7 +113,9 @@ export function FeaturedProperties() {
               })}
             >
               <span>
-                {isRtl ? "استعراض كافة الأصول (3 مجمعات)" : "View Complete Directory (3 Hubs)"}
+                {isRtl
+                  ? "استعراض كافة الأصول (3 مجمعات)"
+                  : "View Complete Directory (3 Hubs)"}
               </span>
               <ArrowIcon className="size-4" />
             </Link>
@@ -143,11 +150,19 @@ export function FeaturedProperties() {
                 <Card className="cursor-target architectural-card group relative flex w-full flex-col justify-between overflow-hidden border-border/80 bg-card shadow-sm transition-all duration-300 hover:border-primary/60 hover:shadow-lg hover:shadow-primary/5">
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
-                      <Badge variant="outline" className="font-mono text-xs font-bold text-primary border-primary/25 bg-primary/5">
+                      <Badge
+                        variant="outline"
+                        className="border-primary/25 bg-primary/5 font-mono text-xs font-bold text-primary"
+                      >
                         0{idx + 1} {"//"} {t(property.category)}
                       </Badge>
-                      <Badge variant="secondary" className="font-mono text-xs font-bold text-primary">
-                        <BiDiIsolate>{property.keyStats.occupancyRate}</BiDiIsolate>
+                      <Badge
+                        variant="secondary"
+                        className="font-mono text-xs font-bold text-muted-foreground"
+                      >
+                        <BiDiIsolate>
+                          {property.keyStats.builtUpArea}
+                        </BiDiIsolate>
                       </Badge>
                     </div>
 
@@ -156,7 +171,7 @@ export function FeaturedProperties() {
                     </CardTitle>
 
                     <div className="mt-1.5 flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <MapPin className="size-3.5 text-primary shrink-0" />
+                      <MapPin className="size-3.5 shrink-0 text-primary" />
                       <span>{t(property.location.address)}</span>
                     </div>
                   </CardHeader>
@@ -170,7 +185,9 @@ export function FeaturedProperties() {
                   <CardFooter className="flex items-center justify-between border-t border-border/60 bg-muted/20 py-3">
                     <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
                       <Layers className="size-3.5 text-primary" />
-                      <span>GLA: <BiDiIsolate>{property.keyStats.gla}</BiDiIsolate></span>
+                      <span>
+                        GLA: <BiDiIsolate>{property.keyStats.gla}</BiDiIsolate>
+                      </span>
                     </div>
 
                     <Link

@@ -54,14 +54,14 @@ export function PropertyDropdown({
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger
         className={cn(
-          "inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none hover:bg-secondary/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none",
+          "inline-flex h-9 shrink-0 cursor-pointer items-center gap-1.5 rounded-lg px-2.5 text-xs font-medium whitespace-nowrap transition-colors duration-150 select-none hover:bg-secondary/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none xl:px-3.5 xl:text-sm",
           open
-            ? "bg-secondary/80 text-foreground font-semibold"
+            ? "bg-secondary/80 font-semibold text-foreground"
             : "text-foreground/75",
           className
         )}
       >
-        <span>{isArabic ? "الأصول التجارية" : "Commercial Assets"}</span>
+        <span>{t("nav.properties")}</span>
         <ChevronDown
           className={cn(
             "h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ease-out",
@@ -73,18 +73,16 @@ export function PropertyDropdown({
       <DropdownMenuContent
         align="center"
         sideOffset={8}
-        className="w-[92vw] sm:w-[580px] max-w-[620px] rounded-2xl border border-border bg-background p-4 text-foreground shadow-2xl overflow-hidden"
+        className="w-[92vw] max-w-[620px] overflow-hidden rounded-2xl border border-border bg-background p-4 text-foreground shadow-2xl sm:w-[580px]"
       >
         {/* Header summary */}
         <div className="mb-2 flex items-center justify-between border-b border-border/50 px-2 py-1.5">
           <div>
             <span className="text-xs font-semibold tracking-wider text-primary uppercase">
-              {isArabic ? "محفظة تفوق العقارية" : "TAFAWOK Asset Portfolio"}
+              {t("propertyDropdown.title")}
             </span>
             <p className="text-[11px] text-muted-foreground">
-              {isArabic
-                ? "3 صروح تجارية واستثمارية رائدة في مواقع استراتيجية"
-                : "3 Flagship Commercial Hubs Developed & Owned by TAFAWOK"}
+              {t("propertyDropdown.subtitle")}
             </p>
           </div>
           <Link
@@ -92,7 +90,7 @@ export function PropertyDropdown({
             onClick={handleLinkClick}
             className="group inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
           >
-            <span>{isArabic ? "عرض الكل" : "View All"}</span>
+            <span>{t("propertyDropdown.viewAll")}</span>
             <ArrowIcon className="h-3 w-3 transition-transform duration-150 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
           </Link>
         </div>
@@ -106,7 +104,7 @@ export function PropertyDropdown({
                 key={prop.id}
                 href={`/properties/${prop.slug}`}
                 onClick={handleLinkClick}
-                className="group flex items-start gap-3 rounded-xl border border-transparent p-2.5 transition-all duration-150 hover:border-border/60 hover:bg-secondary/70 cursor-pointer"
+                className="group flex cursor-pointer items-start gap-3 rounded-xl border border-transparent p-2.5 transition-all duration-150 hover:border-border/60 hover:bg-secondary/70"
               >
                 {/* Thumbnail Image */}
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-border/50 bg-muted">
@@ -131,7 +129,7 @@ export function PropertyDropdown({
                     </h4>
                     <Badge
                       variant="outline"
-                      className="border-primary/30 bg-primary/10 text-[10px] font-semibold text-primary px-2 py-0.5 h-5"
+                      className="h-5 border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary"
                     >
                       {prop.keyStats.gla}
                     </Badge>
@@ -144,9 +142,8 @@ export function PropertyDropdown({
                     <span>•</span>
                     <span>{t(prop.location.city)}</span>
                     <span>•</span>
-                    <span className="font-semibold text-emerald-700 dark:text-emerald-400">
-                      {prop.keyStats.occupancyRate}{" "}
-                      {isArabic ? "إشغال" : "Leased"}
+                    <span className="font-mono font-medium text-foreground">
+                      {t("propertyCard.buaLabel")}: {prop.keyStats.builtUpArea}
                     </span>
                   </div>
                 </div>
@@ -161,9 +158,7 @@ export function PropertyDropdown({
         <div className="flex flex-col items-center justify-between gap-2 px-1 pt-1 text-xs sm:flex-row">
           <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
             <Phone className="phone-icon h-3 w-3 text-primary" />
-            <span>
-              {isArabic ? "مكتب التأجير المركزي:" : "Central Leasing Desk:"}
-            </span>
+            <span>{t("propertyDropdown.leasingDesk")}</span>
             <PhoneNumber
               phone="+20 110 042 4829"
               showIcon={false}
@@ -175,9 +170,7 @@ export function PropertyDropdown({
             onClick={handleLinkClick}
             className="inline-flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-primary/80"
           >
-            <span>
-              {isArabic ? "طلب استئجار / موعد معاينة" : "Schedule Asset Tour"}
-            </span>
+            <span>{t("propertyDropdown.scheduleTour")}</span>
             <ArrowIcon className="h-3 w-3" />
           </Link>
         </div>

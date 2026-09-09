@@ -12,8 +12,7 @@ interface PropertyMapProps {
 }
 
 export function PropertyMap({ property, className }: PropertyMapProps) {
-  const { locale, t } = useLocaleStore()
-  const isArabic = locale === "ar"
+  const { t } = useLocaleStore()
   const location = property.location
 
   return (
@@ -24,9 +23,7 @@ export function PropertyMap({ property, className }: PropertyMapProps) {
             {t("propertyDetail.mapTitle")}
           </h3>
           <p className="mt-1 text-xs text-muted-foreground">
-            {isArabic
-              ? "موقع محوري متصل بشرايين الطرق الرئيسية والمحاور الحيوية"
-              : "Prime geographic location with direct arterial highway accessibility"}
+            {t("propertyDetail.mapSubtitle")}
           </p>
         </div>
 
@@ -52,7 +49,7 @@ export function PropertyMap({ property, className }: PropertyMapProps) {
                 <MapPin className="size-4" />
               </div>
               <div>
-                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                <span className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
                   {t("propertyDetail.locationAddress")}
                 </span>
                 <p className="mt-1 text-sm font-bold text-foreground">
@@ -70,11 +67,15 @@ export function PropertyMap({ property, className }: PropertyMapProps) {
                   <Compass className="size-4" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-                    {isArabic ? "الإحداثيات الجغرافية (GPS)" : "GPS Coordinates"}
+                  <span className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
+                    {t("propertyDetail.gpsCoordinates")}
                   </span>
-                  <p className="mt-1 font-mono text-xs text-foreground tabular-nums" dir="ltr">
-                    {location.coordinates.lat.toFixed(4)}° N, {location.coordinates.lng.toFixed(4)}° E
+                  <p
+                    className="mt-1 font-mono text-xs text-foreground tabular-nums"
+                    dir="ltr"
+                  >
+                    {location.coordinates.lat.toFixed(4)}° N,{" "}
+                    {location.coordinates.lng.toFixed(4)}° E
                   </p>
                 </div>
               </div>
@@ -83,9 +84,7 @@ export function PropertyMap({ property, className }: PropertyMapProps) {
 
           <div className="mt-6 border-t border-border/60 pt-4">
             <p className="text-[11px] leading-relaxed text-muted-foreground">
-              {isArabic
-                ? "متاح حجز جولات ميدانية برفقة فريق التأجير التجاري لمعاينة الموقع ومسارات الحركة."
-                : "Site visits and guided architectural walkthroughs are available upon prior commercial appointment."}
+              {t("propertyDetail.siteVisitsNote")}
             </p>
           </div>
         </div>
@@ -96,14 +95,14 @@ export function PropertyMap({ property, className }: PropertyMapProps) {
             <iframe
               src={location.googleMapsEmbedUrl}
               title={`${t(property.name)} Location Map`}
-              className="absolute inset-0 size-full border-0 grayscale-15 contrast-105 dark:invert-90 dark:hue-rotate-180"
+              className="absolute inset-0 size-full border-0 contrast-105 grayscale-15 dark:hue-rotate-180 dark:invert-90"
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
             />
           ) : (
             <div className="flex size-full items-center justify-center p-8 text-center text-xs text-muted-foreground">
-              <span>{isArabic ? "خريطة الموقع قيد التحديث" : "Location map preview updating"}</span>
+              <span>{t("propertyDetail.mapUpdating")}</span>
             </div>
           )}
         </div>

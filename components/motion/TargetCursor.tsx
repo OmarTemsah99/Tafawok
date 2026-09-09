@@ -1,6 +1,12 @@
 "use client"
 
-import React, { useEffect, useRef, useCallback, useMemo, useSyncExternalStore } from "react"
+import React, {
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+  useSyncExternalStore,
+} from "react"
 import { createPortal } from "react-dom"
 import { gsap } from "gsap"
 
@@ -10,7 +16,9 @@ const emptySubscribe = () => () => {}
 // ancestor establishes a containing block (transform, perspective, filter,
 // will-change of those, or contain). When that happens, the cursor's translate
 // no longer maps to viewport coordinates, so we measure and compensate for it.
-const getContainingBlock = (element: HTMLElement | null): HTMLElement | null => {
+const getContainingBlock = (
+  element: HTMLElement | null
+): HTMLElement | null => {
   let node = element?.parentElement ?? null
   while (node && node !== document.documentElement) {
     const style = getComputedStyle(node)
@@ -30,7 +38,9 @@ const getContainingBlock = (element: HTMLElement | null): HTMLElement | null => 
   return null
 }
 
-const getContainingBlockOffset = (block: HTMLElement | null): { x: number; y: number } => {
+const getContainingBlockOffset = (
+  block: HTMLElement | null
+): { x: number; y: number } => {
   if (!block) return { x: 0, y: 0 }
   const rect = block.getBoundingClientRect()
   return { x: rect.left + block.clientLeft, y: rect.top + block.clientTop }
@@ -44,6 +54,49 @@ export interface TargetCursorProps {
   parallaxOn?: boolean
   cursorColor?: string
   cursorColorOnTarget?: string
+}
+
+function checkIsTouchOrTablet(): boolean {
+  if (typeof window === "undefined") return true
+
+  // 1. Viewport width below laptop threshold (< 1024px, includes tablets and phones)
+  if (window.innerWidth < 1024) return true
+
+  // 2. Touch capability & coarse pointer (tablets, iPads, phones)
+  const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0
+  const isCoarse = window.matchMedia("(pointer: coarse)").matches
+  const noHover = window.matchMedia("(hover: none)").matches
+  if (hasTouch && (isCoarse || noHover)) return true
+
+  // 3. User agent checks for mobile & tablet devices (including iPadOS desktop mode)
+  const ua = (navigator.userAgent || navigator.vendor || "").toLowerCase()
+  const isMobileOrTabletUA =
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|tablet|kindle|silk|playbook/i.test(
+      ua
+    )
+  const isIPadOS = navigator.maxTouchPoints > 1 && /macintosh/i.test(ua)
+
+  return isMobileOrTabletUA || isIPadOS
+}
+
+function subscribeTouchOrTablet(callback: () => void) {
+  if (typeof window === "undefined") return () => {}
+
+  window.addEventListener("resize", callback)
+  const mqlCoarse = window.matchMedia("(pointer: coarse)")
+  const mqlHover = window.matchMedia("(hover: none)")
+  const mqlWidth = window.matchMedia("(max-width: 1023px)")
+
+  mqlCoarse.addEventListener?.("change", callback)
+  mqlHover.addEventListener?.("change", callback)
+  mqlWidth.addEventListener?.("change", callback)
+
+  return () => {
+    window.removeEventListener("resize", callback)
+    mqlCoarse.removeEventListener?.("change", callback)
+    mqlHover.removeEventListener?.("change", callback)
+    mqlWidth.removeEventListener?.("change", callback)
+  }
 }
 
 export function TargetCursor({
@@ -60,6 +113,13 @@ export function TargetCursor({
     () => true,
     () => false
   )
+
+  const isTouchOrTablet = useSyncExternalStore(
+    subscribeTouchOrTablet,
+    checkIsTouchOrTablet,
+    () => true
+  )
+
   const cursorRef = useRef<HTMLDivElement>(null)
   const cornersRef = useRef<NodeListOf<HTMLDivElement> | null>(null)
   const spinTl = useRef<gsap.core.Timeline | null>(null)
@@ -67,33 +127,29 @@ export function TargetCursor({
   const containingBlockRef = useRef<HTMLElement | null>(null)
 
   const isActiveRef = useRef(false)
-  const targetCornerPositionsRef = useRef<{ x: number; y: number }[] | null>(null)
+  const targetCornerPositionsRef = useRef<{ x: number; y: number }[] | null>(
+    null
+  )
   const tickerFnRef = useRef<(() => void) | null>(null)
   const activeStrengthRef = useRef({ current: 0 })
-
-  const isMobile = useMemo(() => {
-    if (typeof window === "undefined") return true
-    const hasTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0
-    const isSmallScreen = window.innerWidth <= 768
-    const userAgent =
-      navigator.userAgent ||
-      navigator.vendor ||
-      ((window as unknown as { opera?: string }).opera ?? "")
-    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i
-    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase())
-    return (hasTouchScreen && isSmallScreen) || isMobileUserAgent
-  }, [])
 
   const constants = useMemo(() => ({ borderWidth: 2.5, cornerSize: 10 }), [])
 
   const moveCursor = useCallback((x: number, y: number) => {
     if (!cursorRef.current) return
-    const { x: offsetX, y: offsetY } = getContainingBlockOffset(containingBlockRef.current)
-    gsap.to(cursorRef.current, { x: x - offsetX, y: y - offsetY, duration: 0.08, ease: "power3.out" })
+    const { x: offsetX, y: offsetY } = getContainingBlockOffset(
+      containingBlockRef.current
+    )
+    gsap.to(cursorRef.current, {
+      x: x - offsetX,
+      y: y - offsetY,
+      duration: 0.08,
+      ease: "power3.out",
+    })
   }, [])
 
   useEffect(() => {
-    if (!mounted || isMobile || !cursorRef.current) return
+    if (!mounted || isTouchOrTablet || !cursorRef.current) return
 
     const activeStrength = activeStrengthRef.current
     const originalCursor = document.body.style.cursor
@@ -102,7 +158,9 @@ export function TargetCursor({
     }
 
     const cursor = cursorRef.current
-    cornersRef.current = cursor.querySelectorAll<HTMLDivElement>(".target-cursor-corner")
+    cornersRef.current = cursor.querySelectorAll<HTMLDivElement>(
+      ".target-cursor-corner"
+    )
 
     containingBlockRef.current = getContainingBlock(cursor)
     const getOffset = () => getContainingBlockOffset(containingBlockRef.current)
@@ -154,10 +212,22 @@ export function TargetCursor({
       const cursorY = gsap.getProperty(cursorRef.current, "y") as number
 
       const targetCornerPositions = [
-        { x: rect.left - borderWidth - offsetX, y: rect.top - borderWidth - offsetY },
-        { x: rect.right + borderWidth - cornerSize - offsetX, y: rect.top - borderWidth - offsetY },
-        { x: rect.right + borderWidth - cornerSize - offsetX, y: rect.bottom + borderWidth - cornerSize - offsetY },
-        { x: rect.left - borderWidth - offsetX, y: rect.bottom + borderWidth - cornerSize - offsetY },
+        {
+          x: rect.left - borderWidth - offsetX,
+          y: rect.top - borderWidth - offsetY,
+        },
+        {
+          x: rect.right + borderWidth - cornerSize - offsetX,
+          y: rect.top - borderWidth - offsetY,
+        },
+        {
+          x: rect.right + borderWidth - cornerSize - offsetX,
+          y: rect.bottom + borderWidth - cornerSize - offsetY,
+        },
+        {
+          x: rect.left - borderWidth - offsetX,
+          y: rect.bottom + borderWidth - cornerSize - offsetY,
+        },
       ]
 
       const corners = Array.from(cornersRef.current)
@@ -187,12 +257,15 @@ export function TargetCursor({
     const scrollHandler = () => {
       if (!activeTarget || !cursorRef.current) return
       const { x: offsetX, y: offsetY } = getOffset()
-      const mouseX = (gsap.getProperty(cursorRef.current, "x") as number) + offsetX
-      const mouseY = (gsap.getProperty(cursorRef.current, "y") as number) + offsetY
+      const mouseX =
+        (gsap.getProperty(cursorRef.current, "x") as number) + offsetX
+      const mouseY =
+        (gsap.getProperty(cursorRef.current, "y") as number) + offsetY
       const elementUnderMouse = document.elementFromPoint(mouseX, mouseY)
       const isStillOverTarget =
         elementUnderMouse &&
-        (elementUnderMouse === activeTarget || elementUnderMouse.closest(targetSelector) === activeTarget)
+        (elementUnderMouse === activeTarget ||
+          elementUnderMouse.closest(targetSelector) === activeTarget)
       if (!isStillOverTarget) {
         currentLeaveHandler?.()
       }
@@ -264,16 +337,32 @@ export function TargetCursor({
       const cursorY = gsap.getProperty(cursorRef.current, "y") as number
 
       targetCornerPositionsRef.current = [
-        { x: rect.left - borderWidth - offsetX, y: rect.top - borderWidth - offsetY },
-        { x: rect.right + borderWidth - cornerSize - offsetX, y: rect.top - borderWidth - offsetY },
-        { x: rect.right + borderWidth - cornerSize - offsetX, y: rect.bottom + borderWidth - cornerSize - offsetY },
-        { x: rect.left - borderWidth - offsetX, y: rect.bottom + borderWidth - cornerSize - offsetY },
+        {
+          x: rect.left - borderWidth - offsetX,
+          y: rect.top - borderWidth - offsetY,
+        },
+        {
+          x: rect.right + borderWidth - cornerSize - offsetX,
+          y: rect.top - borderWidth - offsetY,
+        },
+        {
+          x: rect.right + borderWidth - cornerSize - offsetX,
+          y: rect.bottom + borderWidth - cornerSize - offsetY,
+        },
+        {
+          x: rect.left - borderWidth - offsetX,
+          y: rect.bottom + borderWidth - cornerSize - offsetY,
+        },
       ]
 
       isActiveRef.current = true
       gsap.ticker.add(tickerFnRef.current!)
 
-      gsap.to(activeStrengthRef.current, { current: 1, duration: hoverDuration, ease: "power2.out" })
+      gsap.to(activeStrengthRef.current, {
+        current: 1,
+        duration: hoverDuration,
+        ease: "power2.out",
+      })
 
       corners.forEach((corner, i) => {
         gsap.to(corner, {
@@ -318,17 +407,33 @@ export function TargetCursor({
           ]
           const tl = gsap.timeline()
           innerCorners.forEach((corner, index) => {
-            tl.to(corner, { x: positions[index].x, y: positions[index].y, duration: 0.3, ease: "power3.out" }, 0)
+            tl.to(
+              corner,
+              {
+                x: positions[index].x,
+                y: positions[index].y,
+                duration: 0.3,
+                ease: "power3.out",
+              },
+              0
+            )
           })
         }
         resumeTimeout = setTimeout(() => {
           if (!activeTarget && cursorRef.current && spinTl.current) {
-            const currentRotation = gsap.getProperty(cursorRef.current, "rotation") as number
+            const currentRotation = gsap.getProperty(
+              cursorRef.current,
+              "rotation"
+            ) as number
             const normalizedRotation = currentRotation % 360
             spinTl.current.kill()
             spinTl.current = gsap
               .timeline({ repeat: -1 })
-              .to(cursorRef.current, { rotation: "+=360", duration: spinDuration, ease: "none" })
+              .to(cursorRef.current, {
+                rotation: "+=360",
+                duration: spinDuration,
+                ease: "none",
+              })
             gsap.to(cursorRef.current, {
               rotation: normalizedRotation + 360,
               duration: spinDuration * (1 - normalizedRotation / 360),
@@ -379,7 +484,7 @@ export function TargetCursor({
     moveCursor,
     constants,
     hideDefaultCursor,
-    isMobile,
+    isTouchOrTablet,
     hoverDuration,
     parallaxOn,
     cursorColor,
@@ -387,16 +492,18 @@ export function TargetCursor({
   ])
 
   useEffect(() => {
-    if (isMobile || !cursorRef.current || !spinTl.current) return
+    if (isTouchOrTablet || !cursorRef.current || !spinTl.current) return
     if (spinTl.current.isActive()) {
       spinTl.current.kill()
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursorRef.current, { rotation: "+=360", duration: spinDuration, ease: "none" })
+      spinTl.current = gsap.timeline({ repeat: -1 }).to(cursorRef.current, {
+        rotation: "+=360",
+        duration: spinDuration,
+        ease: "none",
+      })
     }
-  }, [spinDuration, isMobile])
+  }, [spinDuration, isTouchOrTablet])
 
-  if (!mounted || isMobile || typeof document === "undefined") {
+  if (!mounted || isTouchOrTablet || typeof document === "undefined") {
     return null
   }
 
@@ -410,7 +517,11 @@ export function TargetCursor({
       <div
         ref={dotRef}
         className="absolute top-1/2 left-1/2 size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full shadow-[0_0_8px_currentColor]"
-        style={{ willChange: "transform", backgroundColor: cursorColor, color: cursorColor }}
+        style={{
+          willChange: "transform",
+          backgroundColor: cursorColor,
+          color: cursorColor,
+        }}
       />
       <div
         className="target-cursor-corner absolute top-1/2 left-1/2 size-2.5 translate-x-[-150%] translate-y-[-150%] border-[2.5px] border-r-0 border-b-0"

@@ -64,9 +64,8 @@ export interface Property {
   keyStats: {
     gla: string // Gross Leasable Area
     builtUpArea: string
-    floors: string
-    parkingCapacity: string
-    occupancyRate: string
+    floors: LocalizedString | string
+    parkingCapacity: LocalizedString | string
     zoning: LocalizedString
   }
   specs: PropertySpec[]

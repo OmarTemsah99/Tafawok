@@ -43,7 +43,7 @@ export function Footer() {
               {t(UI_DICTIONARY.footer.corporateDesc)}
             </p>
 
-            <div className="border-s-2 border-primary/60 ps-3.5 pt-1 space-y-1">
+            <div className="space-y-1 border-s-2 border-primary/60 ps-3.5 pt-1">
               <span className="block text-[11px] font-bold text-foreground">
                 {isArabic
                   ? "سجل تجاري وتصنيف مقاولات أول"
@@ -73,7 +73,7 @@ export function Footer() {
                       {t(prop.name)}
                     </div>
                     <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                      <span className="font-mono text-primary font-medium whitespace-nowrap shrink-0">
+                      <span className="shrink-0 font-mono font-medium whitespace-nowrap text-primary">
                         {prop.keyStats.gla}
                       </span>
                       <span className="text-muted-foreground/60">•</span>
@@ -109,7 +109,7 @@ export function Footer() {
                   href="/"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {isArabic ? "الصفحة الرئيسية" : "Corporate Home"}
+                  {t("nav.home")}
                 </Link>
               </li>
               <li>
@@ -117,9 +117,7 @@ export function Footer() {
                   href="/about"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {isArabic
-                    ? "عن الشركة ومسيرة الإنجاز"
-                    : "About TAFAWOK & Heritage"}
+                  {t("nav.aboutHeritage")}
                 </Link>
               </li>
               <li>
@@ -127,9 +125,7 @@ export function Footer() {
                   href="/properties"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {isArabic
-                    ? "المحفظة العقارية والمساحات"
-                    : "Commercial Real Estate Portfolio"}
+                  {t("nav.properties")}
                 </Link>
               </li>
               <li>
@@ -137,9 +133,7 @@ export function Footer() {
                   href="/ceo-message"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {isArabic
-                    ? "رسالة الرئيس التنفيذي ورؤية الاستثمار"
-                    : "CEO Strategic Vision & Message"}
+                  {t("nav.ceoVision")}
                 </Link>
               </li>
               <li>
@@ -147,9 +141,7 @@ export function Footer() {
                   href="/contact"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {isArabic
-                    ? "بوابة الاستفسار والتعاقد الرسمي"
-                    : "Official RFQ & Inquiry Portal"}
+                  {t("nav.contactRfq")}
                 </Link>
               </li>
             </ul>
@@ -158,7 +150,7 @@ export function Footer() {
           {/* Column 4: Executive Leasing & Direct Reach */}
           <div className="space-y-4">
             <h4 className="text-xs font-bold tracking-wider text-foreground uppercase">
-              {isArabic ? "المكتب التنفيذي والتأجير" : "Executive Leasing Desk"}
+              {t("nav.leasingDesk")}
             </h4>
             <div className="space-y-3 text-xs">
               <div>
@@ -170,13 +162,13 @@ export function Footer() {
                 </span>
               </div>
 
-              <div className="space-y-2 pt-1 border-t border-border/50">
+              <div className="space-y-2 border-t border-border/50 pt-1">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Phone className="h-3.5 w-3.5 shrink-0 text-primary" />
                   <PhoneNumber
                     phone={OWNER_DETAILS.phone}
                     showIcon={false}
-                    className="font-semibold text-foreground hover:text-primary transition-colors"
+                    className="font-semibold text-foreground transition-colors hover:text-primary"
                   />
                 </div>
 
@@ -216,7 +208,7 @@ export function Footer() {
                   className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-secondary/50 px-3 py-1.5 text-[11px] font-semibold text-foreground transition-colors hover:border-primary/40 hover:bg-secondary active:scale-95"
                 >
                   <MessageSquare className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
-                  <span>{isArabic ? "واتساب المالك المباشر" : "Direct WhatsApp"}</span>
+                  <span>{t("nav.whatsappOwner")}</span>
                 </a>
               </div>
             </div>
@@ -241,10 +233,10 @@ export function Footer() {
               <button
                 type="button"
                 onClick={scrollToTop}
-                aria-label={isArabic ? "الرجوع لأعلى الصفحة" : "Scroll to top"}
+                aria-label={t("nav.backToTop")}
                 className="inline-flex h-8 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-border/70 bg-background/50 px-3 text-xs font-semibold text-foreground transition-all hover:bg-secondary active:scale-95"
               >
-                <span>{isArabic ? "لأعلى الصفحة" : "Back to top"}</span>
+                <span>{t("nav.backToTop")}</span>
                 <ArrowUp className="h-3.5 w-3.5 text-muted-foreground" />
               </button>
             </div>

@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils"
 
 export function Navbar() {
   const pathname = usePathname()
-  const { locale } = useLocaleStore()
+  const { locale, t } = useLocaleStore()
   const { setMobileNavOpen } = useUiStore()
   const [scrolled, setScrolled] = React.useState(false)
   const isArabic = locale === "ar"
@@ -36,7 +36,9 @@ export function Navbar() {
       <header
         className={cn(
           "sticky top-0 z-40 w-full border-b bg-background/90 backdrop-blur-md transition-all duration-200",
-          scrolled ? "border-border py-2 shadow-sm" : "border-border/60 py-2.5 lg:py-3"
+          scrolled
+            ? "border-border py-2 shadow-sm"
+            : "border-border/60 py-2.5 lg:py-3"
         )}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4 xl:px-8">
@@ -47,29 +49,29 @@ export function Navbar() {
             </div>
 
             {/* Center: Desktop Navigation - tuned for lg (1024px) and xl */}
-            <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1.5 text-xs xl:text-sm font-medium">
+            <nav className="hidden items-center gap-0.5 text-xs font-medium lg:flex xl:gap-1.5 xl:text-sm">
               <Link
                 href="/"
                 className={cn(
-                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
+                  "inline-flex h-9 shrink-0 items-center justify-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap transition-colors duration-150 select-none xl:px-3.5 xl:text-sm",
                   pathname === "/"
                     ? "bg-secondary/80 font-semibold text-foreground"
                     : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
-                {isArabic ? "الرئيسية" : "Home"}
+                {t("nav.home")}
               </Link>
 
               <Link
                 href="/about"
                 className={cn(
-                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
+                  "inline-flex h-9 shrink-0 items-center justify-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap transition-colors duration-150 select-none xl:px-3.5 xl:text-sm",
                   pathname === "/about"
                     ? "bg-secondary/80 font-semibold text-foreground"
                     : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
-                {isArabic ? "من نحن" : "About Us"}
+                {t("nav.about")}
               </Link>
 
               {/* Commercial Assets with Interactive Dropdown */}
@@ -78,30 +80,30 @@ export function Navbar() {
               <Link
                 href="/ceo-message"
                 className={cn(
-                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
+                  "inline-flex h-9 shrink-0 items-center justify-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap transition-colors duration-150 select-none xl:px-3.5 xl:text-sm",
                   pathname === "/ceo-message"
                     ? "bg-secondary/80 font-semibold text-foreground"
                     : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
-                {isArabic ? "رسالة الرئيس التنفيذي" : "CEO Message"}
+                {t("nav.ceo")}
               </Link>
 
               <Link
                 href="/contact"
                 className={cn(
-                  "inline-flex h-9 items-center justify-center rounded-lg px-2.5 xl:px-3.5 text-xs xl:text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-150 select-none",
+                  "inline-flex h-9 shrink-0 items-center justify-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap transition-colors duration-150 select-none xl:px-3.5 xl:text-sm",
                   pathname === "/contact"
                     ? "bg-secondary/80 font-semibold text-foreground"
                     : "text-foreground/75 hover:bg-secondary/50 hover:text-foreground"
                 )}
               >
-                {isArabic ? "اتصل بنا" : "Contact"}
+                {t("nav.contact")}
               </Link>
             </nav>
 
             {/* End: Utilities & Primary CTA - all sharing exact h-9 height */}
-            <div className="flex items-center gap-1.5 sm:gap-2 xl:gap-2.5 shrink-0">
+            <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 xl:gap-2.5">
               {/* Theme & Language Toggles */}
               <ThemeToggle />
               <LanguageToggle />
@@ -109,9 +111,9 @@ export function Navbar() {
               {/* Primary Inquire CTA Button - matching h-9 height */}
               <Link
                 href="/contact"
-                className="hidden h-9 cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-primary px-3 xl:px-4 text-xs font-semibold whitespace-nowrap text-primary-foreground shadow-sm transition-all duration-150 select-none hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-95 sm:inline-flex"
+                className="hidden h-9 cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-primary px-3 text-xs font-semibold whitespace-nowrap text-primary-foreground shadow-sm transition-all duration-150 select-none hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-95 sm:inline-flex xl:px-4"
               >
-                <span>{isArabic ? "استفسر الآن" : "Inquire Now"}</span>
+                <span>{t("nav.inquireNow")}</span>
                 <ArrowIcon className="h-3.5 w-3.5 opacity-90 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
               </Link>
 
@@ -119,7 +121,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileNavOpen(true)}
-                aria-label={isArabic ? "فتح القائمة" : "Open navigation menu"}
+                aria-label={t("nav.openMenu")}
                 className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border/70 text-foreground transition-colors hover:bg-secondary active:scale-95 lg:hidden"
               >
                 <Menu className="h-4.5 w-4.5" />

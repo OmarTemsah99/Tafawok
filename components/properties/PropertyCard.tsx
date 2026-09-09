@@ -4,7 +4,7 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ArrowLeft, Building2, Car, MapPin } from "lucide-react"
-import { Property, PropertyType, PropertyStatus } from "@/types/cre"
+import { Property, PropertyType } from "@/types/cre"
 import { useLocaleStore } from "@/stores/useLocaleStore"
 import { BiDiIsolate } from "@/components/shared/FormattedUnit"
 import {
@@ -35,18 +35,11 @@ export function PropertyCard({
   const ArrowIcon = isArabic ? ArrowLeft : ArrowRight
 
   const propType: PropertyType = property.type || "office"
-  const propStatus: PropertyStatus = property.status || "active"
 
   const typeLabels: Record<PropertyType, { en: string; ar: string }> = {
     office: { en: "Corporate Office Hub", ar: "مجمع إداري للشركات" },
     retail: { en: "Destination Retail Mall", ar: "مركز تجاري ومول" },
     logistics: { en: "Logistics & Trade Complex", ar: "مجمع لوجستي وتجاري" },
-  }
-
-  const statusLabels: Record<PropertyStatus, { en: string; ar: string }> = {
-    active: { en: "Prime Leasing Open", ar: "متاح للتأجير الفوري" },
-    completed: { en: "Fully Operational", ar: "مكتمل ويعمل بالكامل" },
-    pipeline: { en: "Under Development", ar: "قيد التطوير والتنفيذ" },
   }
 
   return (
@@ -70,12 +63,18 @@ export function PropertyCard({
 
         {/* Top Badges */}
         <div className="absolute inset-x-4 top-4 flex items-center justify-between gap-2">
-          <Badge variant="outline" className="border-border/60 bg-background/85 text-[11px] font-semibold text-foreground backdrop-blur-md">
-            <span className="size-1.5 rounded-full bg-primary me-1.5" />
+          <Badge
+            variant="outline"
+            className="border-border/60 bg-background/85 text-[11px] font-semibold text-foreground backdrop-blur-md"
+          >
+            <span className="me-1.5 size-1.5 rounded-full bg-primary" />
             {t(typeLabels[propType])}
           </Badge>
-          <Badge variant="secondary" className="border-primary/30 bg-primary/10 text-[10px] font-bold text-primary backdrop-blur-md">
-            {t(statusLabels[propStatus])}
+          <Badge
+            variant="secondary"
+            className="border-border/60 bg-background/80 font-mono text-[10px] font-semibold text-muted-foreground backdrop-blur-md"
+          >
+            <BiDiIsolate>{property.keyStats.builtUpArea}</BiDiIsolate>
           </Badge>
         </div>
 
@@ -89,7 +88,10 @@ export function PropertyCard({
       {/* Card Header */}
       <CardHeader className="p-6 pb-2">
         <CardTitle className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
-          <Link href={`/properties/${property.slug}`} className="focus:outline-none">
+          <Link
+            href={`/properties/${property.slug}`}
+            className="focus:outline-none"
+          >
             <span className="absolute inset-0" aria-hidden="true" />
             {t(property.name)}
           </Link>
@@ -107,8 +109,8 @@ export function PropertyCard({
 
         {/* Architectural Specs Summary */}
         <div className="mt-5 grid grid-cols-3 gap-2 rounded-lg border border-border/60 bg-muted/25 py-3 text-center">
-          <div className="flex flex-col items-center">
-            <span className="text-[10px] font-medium text-muted-foreground">
+          <div className="flex min-w-0 flex-col items-center px-1">
+            <span className="max-w-full truncate text-[10px] font-medium text-muted-foreground">
               {t("propertyCard.glaLabel")}
             </span>
             <span className="mt-0.5 font-mono text-xs font-bold text-foreground">
@@ -116,21 +118,24 @@ export function PropertyCard({
             </span>
           </div>
 
-          <div className="flex flex-col items-center border-x border-border/40">
-            <span className="text-[10px] font-medium text-muted-foreground">
+          <div className="flex min-w-0 flex-col items-center border-x border-border/40 px-1">
+            <span className="max-w-full truncate text-[10px] font-medium text-muted-foreground">
               {t("propertyCard.floorsLabel")}
             </span>
-            <span className="mt-0.5 truncate px-1 text-xs font-semibold text-foreground">
+            <span
+              className="mt-0.5 max-w-full truncate text-xs font-semibold text-foreground"
+              title={t(property.keyStats.floors)}
+            >
               {t(property.keyStats.floors)}
             </span>
           </div>
 
-          <div className="flex flex-col items-center">
-            <span className="text-[10px] font-medium text-muted-foreground">
-              {t("propertyCard.occupancyLabel")}
+          <div className="flex min-w-0 flex-col items-center px-1">
+            <span className="max-w-full truncate text-[10px] font-medium text-muted-foreground">
+              {t("propertyCard.buaLabel")}
             </span>
-            <span className="mt-0.5 font-mono text-xs font-bold text-primary">
-              <BiDiIsolate>{property.keyStats.occupancyRate}</BiDiIsolate>
+            <span className="mt-0.5 font-mono text-xs font-bold text-foreground">
+              <BiDiIsolate>{property.keyStats.builtUpArea}</BiDiIsolate>
             </span>
           </div>
         </div>
@@ -143,18 +148,20 @@ export function PropertyCard({
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1">
             <Car className="size-3.5 text-muted-foreground/80" />
-            <BiDiIsolate>{property.keyStats.parkingCapacity}</BiDiIsolate>
+            <BiDiIsolate>{t(property.keyStats.parkingCapacity)}</BiDiIsolate>
           </span>
           {property.stores && (
             <span className="inline-flex items-center gap-1">
               <Building2 className="size-3.5 text-muted-foreground/80" />
-              <span>{property.stores.length} {isArabic ? "مستأجر" : "Tenants"}</span>
+              <span>
+                {property.stores.length} {t("propertiesPage.tenantsCount")}
+              </span>
             </span>
           )}
         </div>
 
         <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
-          <span>{isArabic ? "استكشف الأصل" : "View Asset"}</span>
+          <span>{t("propertiesPage.viewAsset")}</span>
           <ArrowIcon className="size-3.5 shrink-0" />
         </span>
       </CardFooter>

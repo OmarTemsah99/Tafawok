@@ -1,10 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { useCallback, useEffect, useRef } from "react"
+import Image from "next/image"
 import type { CSSProperties, ReactNode } from "react"
 
-const clamp = (v: number, a: number, b: number): number => (v < a ? a : v > b ? b : v)
+const clamp = (v: number, a: number, b: number): number =>
+  v < a ? a : v > b ? b : v
 
 const smoothstep = (edge0: number, edge1: number, x: number): number => {
   const t = clamp((x - edge0) / (edge1 - edge0 || 1e-6), 0, 1)
@@ -140,7 +141,8 @@ export function ScrollExpand({
 
     media.style.transform = `scale(${c.mediaZoom + (1 - c.mediaZoom) * e})`
 
-    if (scrimRef.current) scrimRef.current.style.opacity = `${c.overlayScrim * e}`
+    if (scrimRef.current)
+      scrimRef.current.style.opacity = `${c.overlayScrim * e}`
 
     if (titleRef.current) {
       const out = smoothstep(0.4, 0.88, p)
@@ -181,7 +183,10 @@ export function ScrollExpand({
       track.style.height = `${stageH * (1 + Math.max(0, c.scrollDistance) + Math.max(0, c.holdDistance))}px`
 
       const w = root.clientWidth || stageH
-      stage.style.setProperty("--se-title-size", `${clamp(w * 0.075, 20, 84)}px`)
+      stage.style.setProperty(
+        "--se-title-size",
+        `${clamp(w * 0.075, 20, 84)}px`
+      )
     }
 
     const readProgress = () => {
@@ -253,7 +258,7 @@ export function ScrollExpand({
     mediaType === "video" ? (
       <video
         ref={mediaRef}
-        className="absolute inset-0 h-full w-full object-cover origin-center select-none will-change-transform"
+        className="absolute inset-0 h-full w-full origin-center object-cover will-change-transform select-none"
         src={src}
         poster={poster}
         autoPlay
@@ -262,11 +267,14 @@ export function ScrollExpand({
         playsInline
       />
     ) : (
-      <img
+      <Image
         ref={mediaRef}
-        className="absolute inset-0 h-full w-full object-cover origin-center select-none will-change-transform"
+        className="absolute inset-0 h-full w-full origin-center object-cover will-change-transform select-none"
         src={src}
         alt={alt}
+        fill
+        sizes="100vw"
+        priority
         draggable={false}
       />
     )
@@ -274,20 +282,23 @@ export function ScrollExpand({
   return (
     <div
       ref={rootRef}
-      className={`relative w-full ${useWindowScroll ? "" : "h-full overflow-y-auto overflow-x-hidden overscroll-contain scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"} ${className}`.trim()}
+      className={`relative w-full ${useWindowScroll ? "" : "h-full scrollbar-none overflow-x-hidden overflow-y-auto overscroll-contain [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"} ${className}`.trim()}
       style={style}
       {...rest}
     >
       <div ref={trackRef} className="relative w-full">
-        <div ref={stageRef} className="sticky top-0 w-full overflow-hidden [--se-title-size:4rem]">
+        <div
+          ref={stageRef}
+          className="sticky top-0 w-full overflow-hidden [--se-title-size:4rem]"
+        >
           <div
             ref={frameRef}
-            className="absolute inset-0 [clip-path:inset(21%_29%_21%_29%_round_24px)] will-change-[clip-path]"
+            className="absolute inset-0 will-change-[clip-path] [clip-path:inset(21%_29%_21%_29%_round_24px)]"
           >
             {media}
             <div
               ref={scrimRef}
-              className="pointer-events-none absolute inset-0 opacity-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85),rgba(0,0,0,0.25)_45%,rgba(0,0,0,0.45))]"
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85),rgba(0,0,0,0.25)_45%,rgba(0,0,0,0.45))] opacity-0"
             />
             {children ? (
               <div
@@ -301,7 +312,7 @@ export function ScrollExpand({
           {title ? (
             <div
               ref={titleRef}
-              className="pointer-events-none absolute inset-0 m-0 flex items-center justify-center px-[6%] text-center font-black leading-tight tracking-tight text-white [font-size:var(--se-title-size)] [text-shadow:0_2px_24px_rgba(0,0,0,0.65)] will-change-[opacity,transform]"
+              className="pointer-events-none absolute inset-0 m-0 flex items-center justify-center px-[6%] text-center [font-size:var(--se-title-size)] leading-tight font-black tracking-tight text-white will-change-[opacity,transform] [text-shadow:0_2px_24px_rgba(0,0,0,0.65)]"
             >
               {title}
             </div>
@@ -309,7 +320,7 @@ export function ScrollExpand({
           {scrollHint ? (
             <div
               ref={hintRef}
-              className="pointer-events-none absolute inset-x-0 bottom-6 text-center text-xs font-mono uppercase tracking-[0.2em] text-white/70 will-change-[opacity,transform]"
+              className="pointer-events-none absolute inset-x-0 bottom-6 text-center font-mono text-xs tracking-[0.2em] text-white/70 uppercase will-change-[opacity,transform]"
             >
               {scrollHint}
             </div>

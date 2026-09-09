@@ -236,9 +236,14 @@ export const PROPERTIES: Property[] = [
     keyStats: {
       gla: "18,500 m²",
       builtUpArea: "27,200 m²",
-      floors: "G + 5 Floors + 3 Basements",
-      parkingCapacity: "380 Vehicles",
-      occupancyRate: "94%",
+      floors: {
+        en: "G + 5 Floors + 3 Basements",
+        ar: "أرضي + 5 طوابق + 3 بدروم",
+      },
+      parkingCapacity: {
+        en: "380 Vehicles",
+        ar: "380 سيارة",
+      },
       zoning: {
         en: "Grade-A Commercial & Corporate Administrative",
         ar: "تجاري وإداري معتمد فئة (أ)",
@@ -402,8 +407,8 @@ export const PROPERTIES: Property[] = [
       {
         id: "s6",
         name: {
-          en: "Prime Corner Retail Showroom (Available for Lease)",
-          ar: "معرض تجاري ركني متميز (متاح للتأجير)",
+          en: "Prime Corner Commercial Showroom",
+          ar: "معرض تجاري ركني متميز",
         },
         category: {
           en: "Commercial Retail / Flagship",
@@ -473,7 +478,7 @@ export const PROPERTIES: Property[] = [
       "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1600&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1567449303078-57ad995bd301?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1581404476143-fb31d742929f?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80",
@@ -503,9 +508,14 @@ export const PROPERTIES: Property[] = [
     keyStats: {
       gla: "24,000 m²",
       builtUpArea: "36,500 m²",
-      floors: "Lower Ground + Ground + 2 Retail Floors",
-      parkingCapacity: "750 Vehicles",
-      occupancyRate: "97%",
+      floors: {
+        en: "LG + G + 2 Floors",
+        ar: "أرضي منخفض + أرضي + 2 طابق",
+      },
+      parkingCapacity: {
+        en: "750 Vehicles",
+        ar: "750 سيارة",
+      },
       zoning: {
         en: "Regional Commercial Retail, Entertainment & F&B",
         ar: "تجاري تجزئة، ترفيه عائلي ومطاعم",
@@ -784,9 +794,14 @@ export const PROPERTIES: Property[] = [
     keyStats: {
       gla: "35,000 m²",
       builtUpArea: "42,000 m²",
-      floors: "Warehouse Depots + G+2 Engineering Suites",
-      parkingCapacity: "120 Heavy Trucks + 220 Staff Cars",
-      occupancyRate: "91%",
+      floors: {
+        en: "Depots + G+2 Offices",
+        ar: "مستودعات + أرضي + 2 مكاتب",
+      },
+      parkingCapacity: {
+        en: "120 Trucks + 220 Cars",
+        ar: "120 شاحنة + 220 سيارة",
+      },
       zoning: {
         en: "Commercial Logistics, Engineering Trade & Showrooms",
         ar: "لوجستي تجاري، معارض صناعية ومكاتب هندسية",
@@ -1190,9 +1205,13 @@ export const UI_DICTIONARY = {
       en: en.propertyCard.floorsLabel,
       ar: ar.propertyCard.floorsLabel,
     },
-    occupancyLabel: {
-      en: en.propertyCard.occupancyLabel,
-      ar: ar.propertyCard.occupancyLabel,
+    buaLabel: {
+      en: en.propertyCard.buaLabel,
+      ar: ar.propertyCard.buaLabel,
+    },
+    parkingLabel: {
+      en: en.propertyCard.parkingLabel,
+      ar: ar.propertyCard.parkingLabel,
     },
     viewFullAsset: {
       en: en.propertyCard.viewFullAsset,

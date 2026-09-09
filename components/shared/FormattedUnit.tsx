@@ -60,7 +60,7 @@ export function FormattedUnit({
 export function BiDiIsolate({
   children,
   className,
-  dir = "ltr",
+  dir = "auto",
   ...props
 }: React.HTMLAttributes<HTMLElement> & { dir?: "ltr" | "rtl" | "auto" }) {
   return (

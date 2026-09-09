@@ -195,3 +195,147 @@ Chronological decision log tracking major architectural milestones and engineeri
     - `npm run build`: 10/10 static routes generated successfully.
     - Browser DevTools console: Clean, 0 errors.
 
+---
+
+## Milestone 4.6: shadcn Dialog Gallery, Breadcrumbs, Evergreen CRE Architecture & 100% Next.js `<Image>`
+
+- **Date:** September 2026
+- **Scope:**
+  - **shadcn Dialog Fullscreen Gallery (`PropertyGallery.tsx`):**
+    - Replaced custom lightbox `div` overlay with accessible, focus-trapped, and backdrop-blurred shadcn `Dialog` primitive.
+    - Added responsive full-width viewport dialog (`w-[96vw] sm:max-w-6xl h-[92vh]`) with integrated image counter, property title, navigation arrows, and bottom filmstrip thumbnail carousel.
+    - Integrated keyboard navigation (Escape to dismiss, Arrow keys for cycling, RTL-aware).
+  - **shadcn Breadcrumb Component (`PropertyDetailClient.tsx`):**
+    - Installed and integrated official `@/components/ui/breadcrumb` (`Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`, `BreadcrumbPage`, `BreadcrumbSeparator`).
+    - Handled RTL chevron rotation and seamless client-side Next.js routing via `render={<Link href="..." />}`.
+  - **Evergreen Static CRE Data Model (No Stale Content):**
+    - Removed dynamic leasing availability and occupancy percentage figures from all user-facing interfaces (catalog property cards, detail hero stat chips, overview feature boxes, homepage showcase widgets, dropdown menus, and store directory).
+    - Substituted with permanent, structural engineering data: Built-Up Area (BUA), Gross Leasable Area (GLA), Levels & Floors, and Dedicated Parking Capacity.
+  - **100% Next.js `<Image>` Adoption:**
+    - Replaced all remaining raw `<img>` tags in `AccordionGallery.tsx` and `ScrollExpand.tsx` with Next.js `<Image>` utilizing responsive `fill`, `sizes`, and `priority` optimization.
+    - Removed `@next/next/no-img-element` eslint ignores. Zero `<img>` tags remain across the entire repository.
+  - **Verification & Quality Gate:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 errors (`eslint`).
+    - `npm run build`: 10/10 static routes generated in 699ms.
+    - Browser DevTools console: Clean, 0 errors.
+
+---
+
+## Milestone 4.7: Full Bilingual Parity & RTL Hardening Across All Navigation, Catalog & Detail Surfaces
+
+- **Date:** September 2026
+- **Scope:**
+  - **100% Bilingual Parity (EN/AR) & Zero Hardcoded Strings:**
+    - Synchronized `locales/en.json` and `locales/ar.json` with 100% key parity across all namespaces (`nav`, `home`, `propertyCard`, `propertyDetail`, `propertiesPage`, `storeDirectory`, `propertyGallery`, `propertyDropdown`, `owner`, `contactForm`, `footer`, `about`, `ceoMessage`, `common`).
+    - Verified bidirectional parity via node verification test: 0 missing keys in EN->AR and AR->EN.
+    - Replaced remaining hardcoded inline ternaries in `Navbar.tsx`, `MobileNav.tsx`, `PropertyDropdown.tsx`, `PropertyCard.tsx`, `PropertiesDirectoryClient.tsx`, `PropertyMap.tsx`, `PropertySpecs.tsx`, `StoreDirectory.tsx`, `ScrollExpandShowcase.tsx`, and `Footer.tsx` with unified `t()` dictionary keys.
+  - **Localized Architectural Stats & BiDi Isolation:**
+    - Converted `floors` and `parkingCapacity` to `LocalizedString` across all flagship properties (`Building 360`, `Tafawok Retail Center`, `Tafawok Logistics Park`), rendering natural Arabic (`أرضي + 5 طوابق + 3 بدروم`, `380 سيارة`) and English (`G + 5 Floors + 3 Basements`, `380 Vehicles`) without truncation or BiDi inversion.
+    - Removed `(Available for Lease)` / `(متاح للتأجير)` from store directories to preserve static evergreen presentation.
+  - **Pruned Unused Variables & Strict Lint Compliance:**
+    - Cleaned up unused `isArabic` references in client components.
+    - Zero `any` types throughout the entire codebase.
+  - **Verification & Quality Gate:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 errors (`eslint`).
+    - `npm run build`: 10/10 static routes generated in 409ms via Next.js 16.3 Turbopack.
+    - Visual verification via Chrome DevTools in both Arabic RTL and English LTR viewports.
+
+---
+
+## Milestone 4.8: Human-Centric Architectural Design, Tactile Warm Palette & Executive Stewardship Integration
+
+- **Date:** September 2026
+- **Scope:**
+  - **Tactile Warm Architectural Color Palette (`globals.css`):**
+    - Shifted base color palette from cold tech/SaaS telemetry hues (cyan/purple/cold obsidian at hue 285°) to warm, prestigious architectural real estate materials (limestone, travertine, and architectural warm copper/bronze at hues 45°–65°).
+    - Light mode: Warm natural limestone parchment (`oklch(0.988 0.005 65)`), rich espresso foreground (`oklch(0.18 0.015 45)`), soft stone card surfaces, warm bronze primary accents.
+    - Dark mode: Warm architectural graphite/obsidian (`oklch(0.142 0.008 50)`), warm stone card elevations (`oklch(0.182 0.012 48)`), and bronze-tinted architectural frame borders (`oklch(0.27 0.016 46)`).
+  - **Human-Centric Property Hero Transformation (`PropertyDetailClient.tsx`):**
+    - Completely dismantled cold, redundant "SaaS telemetry" metric box chips and duplicate overview cards.
+    - Replaced with an **Architectural Stat Ribbon**: A continuous hairline-divided bar presenting GLA, Elevation & Levels, Dedicated Parking, and Total Built-Up Area with dignified typography.
+    - Added **Human Scale & Wellbeing Badges**: Emphasizing Natural Daylight & Thermal Comfort, Acoustic Privacy & Quiet Focus, and Executive Hospitality & Wellness.
+    - Elevated **Executive Founder & Personal Stewardship Card**: Highlighting Eng. Tarek Ahmed (CEO & Founder), featuring his signed personal commitment to tenants and investors, an executive "TA" monogram emblem, 25+ years leadership credibility, direct personal WhatsApp reach, and on-site leasing concierge coordinates.
+  - **Arabic Cursive Typography & BiDi Hardening:**
+    - Removed `font-mono` from all user-facing Arabic text strings (such as `380 سيارة` and zoning classifications), preserving natural Arabic cursive ligature shaping.
+    - Updated `BiDiIsolate` default to `dir="auto"`, allowing Unicode Bidirectional Algorithm to naturally layout mixed Latin/Arabic measurements without manual string chopping.
+    - Added `whitespace-nowrap` on catalog summary metric values.
+  - **Catalog Directory Full Bilingual Integration (`PropertiesDirectoryClient.tsx`):**
+    - Moved the directory hero section into `PropertiesDirectoryClient` to guarantee dynamic translation of badge, title, and subtitle when toggling between Arabic and English.
+    - Localized summary strip values (`77,500 m²` / `77,500 م²`, `1,320+ Dedicated Bays` / `1,320+ موقف مخصص`).
+  - **Verification & Quality Gate:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 errors (`eslint`).
+    - `npm run build`: 10/10 static routes prerendered in 391ms.
+    - Multi-viewport, multi-locale, and light/dark theme verification via Chrome DevTools.
+
+---
+
+## Milestone 4.9: Architectural Monograph Layout, Clean Neutral Obsidian Palette & Directory Polish
+
+- **Date:** September 2026
+- **Scope:**
+  - **Clean Neutral Obsidian Palette Restored (`globals.css`):**
+    - Reverted dark mode from the muddy brown/sepia tint back to the crisp, high-contrast neutral obsidian/charcoal foundation (`oklch(0.141 0.005 285.823)` background, `oklch(0.21 0.006 285.885)` cards, and crisp `oklch(0.985 0 0)` typography).
+    - Preserved high-contrast architectural bronze/copper accents (`oklch(0.553 0.195 38.402)`).
+  - **Architectural Monograph Hero (`PropertyDetailClient.tsx`, `PropertyGallery.tsx`):**
+    - Repositioned high-resolution cinematic gallery to the very top as a full-width hero frame with floating fullscreen dialog trigger (`showHeading={false}`).
+    - Replaced disjointed photo boxes with an architectural monograph header: Swiss-inspired bold title, bronze category classification, narrative editorial synopsis, Google Maps pin, and continuous hairline stat ribbon (GLA, Floors, Parking, BUA).
+  - **Editorial Hairline Specifications (`PropertySpecs.tsx`):**
+    - Transformed card-based metric chips into an unboxed, continuous hairline grid table with subtle horizontal dividers and checkmark highlights.
+  - **Lobby Directory Index Board (`StoreDirectory.tsx`):**
+    - Replaced card grid with an institutional architectural directory index table (Unit #, Tenant & Description, Floor, Category, Direct Phone).
+    - Replaced parenthesized count strings (`(6)`) with subtle badge pills (`<span className="...">6</span>`) to prevent Unicode Bidirectional Algorithm (UBA) parenthesis mirroring in mixed contexts.
+    - Added `dir="ltr"` and monospace styling to `unitNumber` cells for flawless multi-unit formatting across RTL and LTR.
+  - **Asset Photography Integrity (`content/cre-data.ts`):**
+    - Replaced broken 404 Unsplash image ID in `tafawok-retail-center` with a verified high-resolution commercial interior asset (`photo-1555529669-e69e7aa0ba9a`).
+    - Verified 100% of all image URLs in the portfolio return HTTP 200.
+  - **Quality Gates & Static Build:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 errors (`eslint`).
+    - Verified via Chrome DevTools across all 3 flagship properties in Arabic (RTL) and English (LTR).
+
+---
+
+## Milestone 4.10: Official Shadcn Table Integration & Unboxed Option 2 Leasing Layout
+
+- **Date:** September 2026
+- **Scope:**
+  - **Official Shadcn Table Integration (`components/ui/table.tsx`):**
+    - Added the official shadcn `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, and `TableCell` primitives.
+    - Fixed CLI import issue (`cn` from `@/lib/utils` instead of `"cn"`).
+    - Refactored `StoreDirectory.tsx` to consume shadcn Table components with responsive horizontal scrolling and architectural styling.
+  - **Option 2 Leasing Desk Implementation (`PropertyLeasingCard.tsx`):**
+    - Dismantled the awkward dual-card side-by-side design.
+    - **Left Column (Unboxed Editorial):** 100% unboxed, sitting directly on the background with spacious Swiss typography, subtle hairline border for on-site management suite coordinates, and primary call/inquire triggers.
+    - **Right Column (Single Accentuated Card):** Replaced with a single, prestigious shadcn `Card` for Eng. Tarek Ahmed's Executive Stewardship (monogram badge, leadership years, signed commitment quote, and direct WhatsApp / personal line).
+  - **Quality Gates:**
+    - `npm run typecheck`: 0 errors.
+    - `npm run lint`: 0 errors.
+    - `npm run build`: 10/10 static pages generated in 365ms.
+    - Verified via Chrome DevTools in both Arabic and English.
+
+---
+
+## Milestone 4.11: Mobile & Tablet Directory Cards and Touch/Tablet Cursor Suppression
+
+- **Date:** September 2026
+- **Scope:**
+  - **Responsive Directory Cards for Smaller Screens (`StoreDirectory.tsx`):**
+    - Recognized that multi-column tables cause horizontal scrolling and poor legibility on phones and tablets.
+    - Implemented a dual-presentation architecture:
+      - **Desktop (`>= 1024px`, `hidden lg:block`):** Full 5-column shadcn `Table` with hover highlights, monospace unit codes, and direct call actions.
+      - **Tablets (`768px – 1023px`, `sm:grid-cols-2 lg:hidden`):** A 2-column grid of dedicated architectural directory cards with top unit pill badges, floor markers, tenant details, and full-width tap-friendly contact actions.
+      - **Mobile Phones (`< 768px`, `grid-cols-1`):** A single-column vertical stack with clear hierarchy, high contrast, and 44px+ tap targets.
+  - **TargetCursor Disabled on Tablets & Phones (`TargetCursor.tsx`):**
+    - Enhanced detection via `useSyncExternalStore` and `subscribeTouchOrTablet`:
+      - Disables if viewport width `< 1024px` (phones, mini tablets, iPad Air, iPad Pro).
+      - Disables if touch points exist (`navigator.maxTouchPoints > 0` or `'ontouchstart' in window`) alongside coarse pointer or no-hover media queries (`pointer: coarse`, `hover: none`).
+      - Explicitly suppresses on mobile and tablet user agents (including iPadOS desktop Safari mode).
+      - Completely unmounts cursor portal (`return null`), detaches GSAP listeners, and restores native body cursor.
+  - **Quality Gates & Static Build:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 errors (`eslint`).
+    - `npm run build`: 10/10 static pages generated in 377ms.
+    - Verified live across 1440px desktop, 768px tablet, and 390px mobile viewports via Chrome DevTools.

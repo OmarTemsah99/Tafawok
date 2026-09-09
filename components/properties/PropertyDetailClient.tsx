@@ -2,31 +2,31 @@
 
 import React from "react"
 import Link from "next/link"
-import {
-  ChevronRight,
-  ChevronLeft,
-  MapPin,
-  Phone,
-  ShieldCheck,
-} from "lucide-react"
+import { MapPin, Phone } from "lucide-react"
 import { Property, PropertyType } from "@/types/cre"
 import { useLocaleStore } from "@/stores/useLocaleStore"
-import { PropertySpecs } from "@/components/properties/PropertySpecs"
 import { PropertyGallery } from "@/components/properties/PropertyGallery"
+import { PropertySpecs } from "@/components/properties/PropertySpecs"
 import { StoreDirectory } from "@/components/properties/StoreDirectory"
 import { PropertyMap } from "@/components/properties/PropertyMap"
 import { PropertyLeasingCard } from "@/components/properties/PropertyLeasingCard"
 import { BiDiIsolate } from "@/components/shared/FormattedUnit"
 import { MotionFade } from "@/components/motion/MotionFade"
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 
 interface PropertyDetailClientProps {
   property: Property
 }
 
 export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
-  const { locale, t } = useLocaleStore()
-  const isArabic = locale === "ar"
-  const ChevronIcon = isArabic ? ChevronLeft : ChevronRight
+  const { t } = useLocaleStore()
 
   const propType: PropertyType = property.type || "office"
 
@@ -40,190 +40,169 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Property Hero & Header Section */}
-      <section className="relative overflow-hidden border-b border-border/80 bg-linear-to-b from-secondary/40 via-background to-background pt-10 pb-16 sm:pt-14 sm:pb-20">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Property Hero: Architectural Monograph Header */}
+      <section className="relative overflow-hidden border-b border-border/80 bg-background pt-8 pb-14 sm:pt-12 sm:pb-16">
+        <div className="container mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs text-muted-foreground">
-            <Link href="/" className="transition-colors hover:text-foreground">
-              {t("nav.home")}
-            </Link>
-            <ChevronIcon className="size-3 text-muted-foreground/60" />
-            <Link href="/properties" className="transition-colors hover:text-foreground">
-              {t("nav.properties")}
-            </Link>
-            <ChevronIcon className="size-3 text-muted-foreground/60" />
-            <span className="font-semibold text-foreground truncate max-w-50 sm:max-w-none">
-              {t(property.name)}
-            </span>
-          </nav>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink render={<Link href="/" />}>
+                  {t("nav.home")}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink render={<Link href="/properties" />}>
+                  {t("nav.properties")}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="max-w-50 truncate sm:max-w-none">
+                  {t(property.name)}
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-7">
-              <MotionFade direction="up" delay={0.1}>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-xs font-bold text-primary">
-                    <span className="size-1.5 rounded-full bg-primary" />
-                    <span>{t(typeLabels[propType])}</span>
-                  </span>
+          {/* Unified Cinematic Hero Gallery */}
+          <MotionFade direction="up" delay={0.05}>
+            <PropertyGallery property={property} showHeading={false} />
+          </MotionFade>
 
-                  <span className="inline-flex items-center rounded-full border border-border/70 bg-secondary/50 px-3 py-1 font-mono text-xs font-semibold text-foreground">
-                    {t(property.keyStats.zoning)}
-                  </span>
-                </div>
+          {/* Architectural Monograph Title, Narrative & Specs */}
+          <MotionFade direction="up" delay={0.15}>
+            <div className="space-y-6">
+              {/* Classification metadata line */}
+              <div className="flex flex-wrap items-center gap-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+                <span className="text-primary">{t(typeLabels[propType])}</span>
+                <span>•</span>
+                <span>{t(property.keyStats.zoning)}</span>
+              </div>
 
-                <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              {/* Title & Tagline */}
+              <div>
+                <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                   {t(property.name)}
                 </h1>
-
-                <p className="mt-3 text-base font-semibold text-primary sm:text-lg">
+                <p className="mt-2 text-base font-medium text-primary sm:text-lg">
                   {t(property.tagline)}
                 </p>
+              </div>
 
-                <div className="mt-4 flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                  <MapPin className="size-4 shrink-0 text-primary" />
-                  <span>{t(property.location.address)}</span>
-                </div>
+              {/* Narrative Editorial Description */}
+              <p className="max-w-4xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                {t(property.description)}
+              </p>
 
-                {/* Key Stat Chips */}
-                <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  <div className="rounded-xl border border-border/70 bg-card/70 p-3 text-center">
-                    <span className="text-[10px] font-medium text-muted-foreground">
-                      {t("propertyCard.glaLabel")}
+              {/* Location with MapPin */}
+              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground sm:text-sm">
+                <MapPin className="size-4 shrink-0 text-primary" />
+                <span>{t(property.location.address)}</span>
+              </div>
+
+              {/* Minimalist Editorial Architectural Stat Ribbon */}
+              <div className="pt-4">
+                <div className="grid grid-cols-2 divide-y divide-border/50 rounded-xl border border-border/70 bg-card/50 backdrop-blur-xs sm:grid-cols-4 sm:divide-x sm:divide-y-0 rtl:sm:divide-x-reverse">
+                  <div className="p-4 text-start">
+                    <span className="text-[11px] font-medium text-muted-foreground uppercase">
+                      {t("propertyDetail.usableGlaLabel")}
                     </span>
-                    <p className="mt-0.5 font-mono text-sm font-bold text-foreground">
+                    <p className="mt-1 text-base font-bold text-foreground tabular-nums sm:text-lg">
                       <BiDiIsolate>{property.keyStats.gla}</BiDiIsolate>
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border/70 bg-card/70 p-3 text-center">
-                    <span className="text-[10px] font-medium text-muted-foreground">
-                      {t("propertyCard.floorsLabel")}
+                  <div className="p-4 text-start">
+                    <span className="text-[11px] font-medium text-muted-foreground uppercase">
+                      {t("propertyDetail.elevationLabel")}
                     </span>
-                    <p className="mt-0.5 truncate text-xs font-bold text-foreground">
+                    <p
+                      className="mt-1 truncate text-xs font-bold text-foreground sm:text-sm"
+                      title={t(property.keyStats.floors)}
+                    >
                       {t(property.keyStats.floors)}
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border/70 bg-card/70 p-3 text-center">
-                    <span className="text-[10px] font-medium text-muted-foreground">
-                      {isArabic ? "مواقف السيارات" : "Parking Slots"}
+                  <div className="p-4 text-start">
+                    <span className="text-[11px] font-medium text-muted-foreground uppercase">
+                      {t("propertyDetail.parkingSlotsLabel")}
                     </span>
-                    <p className="mt-0.5 font-mono text-sm font-bold text-foreground">
-                      <BiDiIsolate>{property.keyStats.parkingCapacity}</BiDiIsolate>
+                    <p className="mt-1 text-base font-bold text-foreground tabular-nums sm:text-lg">
+                      <BiDiIsolate>
+                        {t(property.keyStats.parkingCapacity)}
+                      </BiDiIsolate>
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border/70 bg-card/70 p-3 text-center">
-                    <span className="text-[10px] font-medium text-muted-foreground">
-                      {t("propertyCard.occupancyLabel")}
+                  <div className="p-4 text-start">
+                    <span className="text-[11px] font-medium text-muted-foreground uppercase">
+                      {t("propertyDetail.builtUpAreaLabel")}
                     </span>
-                    <p className="mt-0.5 font-mono text-sm font-bold text-primary">
-                      <BiDiIsolate>{property.keyStats.occupancyRate}</BiDiIsolate>
+                    <p className="mt-1 text-base font-bold text-foreground tabular-nums sm:text-lg">
+                      <BiDiIsolate>{property.keyStats.builtUpArea}</BiDiIsolate>
                     </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Direct Action Buttons */}
-                <div className="mt-8 flex flex-wrap items-center gap-3">
-                  <Link
-                    href={`/contact?property=${property.slug}`}
-                    className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-xs font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-                  >
-                    <span>{t("propertyDetail.inquireLease")}</span>
-                  </Link>
+              {/* Discreet Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <Link
+                  href={`/contact?property=${property.slug}`}
+                  className="cursor-target inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-xs font-bold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                >
+                  <span>{t("propertyDetail.inquireLease")}</span>
+                </Link>
 
+                <a
+                  href={`tel:${cleanPhone}`}
+                  className="cursor-target inline-flex items-center gap-2 rounded-xl border border-border/80 bg-background px-5 py-3 text-xs font-bold text-foreground transition-all hover:border-primary/50 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                >
+                  <Phone className="size-3.5 text-primary rtl:-scale-x-100" />
+                  <span>{t("propertyDetail.callNow")}</span>
+                </a>
+
+                {property.location.googleMapsDirectUrl && (
                   <a
-                    href={`tel:${cleanPhone}`}
-                    className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-background px-5 py-3 text-xs font-bold text-foreground transition-all hover:border-primary/50 hover:bg-secondary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                    href={property.location.googleMapsDirectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-target inline-flex items-center gap-2 rounded-xl border border-border/80 bg-secondary/40 px-5 py-3 text-xs font-semibold text-muted-foreground transition-all hover:border-border hover:text-foreground"
                   >
-                    <Phone className="size-3.5 text-primary rtl:-scale-x-100" />
-                    <span>{t("propertyDetail.callNow")}</span>
+                    <MapPin className="size-3.5 text-primary" />
+                    <span>{t("propertyDetail.getDirections")}</span>
                   </a>
-
-                  {property.location.googleMapsDirectUrl && (
-                    <a
-                      href={property.location.googleMapsDirectUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-secondary/40 px-5 py-3 text-xs font-semibold text-muted-foreground transition-all hover:border-border hover:text-foreground"
-                    >
-                      <MapPin className="size-3.5 text-primary" />
-                      <span>{t("propertyDetail.getDirections")}</span>
-                    </a>
-                  )}
-                </div>
-              </MotionFade>
+                )}
+              </div>
             </div>
-
-            {/* Quick Hero Feature Highlight Card */}
-            <div className="lg:col-span-5">
-              <MotionFade direction="up" delay={0.2}>
-                <div className="rounded-2xl border border-border/80 bg-card p-6 shadow-xl sm:p-8">
-                  <div className="flex items-center gap-2 text-primary">
-                    <ShieldCheck className="size-5" />
-                    <span className="text-xs font-bold uppercase tracking-wider">
-                      {isArabic ? "ضمانات الجودة والمواصفات" : "Institutional Grade Assurance"}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-3 text-lg font-bold text-foreground">
-                    {t("propertyDetail.overviewTitle")}
-                  </h3>
-
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    {t(property.description)}
-                  </p>
-
-                  <div className="mt-6 space-y-3 border-t border-border/60 pt-4 text-xs">
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">{isArabic ? "المساحة البنائية الإجمالية:" : "Built-Up Area (BUA):"}</span>
-                      <span className="font-mono font-bold text-foreground"><BiDiIsolate>{property.keyStats.builtUpArea}</BiDiIsolate></span>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">{isArabic ? "مستوى التصنيف التجاري:" : "Commercial Classification:"}</span>
-                      <span className="font-semibold text-primary">{t(property.keyStats.zoning)}</span>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">{isArabic ? "جاهزية الاستلام والتأجير:" : "Leasing Availability:"}</span>
-                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">{isArabic ? "متاح للتأجير الفوري" : "Immediate Availability"}</span>
-                    </div>
-                  </div>
-                </div>
-              </MotionFade>
-            </div>
-          </div>
+          </MotionFade>
         </div>
       </section>
 
-      {/* Main Detail Content */}
+      {/* Main Detail Content Sections */}
       <div className="py-14 sm:py-20">
         <div className="container mx-auto max-w-7xl space-y-20 px-4 sm:px-6 lg:px-8">
-          {/* Section 1: Visual Photo Gallery & Lightbox */}
-          <MotionFade direction="up">
-            <PropertyGallery property={property} />
-          </MotionFade>
-
-          {/* Section 2: Architectural & Engineering Specs */}
+          {/* Section 1: Architectural & Engineering Specs */}
           <MotionFade direction="up">
             <PropertySpecs property={property} />
           </MotionFade>
 
-          {/* Section 3: Stores & Tenants Directory (if applicable) */}
+          {/* Section 2: Stores & Tenants Directory (if applicable) */}
           {property.stores && property.stores.length > 0 && (
             <MotionFade direction="up">
               <StoreDirectory property={property} />
             </MotionFade>
           )}
 
-          {/* Section 4: Location & Embedded Map */}
+          {/* Section 3: Location & Arterial Accessibility */}
           <MotionFade direction="up">
             <PropertyMap property={property} />
           </MotionFade>
 
-          {/* Section 5: Direct Leasing & Owner Reach */}
+          {/* Section 4: Commercial Leasing & Executive Stewardship */}
           <MotionFade direction="up">
             <PropertyLeasingCard property={property} />
           </MotionFade>

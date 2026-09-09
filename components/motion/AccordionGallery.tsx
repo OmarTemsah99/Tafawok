@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import React, {
@@ -10,6 +9,7 @@ import React, {
   KeyboardEvent,
   MouseEvent,
 } from "react"
+import Image from "next/image"
 import { gsap } from "gsap"
 
 export interface AccordionGalleryItem {
@@ -314,9 +314,11 @@ export function AccordionGallery({
                   willChange: "transform, filter",
                 }}
               >
-                <img
+                <Image
                   src={item.image}
                   alt={item.alt || item.label || ""}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 400px"
                   draggable={false}
                   className="block h-full w-full object-cover transition-transform duration-700 select-none [-webkit-user-drag:none] group-hover:scale-105"
                 />

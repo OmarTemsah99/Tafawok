@@ -2,11 +2,21 @@
   "nav": {
     "home": "Home",
     "about": "About Us",
+    "aboutHeritage": "About TAFAWOK & Heritage",
     "properties": "Commercial Assets",
     "ceo": "CEO Message",
+    "ceoVision": "CEO Message & Vision",
     "contact": "Contact Us",
+    "contactRfq": "Contact & Official RFQ",
+    "leasingDesk": "Executive Leasing Desk",
+    "whatsappOwner": "Direct WhatsApp with Owner",
+    "submitInquiry": "Submit Leasing Inquiry",
     "inquireNow": "Inquire Now",
-    "switchLang": "العربية"
+    "switchLang": "العربية",
+    "openMenu": "Open navigation menu",
+    "backToTop": "Back to top",
+    "mainNav": "Main Navigation",
+    "navDesc": "Explore commercial assets and corporate directory of TAFAWOK CRE"
   },
   "home": {
     "heroBadge": "Premier Commercial Real Estate Developer & EPC Authority",
@@ -32,36 +42,75 @@
     "homeCtaTitle": "Secure Your Commercial Presence in Egypt's Premier Developments",
     "homeCtaSubtitle": "Direct access to commercial office suites, destination retail premises, or specialized industrial distribution facilities.",
     "inquireAssetBtn": "Initiate Commercial Inquiry",
-    "viewAllAssetsBtn": "View Complete CRE Directory"
+    "viewAllAssetsBtn": "View Complete CRE Directory",
+    "scrollToExpand": "SCROLL TO EXPAND ASSET"
+  },
+  "propertyDropdown": {
+    "title": "TAFAWOK Asset Portfolio",
+    "subtitle": "3 Flagship Commercial Hubs Developed & Owned by TAFAWOK",
+    "viewAll": "View All",
+    "leasingDesk": "Central Leasing Desk:",
+    "scheduleTour": "Schedule Asset Tour"
   },
   "propertyCard": {
     "glaLabel": "Gross Leasable Area",
     "locationLabel": "Location",
     "floorsLabel": "Floors",
-    "occupancyLabel": "Occupancy",
+    "buaLabel": "Built-Up Area",
+    "parkingLabel": "Parking Slots",
     "viewFullAsset": "Explore Asset Details & Directory"
   },
   "propertyDetail": {
     "backToAll": "Back to All Properties",
     "specsTitle": "Architectural & Technical Specifications",
+    "specsSubtitle": "Certified architectural metrics adhering to institutional commercial development standards",
+    "highlightsSubtitle": "Mission-critical infrastructure specifications ensuring 100% operational uptime",
     "galleryTitle": "Property Visual Showcase & Gallery",
     "storesTitle": "Stores, Services & On-Site Amenities Directory",
     "mapTitle": "Location & Regional Accessibility",
+    "mapSubtitle": "Prime geographic location with direct arterial highway accessibility",
     "getDirections": "Open in Google Maps",
-    "leasingContactTitle": "Direct Property Leasing Inquiries",
+    "gpsCoordinates": "GPS Coordinates",
+    "mapUpdating": "Location map preview updating",
+    "siteVisitsNote": "Site visits and guided architectural walkthroughs are available upon prior commercial appointment.",
+    "leasingContactTitle": "Direct Commercial Inquiries",
     "leasingContactSubtitle": "Speak directly with our commercial leasing team or connect with the executive owner.",
     "callNow": "Call Directly",
     "emailNow": "Email Leasing Office",
     "scheduleTour": "Schedule Site Tour",
-    "inquireLease": "Inquire for Leasing",
+    "inquireLease": "Initiate Commercial Inquiry",
     "downloadBrochure": "Download Asset Specifications",
     "overviewTitle": "Development Overview",
     "keyHighlightsTitle": "Key Engineering & Commercial Highlights",
     "locationAddress": "Address & Coordinates",
     "leasingOffice": "On-Site Leasing Directorate",
+    "assuranceBadge": "Institutional Grade Assurance",
+    "buaMetricLabel": "Built-Up Area (BUA):",
+    "zoningMetricLabel": "Commercial Classification:",
+    "parkingMetricLabel": "Secure Parking Capacity:",
+    "secureSpaceTitle": "Secure Your Commercial Space",
+    "chatDirect": "Chat Direct",
+    "fullBuildingPrompt": "Full-building lease or strategic joint venture?",
+    "ceoDirectReach": "Direct reach with Eng. Tarek Ahmed (CEO)",
+    "ownerReachBtn": "Owner Reach",
     "viewDirectoryItem": "Status",
     "unit": "Unit",
-    "floor": "Floor"
+    "floor": "Floor",
+    "stewardshipBadge": "Personal Executive Stewardship",
+    "founderTitle": "Direct Commitment from Ownership",
+    "founderQuote": "Our commercial developments are built as enduring long-term partnerships. As founder, I take direct executive responsibility for our tenants, operational excellence, and asset performance.",
+    "experienceYears": "25+ Years Leadership",
+    "founderDirectWhatsApp": "Chat with Eng. Tarek",
+    "founderCallDirect": "Direct Executive Line",
+    "executiveConcierge": "On-Site Management & Leasing",
+    "humanScaleDaylight": "Natural Daylight & Thermal Comfort",
+    "humanScaleAcoustics": "Acoustic Privacy & Executive Quiet",
+    "humanScaleHospitality": "Executive Hospitality & Wellness",
+    "humanFocusTitle": "Human-Centric Architecture",
+    "elevationLabel": "Elevation & Levels",
+    "builtUpAreaLabel": "Built-Up Area",
+    "usableGlaLabel": "Gross Leasable Area",
+    "parkingSlotsLabel": "Dedicated Parking"
   },
   "propertiesPage": {
     "badge": "Commercial Portfolio",
@@ -73,10 +122,16 @@
     "filterLogistics": "Logistics & Trade Parks",
     "searchPlaceholder": "Search developments by name, location, or feature...",
     "noResults": "No properties found matching your criteria",
+    "noResultsHint": "Try switching filter categories or clearing the search query.",
     "totalGla": "Total Commercial GLA",
+    "totalGlaValue": "77,500 m²",
     "totalParking": "Secure Parking Slots",
+    "totalParkingValue": "1,320+ Dedicated Bays",
     "activeHubs": "Strategic Hubs",
-    "featuredAssets": "Featured Commercial Assets"
+    "featuredAssets": "Featured Commercial Assets",
+    "flagshipHubsCount": "Flagship Hubs",
+    "tenantsCount": "Tenants",
+    "viewAsset": "View Asset"
   },
   "storeDirectory": {
     "searchPlaceholder": "Search tenants, brands, or unit number...",
@@ -85,7 +140,9 @@
     "noStores": "No occupants or amenities found matching your search.",
     "statusOpen": "Operational",
     "statusComingSoon": "Opening Soon",
-    "contactTenant": "Contact Unit"
+    "contactTenant": "Contact Unit",
+    "storesSubtitle": "Directory of commercial tenants, banking centers, retail flagships, and amenities",
+    "directPhoneLabel": "Direct Phone:"
   },
   "propertyGallery": {
     "close": "Close preview",
@@ -93,7 +150,9 @@
     "next": "Next image",
     "imageOf": "of",
     "zoomIn": "Zoom in",
-    "zoomOut": "Zoom out"
+    "zoomOut": "Zoom out",
+    "gallerySubtitle": "High-resolution architectural photography of exteriors, atriums, and interior floorplates",
+    "fullscreenBtn": "Fullscreen Gallery"
   },
   "owner": {
     "title": "Executive Leadership & Ownership",
