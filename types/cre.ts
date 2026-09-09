@@ -27,11 +27,18 @@ export interface StoreItem {
   phone?: string
 }
 
+export type Store = StoreItem
+
+export type PropertyType = "office" | "retail" | "logistics"
+export type PropertyStatus = "active" | "completed" | "pipeline"
+
 export interface Property {
   id: string
   slug: string
   name: LocalizedString
   tagline: LocalizedString
+  type?: PropertyType
+  status?: PropertyStatus
   category: LocalizedString
   description: LocalizedString
   fullOverview: LocalizedString
@@ -103,4 +110,17 @@ export interface ClientPartner {
   name: string
   category: "energy" | "epc" | "commercial" | "manufacturer"
   country: string
+}
+
+export interface CommercialDiscipline {
+  id: string
+  title: LocalizedString
+  tagline: LocalizedString
+  description: LocalizedString
+  keyMetric: {
+    value: string
+    label: LocalizedString
+  }
+  features: LocalizedString[]
+  iconName: "building-2" | "shopping-bag" | "warehouse" | "hard-hat"
 }

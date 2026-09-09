@@ -4,7 +4,10 @@ import {
   NavItem,
   CorporateMetric,
   ClientPartner,
+  CommercialDiscipline,
 } from "@/types/cre"
+import en from "@/locales/en.json"
+import ar from "@/locales/ar.json"
 
 export const COMPANY_IDENTITY = {
   name: {
@@ -185,6 +188,8 @@ export const PROPERTIES: Property[] = [
       en: "Prime Grade-A Corporate Office Hub & Executive Suites in New Cairo",
       ar: "أرقى المكاتب الإدارية والمقرات المؤسسية من الفئة (A) بالتجمع الخامس",
     },
+    type: "office",
+    status: "active",
     category: {
       en: "Office & Corporate Hub",
       ar: "مكاتب إدارية ومقرات شركات",
@@ -450,6 +455,8 @@ export const PROPERTIES: Property[] = [
       en: "High-Footfall Regional Lifestyle, Retail & Family Entertainment Destination",
       ar: "وجهة التسوق والترفيه العائلي الأولى بأعلى معدلات الكثافة والزيارة",
     },
+    type: "retail",
+    status: "active",
     category: {
       en: "Retail & Destination Mall",
       ar: "مراكز تجارية ومولات تسوق",
@@ -726,6 +733,8 @@ export const PROPERTIES: Property[] = [
       en: "Integrated Industrial Showrooms, Engineering Hubs & Strategic Warehousing Depot",
       ar: "معارض تجارية متطورة ومستودعات ومكاتب هندسية متكاملة",
     },
+    type: "logistics",
+    status: "active",
     category: {
       en: "Logistics & Commercial Complex",
       ar: "مجمع لوجستي وتجاري",
@@ -960,208 +969,403 @@ export const CLIENT_PARTNERS: ClientPartner[] = [
   { name: "KITZ Valves", category: "manufacturer", country: "Japan" },
 ]
 
+export const COMMERCIAL_DISCIPLINES: CommercialDiscipline[] = [
+  {
+    id: "office-developments",
+    title: {
+      en: "Prime Office Developments & Corporate Hubs",
+      ar: "مجمعات المكاتب الإدارية ومقرات الشركات",
+    },
+    tagline: {
+      en: "Grade-A Workspaces Engineered for Enterprise Longevity",
+      ar: "بيئات عمل مؤسسية من الفئة (A) مصممة لاستدامة الأعمال",
+    },
+    description: {
+      en: "Design, development, and asset management of state-of-the-art office towers and corporate campuses with advanced MEP, BMS automation, and high-density floorplates.",
+      ar: "تطوير وإدارة أبراج ومجمعات إدارية متكاملة بأحدث الأنظمة الكهروميكانيكية، وأنظمة التحكم الذكية، ومساحات مفتوحة مرنة تلبي متطلبات كبرى الشركات العالمية.",
+    },
+    keyMetric: {
+      value: "18,500 m²",
+      label: { en: "Flagship GLA", ar: "مساحة تأجيرية إدارية" },
+    },
+    features: [
+      {
+        en: "LEED Gold compliance standards",
+        ar: "معايير تصميم معتمدة مطابقة لـ LEED",
+      },
+      {
+        en: "High-speed optical fiber backbone",
+        ar: "بنية تحتية للألياف الضوئية فائقة السرعة",
+      },
+      {
+        en: "100% generator power redundancy",
+        ar: "تغطية كهربائية احتياطية كاملة 100%",
+      },
+    ],
+    iconName: "building-2",
+  },
+  {
+    id: "retail-destinations",
+    title: {
+      en: "Destination Retail Hubs & Lifestyle Centers",
+      ar: "المراكز التجارية والوجهات التسويقية الإقليمية",
+    },
+    tagline: {
+      en: "High-Footfall Commercial Malls with Anchor Magnetism",
+      ar: "مولات تجارية عالية الكثافة تستقطب كبرى العلامات الاستهلاكية",
+    },
+    description: {
+      en: "Purpose-built shopping destinations anchored by international hypermarkets, high-fashion avenues, entertainment arcades, and landscaped alfresco dining concourses.",
+      ar: "وجهات تسوق استراتيجية تضم سلاسل الهايبر ماركت الكبرى، ومتاجر الأزياء، ومراكز الترفيه العائلي، وتراسات المطاعم المفتوحة لضمان أعلى حركة للمشاة.",
+    },
+    keyMetric: {
+      value: "350,000+",
+      label: { en: "Monthly Visitors", ar: "متوسط الزوار شهرياً" },
+    },
+    features: [
+      {
+        en: "Multinational hypermarket anchors",
+        ar: "عقود إيجار مع كبرى سلاسل الهايبر ماركت",
+      },
+      {
+        en: "Family entertainment & safe play zones",
+        ar: "مناطق ترفيه عائلية ومساحات ألعاب للأطفال",
+      },
+      {
+        en: "Dedicated multi-bay loading docks",
+        ar: "أرصفة تفريغ بضائع شاحنات هيدروليكية",
+      },
+    ],
+    iconName: "shopping-bag",
+  },
+  {
+    id: "logistics-parks",
+    title: {
+      en: "Strategic Logistics Parks & Commercial Showrooms",
+      ar: "المجمعات اللوجستية والمعارض التجارية المتطورة",
+    },
+    tagline: {
+      en: "Heavy Industrial Capacity Integrated with Direct Trade",
+      ar: "بنية تحتية صناعية ثقيلة مدمجة مع واجهات تجارية مباشرة",
+    },
+    description: {
+      en: "Column-free industrial warehousing, highway-frontage equipment showrooms, and technical dispatch centers built with high floor loading capacities and automated logistics infrastructure.",
+      ar: "مستودعات خالية من الأعمدة الداخلية، ومعارض تجارية بواجهات مباشرة على المحاور السريعة، ومراكز فحص واعتماد تلبي احتياجات قطاعات المقاولات والطاقة.",
+    },
+    keyMetric: {
+      value: "7.5 Tons/m²",
+      label: { en: "Floor Loading Capacity", ar: "قوة تحمل الأرضيات" },
+    },
+    features: [
+      {
+        en: "11.5m clear vertical storage height",
+        ar: "ارتفاع تخزين داخلي صافي 11.5 متر",
+      },
+      {
+        en: "NFPA-13 compliant fire suppression",
+        ar: "أنظمة إطفاء حريق أوتوماتيكية معتمدة",
+      },
+      {
+        en: "100-ton electronic weighbridge access",
+        ar: "ميزان بسكول إلكتروني للشاحنات حتى 100 طن",
+      },
+    ],
+    iconName: "warehouse",
+  },
+  {
+    id: "turnkey-epc",
+    title: {
+      en: "Turnkey EPC Execution & High-Spec Fit-Out",
+      ar: "المقاولات العامة وتسليم المفتاح والتشطيبات المتخصصة",
+    },
+    tagline: {
+      en: "Precision Engineering from Foundation to Commissioning",
+      ar: "هندسة دقيقة من وضع الأساسات حتى التشغيل الفعلي والتسليم",
+    },
+    description: {
+      en: "End-to-end turnkey general contracting, precision MEP execution, and high-end tenant fit-outs executed by TAFAWOK's directly sponsored 50+ engineers and specialized regional workforce.",
+      ar: "تنفيذ متكامل لأعمال المقاولات الكبرى، والأعمال الكهروميكانيكية الدقيقة، والتشطيبات الفاخرة للشركات عبر كادرنا الهندسي الدائم المكون من 50+ مهندساً واستشارياً.",
+    },
+    keyMetric: {
+      value: "25+ Years",
+      label: { en: "Execution Experience", ar: "سنوات من التنفيذ المتواصل" },
+    },
+    features: [
+      {
+        en: "Rigorous Zero-Harm HSE policy",
+        ar: "سياسة سلامة وصحة مهنية صارمة (صفر حوادث)",
+      },
+      {
+        en: "In-house MEP & infrastructure specialists",
+        ar: "فريق هندسي كهروميكانيكي وبنية تحتية دائم",
+      },
+      {
+        en: "Tier-1 industrial procurement access",
+        ar: "توريدات مباشرة من كبرى المصانع العالمية",
+      },
+    ],
+    iconName: "hard-hat",
+  },
+]
+
 export const UI_DICTIONARY = {
   nav: {
-    home: { en: "Home", ar: "الرئيسية" },
-    about: { en: "About Us", ar: "من نحن" },
-    properties: { en: "Commercial Assets", ar: "الأصول التجارية" },
-    ceo: { en: "CEO Message", ar: "رسالة الرئيس التنفيذي" },
-    contact: { en: "Contact Us", ar: "اتصل بنا" },
-    inquireNow: { en: "Inquire Now", ar: "استفسر الآن" },
-    switchLang: { en: "العربية", ar: "English" },
+    home: { en: en.nav.home, ar: ar.nav.home },
+    about: { en: en.nav.about, ar: ar.nav.about },
+    properties: { en: en.nav.properties, ar: ar.nav.properties },
+    ceo: { en: en.nav.ceo, ar: ar.nav.ceo },
+    contact: { en: en.nav.contact, ar: ar.nav.contact },
+    inquireNow: { en: en.nav.inquireNow, ar: ar.nav.inquireNow },
+    switchLang: { en: en.nav.switchLang, ar: ar.nav.switchLang },
   },
   home: {
-    heroBadge: {
-      en: "Premier Commercial Real Estate Developer & EPC Authority",
-      ar: "المطور الرائد للأصول التجارية والمقاولات المتكاملة",
+    heroBadge: { en: en.home.heroBadge, ar: ar.home.heroBadge },
+    heroTitle: { en: en.home.heroTitle, ar: ar.home.heroTitle },
+    heroSubtitle: { en: en.home.heroSubtitle, ar: ar.home.heroSubtitle },
+    exploreAssets: { en: en.home.exploreAssets, ar: ar.home.exploreAssets },
+    reachOwner: { en: en.home.reachOwner, ar: ar.home.reachOwner },
+    metricsTitle: { en: en.home.metricsTitle, ar: ar.home.metricsTitle },
+    metricsSubtitle: {
+      en: en.home.metricsSubtitle,
+      ar: ar.home.metricsSubtitle,
     },
-    heroTitle: {
-      en: "Engineering Enduring Commercial Value.",
-      ar: "نصنع قيمة استثمارية تجارية تدوم للأجيال.",
-    },
-    heroSubtitle: {
-      en: "Backed by 25+ years of multidisciplinary execution and five decades of regional heritage, TAFAWOK develops prime office hubs, destination retail centers, and integrated logistics assets engineered for performance and investor return.",
-      ar: "استناداً إلى خبرة تزيد عن 25 عاماً وخمسة عقود من الريادة الإقليمية، تطور شركة تفوق أرقى المجمعات الإدارية، والمراكز التجارية، والأصول اللوجستية المصممة لتحقيق أقصى عائد استثماري.",
-    },
-    exploreAssets: {
-      en: "Explore Commercial Assets",
-      ar: "استكشف الأصول التجارية",
-    },
-    reachOwner: {
-      en: "Connect with Company Owner",
-      ar: "تواصل مع مالك الشركة",
-    },
-    portfolioTitle: {
-      en: "Flagship Commercial Portfolio",
-      ar: "محفظة الأصول التجارية المتميزة",
-    },
+    portfolioTitle: { en: en.home.portfolioTitle, ar: ar.home.portfolioTitle },
     portfolioSubtitle: {
-      en: "Three landmark commercial properties owned, developed, and managed by TAFAWOK across strategic regional nodes.",
-      ar: "ثلاثة صروح تجارية كبرى تمتلكها وتطورها وتديرها شركة تفوق في مواقع استراتيجية متميزة.",
+      en: en.home.portfolioSubtitle,
+      ar: ar.home.portfolioSubtitle,
     },
     viewPropertyDetails: {
-      en: "View Property Specifications",
-      ar: "عرض مواصفات الأصل التجاري",
+      en: en.home.viewPropertyDetails,
+      ar: ar.home.viewPropertyDetails,
     },
-    clientsTitle: {
-      en: "Institutional Client & Partner Credentials",
-      ar: "سجل عملاء ومؤسسات الصف الأول",
+    disciplinesBadge: {
+      en: en.home.disciplinesBadge,
+      ar: ar.home.disciplinesBadge,
     },
+    disciplinesTitle: {
+      en: en.home.disciplinesTitle,
+      ar: ar.home.disciplinesTitle,
+    },
+    disciplinesSubtitle: {
+      en: en.home.disciplinesSubtitle,
+      ar: ar.home.disciplinesSubtitle,
+    },
+    ceoSectionBadge: {
+      en: en.home.ceoSectionBadge,
+      ar: ar.home.ceoSectionBadge,
+    },
+    ceoSectionTitle: {
+      en: en.home.ceoSectionTitle,
+      ar: ar.home.ceoSectionTitle,
+    },
+    ceoReadFull: { en: en.home.ceoReadFull, ar: ar.home.ceoReadFull },
+    clientsBadge: { en: en.home.clientsBadge, ar: ar.home.clientsBadge },
+    clientsTitle: { en: en.home.clientsTitle, ar: ar.home.clientsTitle },
     clientsSubtitle: {
-      en: "Trusted by the world's most demanding state energy firms, mega-contractors, and anchor commercial retailers.",
-      ar: "شراكات راسخة مع كبرى مؤسسات الطاقة العالمية، والمقاولين الدوليين، وسلاسل التجزئة الكبرى.",
+      en: en.home.clientsSubtitle,
+      ar: ar.home.clientsSubtitle,
+    },
+    homeCtaBadge: { en: en.home.homeCtaBadge, ar: ar.home.homeCtaBadge },
+    homeCtaTitle: { en: en.home.homeCtaTitle, ar: ar.home.homeCtaTitle },
+    homeCtaSubtitle: {
+      en: en.home.homeCtaSubtitle,
+      ar: ar.home.homeCtaSubtitle,
+    },
+    inquireAssetBtn: {
+      en: en.home.inquireAssetBtn,
+      ar: ar.home.inquireAssetBtn,
+    },
+    viewAllAssetsBtn: {
+      en: en.home.viewAllAssetsBtn,
+      ar: ar.home.viewAllAssetsBtn,
     },
   },
   propertyCard: {
-    glaLabel: { en: "Gross Leasable Area", ar: "المساحة التأجيرية" },
-    locationLabel: { en: "Location", ar: "الموقع" },
-    floorsLabel: { en: "Floors", ar: "الطوابق" },
-    occupancyLabel: { en: "Occupancy", ar: "نسبة الإشغال" },
+    glaLabel: { en: en.propertyCard.glaLabel, ar: ar.propertyCard.glaLabel },
+    locationLabel: {
+      en: en.propertyCard.locationLabel,
+      ar: ar.propertyCard.locationLabel,
+    },
+    floorsLabel: {
+      en: en.propertyCard.floorsLabel,
+      ar: ar.propertyCard.floorsLabel,
+    },
+    occupancyLabel: {
+      en: en.propertyCard.occupancyLabel,
+      ar: ar.propertyCard.occupancyLabel,
+    },
     viewFullAsset: {
-      en: "Explore Asset Details & Directory",
-      ar: "استكشف تفاصيل الأصل ودليل المحلات",
+      en: en.propertyCard.viewFullAsset,
+      ar: ar.propertyCard.viewFullAsset,
     },
   },
   propertyDetail: {
-    backToAll: { en: "Back to All Properties", ar: "العودة لجميع الأصول" },
+    backToAll: {
+      en: en.propertyDetail.backToAll,
+      ar: ar.propertyDetail.backToAll,
+    },
     specsTitle: {
-      en: "Architectural & Technical Specifications",
-      ar: "المواصفات الفنية والمعمارية",
+      en: en.propertyDetail.specsTitle,
+      ar: ar.propertyDetail.specsTitle,
     },
     galleryTitle: {
-      en: "Property Visual Showcase & Gallery",
-      ar: "المعرض المصور للأصل التجاري",
+      en: en.propertyDetail.galleryTitle,
+      ar: ar.propertyDetail.galleryTitle,
     },
     storesTitle: {
-      en: "Stores, Services & On-Site Amenities Directory",
-      ar: "دليل المتاجر والخدمات والمرافق المتواجدة",
+      en: en.propertyDetail.storesTitle,
+      ar: ar.propertyDetail.storesTitle,
     },
     mapTitle: {
-      en: "Location & Regional Accessibility",
-      ar: "الموقع وسهولة الوصول الإقليمي",
+      en: en.propertyDetail.mapTitle,
+      ar: ar.propertyDetail.mapTitle,
     },
     getDirections: {
-      en: "Open in Google Maps",
-      ar: "فتح الموقع في خرائط Google",
+      en: en.propertyDetail.getDirections,
+      ar: ar.propertyDetail.getDirections,
     },
     leasingContactTitle: {
-      en: "Direct Property Leasing Inquiries",
-      ar: "استفسارات التأجير التجاري المباشرة",
+      en: en.propertyDetail.leasingContactTitle,
+      ar: ar.propertyDetail.leasingContactTitle,
     },
     leasingContactSubtitle: {
-      en: "Speak directly with our commercial leasing team or connect with the executive owner.",
-      ar: "تواصل مباشرة مع فريق التأجير التجاري أو اطلب اتصالاً من الإدارة العليا.",
+      en: en.propertyDetail.leasingContactSubtitle,
+      ar: ar.propertyDetail.leasingContactSubtitle,
     },
-    callNow: { en: "Call Directly", ar: "اتصال هاتفي مباشر" },
-    emailNow: { en: "Email Leasing Office", ar: "إرسال بريد إلكتروني" },
-    viewDirectoryItem: { en: "Status", ar: "الحالة" },
-    unit: { en: "Unit", ar: "الوحدة" },
-    floor: { en: "Floor", ar: "الطابق" },
+    callNow: { en: en.propertyDetail.callNow, ar: ar.propertyDetail.callNow },
+    emailNow: {
+      en: en.propertyDetail.emailNow,
+      ar: ar.propertyDetail.emailNow,
+    },
+    viewDirectoryItem: {
+      en: en.propertyDetail.viewDirectoryItem,
+      ar: ar.propertyDetail.viewDirectoryItem,
+    },
+    unit: { en: en.propertyDetail.unit, ar: ar.propertyDetail.unit },
+    floor: { en: en.propertyDetail.floor, ar: ar.propertyDetail.floor },
   },
   owner: {
-    title: {
-      en: "Executive Leadership & Ownership",
-      ar: "الإدارة العليا وملكية الشركة",
-    },
+    title: { en: en.owner.title, ar: ar.owner.title },
     reachOwnerTitle: {
-      en: "Direct Owner Reach",
-      ar: "تواصل مباشر مع مالك الشركة",
+      en: en.owner.reachOwnerTitle,
+      ar: ar.owner.reachOwnerTitle,
     },
     reachOwnerDesc: {
-      en: "We believe in direct executive accountability. For strategic commercial tenancy, joint ventures, and high-value acquisitions, reach Eng. Tarek Ahmed directly.",
-      ar: "نؤمن بالمسؤولية والشفافية المباشرة. للاستفسارات الاستثمارية الكبرى، وعقود الإيجار الاستراتيجية، تواصل مع المهندس طارق أحمد مباشرة.",
+      en: en.owner.reachOwnerDesc,
+      ar: ar.owner.reachOwnerDesc,
     },
-    directPhone: { en: "Direct Telephone", ar: "الهاتف المباشر" },
-    secondaryPhone: { en: "Corporate Hotline", ar: "الخط الساخن" },
-    directEmail: { en: "Executive Email", ar: "البريد الإلكتروني المباشر" },
-    whatsappChat: { en: "Direct WhatsApp Message", ar: "محادثة واتساب مباشرة" },
+    directPhone: { en: en.owner.directPhone, ar: ar.owner.directPhone },
+    secondaryPhone: {
+      en: en.owner.secondaryPhone,
+      ar: ar.owner.secondaryPhone,
+    },
+    directEmail: { en: en.owner.directEmail, ar: ar.owner.directEmail },
+    whatsappChat: { en: en.owner.whatsappChat, ar: ar.owner.whatsappChat },
     headquartersAddress: {
-      en: "Headquarters Office",
-      ar: "مقر الإدارة التنفيذية",
+      en: en.owner.headquartersAddress,
+      ar: ar.owner.headquartersAddress,
     },
   },
   contactForm: {
-    title: { en: "Send an Official Inquiry", ar: "أرسل استفساراً رسمياً" },
-    subtitle: {
-      en: "Our corporate leasing and investment desk will respond within 24 business hours.",
-      ar: "سيتواصل معك فريق الاستثمار والتأجير التجاري خلال 24 ساعة عمل.",
-    },
-    nameLabel: { en: "Full Name", ar: "الاسم بالكامل" },
+    title: { en: en.contactForm.title, ar: ar.contactForm.title },
+    subtitle: { en: en.contactForm.subtitle, ar: ar.contactForm.subtitle },
+    nameLabel: { en: en.contactForm.nameLabel, ar: ar.contactForm.nameLabel },
     namePlaceholder: {
-      en: "e.g., Dr. Ahmed Mansour",
-      ar: "مثال: م. أحمد منصور",
+      en: en.contactForm.namePlaceholder,
+      ar: ar.contactForm.namePlaceholder,
     },
     emailLabel: {
-      en: "Corporate Email Address",
-      ar: "البريد الإلكتروني للعمل",
+      en: en.contactForm.emailLabel,
+      ar: ar.contactForm.emailLabel,
     },
-    emailPlaceholder: { en: "name@company.com", ar: "name@company.com" },
-    phoneLabel: { en: "Contact Phone Number", ar: "رقم الهاتف للتواصل" },
-    phonePlaceholder: { en: "+20 1XX XXX XXXX", ar: "+20 1XX XXX XXXX" },
+    emailPlaceholder: {
+      en: en.contactForm.emailPlaceholder,
+      ar: ar.contactForm.emailPlaceholder,
+    },
+    phoneLabel: {
+      en: en.contactForm.phoneLabel,
+      ar: ar.contactForm.phoneLabel,
+    },
+    phonePlaceholder: {
+      en: en.contactForm.phonePlaceholder,
+      ar: ar.contactForm.phonePlaceholder,
+    },
     propertyLabel: {
-      en: "Interested Property / Asset",
-      ar: "الأصل العقاري المستهدف",
+      en: en.contactForm.propertyLabel,
+      ar: ar.contactForm.propertyLabel,
     },
     anyProperty: {
-      en: "All / General Inquiry",
-      ar: "استفسار عام / جميع الأصول",
+      en: en.contactForm.anyProperty,
+      ar: ar.contactForm.anyProperty,
     },
-    inquiryTypeLabel: { en: "Inquiry Classification", ar: "نوع الاستفسار" },
+    inquiryTypeLabel: {
+      en: en.contactForm.inquiryTypeLabel,
+      ar: ar.contactForm.inquiryTypeLabel,
+    },
     inquiryTypes: {
       leasing: {
-        en: "Commercial Office / Retail Leasing",
-        ar: "تأجير مكاتب إدارية أو محلات تجارية",
+        en: en.contactForm.inquiryTypes.leasing,
+        ar: ar.contactForm.inquiryTypes.leasing,
       },
       investment: {
-        en: "CRE Investment & Joint Ventures",
-        ar: "استثمار عقاري تجاري ومشاركات",
+        en: en.contactForm.inquiryTypes.investment,
+        ar: ar.contactForm.inquiryTypes.investment,
       },
       turnkey: {
-        en: "Turnkey EPC Contracting Project",
-        ar: "مشروع مقاولات وتسليم مفتاح",
+        en: en.contactForm.inquiryTypes.turnkey,
+        ar: ar.contactForm.inquiryTypes.turnkey,
       },
       general: {
-        en: "Executive / Owner Meeting Request",
-        ar: "طلب اجتماع مع الإدارة التنفيذية",
+        en: en.contactForm.inquiryTypes.general,
+        ar: ar.contactForm.inquiryTypes.general,
       },
     },
     messageLabel: {
-      en: "Inquiry Details & Requirements",
-      ar: "تفاصيل الطلب والمواصفات المطلوبة",
+      en: en.contactForm.messageLabel,
+      ar: ar.contactForm.messageLabel,
     },
     messagePlaceholder: {
-      en: "Please specify required floor area, preferred property, intended commercial use, and any special technical requirements...",
-      ar: "يرجى توضيح المساحة المطلوبة، الأصل المستهدف، الغرض التجاري، وأي مواصفات خاصة...",
+      en: en.contactForm.messagePlaceholder,
+      ar: ar.contactForm.messagePlaceholder,
     },
-    submitBtn: { en: "Submit Official Inquiry", ar: "إرسال الاستفسار الآن" },
+    submitBtn: {
+      en: en.contactForm.submitBtn,
+      ar: ar.contactForm.submitBtn,
+    },
     submittingBtn: {
-      en: "Transmitting via Secure SMTP...",
-      ar: "جاري الإرسال عبر المخدم الآمن...",
+      en: en.contactForm.submittingBtn,
+      ar: ar.contactForm.submittingBtn,
     },
     successMessage: {
-      en: "Inquiry successfully received. Our executive commercial team has been notified.",
-      ar: "تم استلام استفسارك بنجاح، وتم إشعار فريق الإدارة التجارية.",
+      en: en.contactForm.successMessage,
+      ar: ar.contactForm.successMessage,
     },
     errorMessage: {
-      en: "Transmission failed. Please check connection or reach our owner directly by phone.",
-      ar: "تعذر الإرسال حالياً. يرجى مراجعة الاتصال أو التواصل مباشرة عبر الهاتف.",
+      en: en.contactForm.errorMessage,
+      ar: ar.contactForm.errorMessage,
     },
   },
   footer: {
     corporateDesc: {
-      en: "TAFAWOK Real Estate Investment & Contracting Company delivers institutional-grade commercial office developments, high-traffic retail hubs, and integrated logistics parks across Egypt and the Middle East.",
-      ar: "شركة تفوق للاستثمار العقاري والمقاولات، مطور رائد للمجمعات الإدارية والمراكز التجارية والمناطق اللوجستية الحديثة في مصر والشرق الأوسط.",
+      en: en.footer.corporateDesc,
+      ar: ar.footer.corporateDesc,
     },
-    propertiesNav: { en: "Our Commercial Assets", ar: "أصولنا التجارية" },
-    quickLinks: { en: "Corporate Sitemap", ar: "خريطة الموقع" },
-    ownerDirect: { en: "Executive Access", ar: "تواصل مع المالك" },
-    copyright: {
-      en: "© 2026 TAFAWOK Real Estate Investment and Contracting Company. All rights reserved.",
-      ar: "© 2026 شركة تفوق للاستثمار العقاري والمقاولات. جميع الحقوق محفوظة.",
+    propertiesNav: {
+      en: en.footer.propertiesNav,
+      ar: ar.footer.propertiesNav,
     },
-    licenseNote: {
-      en: "Registered Commercial Real Estate Developer & Tier-1 Contracting License.",
-      ar: "مطور عقاري تجاري معتمد ومرخص لأعمال المقاولات والمشروعات الكبرى.",
-    },
+    quickLinks: { en: en.footer.quickLinks, ar: ar.footer.quickLinks },
+    ownerDirect: { en: en.footer.ownerDirect, ar: ar.footer.ownerDirect },
+    copyright: { en: en.footer.copyright, ar: ar.footer.copyright },
+    licenseNote: { en: en.footer.licenseNote, ar: ar.footer.licenseNote },
   },
 }
+
+export function getPropertyBySlug(slug: string): Property | undefined {
+  return PROPERTIES.find((p) => p.slug === slug)
+}
+
+export function getAllPropertySlugs(): string[] {
+  return PROPERTIES.map((p) => p.slug)
+}
+

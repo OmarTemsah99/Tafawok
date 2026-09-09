@@ -1,10 +1,17 @@
 "use client"
 
 import React, { useEffect } from "react"
-import { useLocaleStore, initLocaleFromStorage } from "@/stores/useLocaleStore"
+import {
+  LocaleContext,
+  createLocaleStore,
+  useLocaleStore,
+  STORAGE_KEY,
+} from "@/stores/useLocaleStore"
+import type { Locale } from "@/types/cre"
 
 interface LanguageProviderProps {
   children: React.ReactNode
+  initialLocale?: Locale
 }
 
 function isTypingTarget(target: EventTarget | null) {
@@ -57,24 +64,33 @@ function LanguageHotkey() {
   return null
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
-  const locale = useLocaleStore((state) => state.locale)
+export function LanguageProvider({
+  children,
+  initialLocale = "ar",
+}: LanguageProviderProps) {
+  const [store] = React.useState(() => createLocaleStore(initialLocale))
 
+  // Check and migrate legacy localStorage to cookie if cookie was absent
   useEffect(() => {
-    initLocaleFromStorage()
-  }, [])
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      document.documentElement.lang = locale
-      document.documentElement.dir = locale === "ar" ? "rtl" : "ltr"
+    if (typeof window !== "undefined") {
+      const match = document.cookie.match(/tafawok_locale=(ar|en)/)
+      if (!match) {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY) as Locale | null
+          if (stored === "ar" || stored === "en") {
+            store.getState().setLocale(stored)
+          }
+        } catch {
+          // ignore storage read errors
+        }
+      }
     }
-  }, [locale])
+  }, [store])
 
   return (
-    <>
+    <LocaleContext.Provider value={store}>
       <LanguageHotkey />
       {children}
-    </>
+    </LocaleContext.Provider>
   )
 }

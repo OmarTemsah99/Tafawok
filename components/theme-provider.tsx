@@ -19,6 +19,18 @@ if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   }
 }
 
+function ThemeCookieSync() {
+  const { theme } = useTheme()
+
+  React.useEffect(() => {
+    if (theme) {
+      document.cookie = `tafawok_theme=${theme}; path=/; max-age=31536000; SameSite=Lax`
+    }
+  }, [theme])
+
+  return null
+}
+
 function ThemeProvider({
   children,
   ...props
@@ -29,9 +41,11 @@ function ThemeProvider({
       defaultTheme="system"
       enableSystem
       disableTransitionOnChange
+      storageKey="tafawok_theme"
       {...props}
     >
       <ThemeHotkey />
+      <ThemeCookieSync />
       {children}
     </NextThemesProvider>
   )

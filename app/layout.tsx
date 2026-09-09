@@ -1,12 +1,16 @@
 import type { Metadata } from "next"
 import { Cairo, Inter } from "next/font/google"
+import { cookies } from "next/headers"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/layout/LanguageProvider"
+import { ScrollProgressBar } from "@/components/motion/ScrollProgressBar"
+import { TargetCursor } from "@/components/motion/TargetCursor"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 import { cn } from "@/lib/utils"
+import type { Locale } from "@/types/cre"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,21 +54,42 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = await cookies()
+  const rawLocale = cookieStore.get("tafawok_locale")?.value
+  const locale: Locale =
+    rawLocale === "en" || rawLocale === "ar" ? rawLocale : "ar"
+
+  const rawTheme = cookieStore.get("tafawok_theme")?.value
+  const theme =
+    rawTheme === "light" || rawTheme === "dark" || rawTheme === "system"
+      ? rawTheme
+      : "system"
+
+  const isRtl = locale === "ar"
+
   return (
     <html
-      lang="ar"
-      dir="rtl"
+      lang={locale}
+      dir={isRtl ? "rtl" : "ltr"}
       suppressHydrationWarning
-      className={cn("antialiased", inter.variable, cairo.variable, "font-sans")}
+      className={cn(
+        "antialiased",
+        inter.variable,
+        cairo.variable,
+        isRtl ? "font-arabic" : "font-sans",
+        theme === "dark" ? "dark" : ""
+      )}
     >
       <body className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary/20 selection:text-primary">
-        <ThemeProvider>
-          <LanguageProvider>
+        <ThemeProvider defaultTheme={theme}>
+          <ScrollProgressBar />
+          <TargetCursor />
+          <LanguageProvider initialLocale={locale}>
             <div className="flex min-h-screen flex-col">
               <Navbar />
               <main className="flex flex-1 flex-col">{children}</main>

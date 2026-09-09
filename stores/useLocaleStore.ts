@@ -1,67 +1,123 @@
 "use client"
 
-import { create } from "zustand"
+import { createContext, useContext } from "react"
+import { createStore, useStore, type StoreApi } from "zustand"
 import { Locale, LocalizedString } from "@/types/cre"
+import en from "@/locales/en.json"
+import ar from "@/locales/ar.json"
 
-interface LocaleState {
-  locale: Locale
-  setLocale: (locale: Locale) => void
-  toggleLocale: () => void
-  t: (localized: LocalizedString | undefined) => string
+export type LocaleMessages = typeof en
+
+export const dictionaries: Record<Locale, LocaleMessages> = { en, ar }
+
+function lookupDictionary(
+  dict: Record<string, unknown>,
+  path: string
+): string | undefined {
+  const parts = path.split(".")
+  let current: unknown = dict
+  for (const part of parts) {
+    if (
+      current &&
+      typeof current === "object" &&
+      part in (current as Record<string, unknown>)
+    ) {
+      current = (current as Record<string, unknown>)[part]
+    } else {
+      return undefined
+    }
+  }
+  return typeof current === "string" ? current : undefined
 }
 
-const STORAGE_KEY = "tafawok_cre_locale"
+export interface LocaleState {
+  locale: Locale
+  messages: LocaleMessages
+  setLocale: (locale: Locale) => void
+  toggleLocale: () => void
+  t: (input: LocalizedString | string | undefined) => string
+}
 
-function updateDocumentAttributes(locale: Locale) {
+export type LocaleStore = StoreApi<LocaleState>
+
+export const STORAGE_KEY = "tafawok_locale"
+
+export function updateDocumentAttributes(locale: Locale) {
   if (typeof document !== "undefined") {
     document.documentElement.lang = locale
     document.documentElement.dir = locale === "ar" ? "rtl" : "ltr"
   }
 }
 
-export const useLocaleStore = create<LocaleState>((set, get) => ({
-  // Default to Arabic as primary regional language, or English if stored
-  locale: "ar",
-
-  setLocale: (locale: Locale) => {
-    if (typeof window !== "undefined") {
-      try {
-        localStorage.setItem(STORAGE_KEY, locale)
-      } catch {
-        // Ignore storage write errors in restricted environments
-      }
+export function writeLocaleCookie(locale: Locale) {
+  if (typeof document !== "undefined") {
+    document.cookie = `${STORAGE_KEY}=${locale}; path=/; max-age=31536000; SameSite=Lax`
+    try {
+      localStorage.setItem(STORAGE_KEY, locale)
+    } catch {
+      // Ignore storage write errors in restricted environments
     }
     updateDocumentAttributes(locale)
-    set({ locale })
-  },
-
-  toggleLocale: () => {
-    const nextLocale: Locale = get().locale === "ar" ? "en" : "ar"
-    get().setLocale(nextLocale)
-  },
-
-  t: (localized: LocalizedString | undefined): string => {
-    if (!localized) return ""
-    const currentLocale = get().locale
-    return localized[currentLocale] || localized.en || ""
-  },
-}))
-
-/**
- * Initialize locale from localStorage upon client hydration
- */
-export function initLocaleFromStorage() {
-  if (typeof window !== "undefined") {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY) as Locale | null
-      if (stored === "ar" || stored === "en") {
-        useLocaleStore.getState().setLocale(stored)
-      } else {
-        // Default to Arabic for regional domestic primary audience
-        useLocaleStore.getState().setLocale("ar")
-      }
-    } catch {
-      useLocaleStore.getState().setLocale("ar")
-    }
   }
 }
+
+export const createLocaleStore = (initialLocale: Locale = "ar") => {
+  return createStore<LocaleState>()((set, get) => ({
+    locale: initialLocale,
+    messages: dictionaries[initialLocale] || ar,
+
+    setLocale: (locale: Locale) => {
+      writeLocaleCookie(locale)
+      set({ locale, messages: dictionaries[locale] || ar })
+    },
+
+    toggleLocale: () => {
+      const nextLocale: Locale = get().locale === "ar" ? "en" : "ar"
+      get().setLocale(nextLocale)
+    },
+
+    t: (input: LocalizedString | string | undefined): string => {
+      if (!input) return ""
+      const currentLocale = get().locale
+
+      // Object with { en, ar }
+      if (typeof input === "object") {
+        return input[currentLocale] || input.en || ""
+      }
+
+      // Dot-notation key in JSON dictionaries
+      const dict = (dictionaries[currentLocale] ||
+        dictionaries.en) as unknown as Record<string, unknown>
+      const found = lookupDictionary(dict, input)
+      if (found !== undefined) return found
+
+      // Fallback to English dictionary
+      const fallback = lookupDictionary(
+        dictionaries.en as unknown as Record<string, unknown>,
+        input
+      )
+      if (fallback !== undefined) return fallback
+
+      return input
+    },
+  }))
+}
+
+export const LocaleContext = createContext<LocaleStore | null>(null)
+
+// Fallback store for usage outside of LocaleContext or in tests/utilities
+const fallbackStore = createLocaleStore("ar")
+
+export function useLocaleStore(): LocaleState
+export function useLocaleStore<T>(selector: (state: LocaleState) => T): T
+export function useLocaleStore<T>(
+  selector?: (state: LocaleState) => T
+): T | LocaleState {
+  const contextStore = useContext(LocaleContext)
+  const store = contextStore ?? fallbackStore
+  return useStore(store, selector ?? ((s) => s as unknown as T))
+}
+
+useLocaleStore.getState = () => fallbackStore.getState()
+useLocaleStore.setState = (partial: Partial<LocaleState>) =>
+  fallbackStore.setState(partial)
