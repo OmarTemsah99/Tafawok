@@ -265,7 +265,8 @@ export function TargetCursor({
       const isStillOverTarget =
         elementUnderMouse &&
         (elementUnderMouse === activeTarget ||
-          elementUnderMouse.closest(targetSelector) === activeTarget)
+          elementUnderMouse.closest(targetSelector) === activeTarget ||
+          activeTarget.contains(elementUnderMouse))
       if (!isStillOverTarget) {
         currentLeaveHandler?.()
       }
@@ -297,7 +298,11 @@ export function TargetCursor({
         }
         current = current.parentElement
       }
-      const target = allTargets[0] || null
+      // Prioritize an ancestor explicitly designated with .cursor-target
+      const designatedTarget = allTargets.find((el) =>
+        el.classList.contains("cursor-target")
+      )
+      const target = designatedTarget || allTargets[0] || null
       if (!target || !cursorRef.current || !cornersRef.current) return
       if (activeTarget === target) return
       if (activeTarget) {

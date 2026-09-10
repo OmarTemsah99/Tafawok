@@ -13,17 +13,14 @@ export function CeoQuoteSection() {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight
 
   return (
-    <section className="relative border-b border-border/60 bg-background py-20 md:py-28 lg:py-32">
+    <section
+      id="leadership"
+      className="relative border-b border-border/60 bg-background py-20 md:py-28 lg:py-32"
+    >
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <MotionFade delay={0.05} direction="up">
-          {/* Eyebrow */}
-          <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-primary uppercase">
-            <span className="h-px w-8 bg-primary" />
-            <span>{t(UI_DICTIONARY.home.ceoSectionBadge)}</span>
-          </div>
-
           {/* Monumental Raw Editorial Quote */}
-          <blockquote className="mt-6 text-xl font-medium tracking-tight text-foreground sm:mt-8 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl lg:leading-tight">
+          <blockquote className="mt-6 text-xl font-medium tracking-tight text-foreground sm:mt-8 sm:text-2xl md:text-3xl lg:text-4xl lg:leading-tight xl:text-5xl">
             &ldquo;{t(OWNER_DETAILS.visionSnippet)}&rdquo;
           </blockquote>
 
@@ -53,12 +50,12 @@ export function CeoQuoteSection() {
             </div>
 
             {/* Direct Executive Access Links — Minimalist & Architectural */}
-            <div className="flex w-full flex-col sm:w-auto sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 text-xs">
+            <div className="flex w-full flex-col items-stretch gap-2.5 text-xs sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
               <a
                 href={`tel:${OWNER_DETAILS.phone}`}
                 className="cursor-target inline-flex items-center justify-center gap-2 rounded-xl border border-border/80 bg-muted/40 px-4 py-2.5 font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
               >
-                <Phone className="size-3.5 text-primary shrink-0" />
+                <Phone className="size-3.5 shrink-0 text-primary" />
                 <PhoneNumber phone={OWNER_DETAILS.phone} />
               </a>
 
@@ -76,7 +73,7 @@ export function CeoQuoteSection() {
                 href={`mailto:${OWNER_DETAILS.email}`}
                 className="cursor-target inline-flex items-center justify-center gap-2 rounded-xl border border-border/80 bg-muted/40 px-4 py-2.5 font-mono font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
               >
-                <Mail className="size-3.5 text-primary shrink-0" />
+                <Mail className="size-3.5 shrink-0 text-primary" />
                 <span>{OWNER_DETAILS.email}</span>
               </a>
             </div>

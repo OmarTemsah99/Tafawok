@@ -4,7 +4,7 @@ import { useLocaleStore } from "@/stores/useLocaleStore"
 import { CLIENT_PARTNERS, UI_DICTIONARY } from "@/content/cre-data"
 import { Marquee } from "@/components/motion/Marquee"
 import { MotionFade } from "@/components/motion/MotionFade"
-import { ShieldCheck, Building2, Flame, Wrench, Factory } from "lucide-react"
+import { Building2, Flame, Wrench, Factory } from "lucide-react"
 
 export function ClientMarquee() {
   const { t, locale } = useLocaleStore()
@@ -40,7 +40,10 @@ export function ClientMarquee() {
   }
 
   return (
-    <section className="relative border-b border-border/70 bg-card py-16 md:py-24">
+    <section
+      id="partners"
+      className="relative border-b border-border/70 bg-card/50 py-16 md:py-24"
+    >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <MotionFade
@@ -48,11 +51,7 @@ export function ClientMarquee() {
           direction="up"
           className="mx-auto max-w-3xl text-center"
         >
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-primary uppercase">
-            <ShieldCheck className="size-4" />
-            <span>{t(UI_DICTIONARY.home.clientsBadge)}</span>
-          </div>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+          <h2 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl md:text-4xl">
             {t(UI_DICTIONARY.home.clientsTitle)}
           </h2>
           <p className="mt-3 text-sm text-muted-foreground sm:text-base">

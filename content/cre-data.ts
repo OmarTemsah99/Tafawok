@@ -5,6 +5,11 @@ import {
   CorporateMetric,
   ClientPartner,
   CommercialDiscipline,
+  TimelineMilestone,
+  CorporateValue,
+  HseCharter,
+  InvestmentPillar,
+  CeoProfile,
 } from "@/types/cre"
 import en from "@/locales/en.json"
 import ar from "@/locales/ar.json"
@@ -1388,3 +1393,670 @@ export function getAllPropertySlugs(): string[] {
   return PROPERTIES.map((p) => p.slug)
 }
 
+export const CORPORATE_TIMELINE: TimelineMilestone[] = [
+  {
+    year: "1970s – 1990s",
+    title: {
+      en: "Gulf Engineering Heritage & Regional Infrastructure",
+      ar: "إرث هندسي متجذر في خمسة عقود من مشروعات الخليج",
+    },
+    badge: {
+      en: "Regional Foundation",
+      ar: "الجذور الإقليمية",
+    },
+    description: {
+      en: "Executive leadership and core management accumulated five decades of continuous on-site execution in the Arabian Gulf, delivering critical petrochemical plants, high-pressure pipelines, and mega water storage infrastructure across Kuwait, Saudi Arabia, and the UAE.",
+      ar: "تراكمت خبرات الإدارة العليا عبر خمسة عقود متصلة من التنفيذ الميداني في منطقة الخليج العربي، شملت إنجاز محطات بتروكيماويات، وخطوط أنابيب ضغط عالي، ومشروعات مائية كبرى في الكويت والمملكة العربية السعودية والإمارات.",
+    },
+    highlights: [
+      {
+        en: "440 Million Imperial Gallon strategic fresh-water storage reservoirs in Kuwait",
+        ar: "إنشاء 8 خزانات استراتيجية للمياه بسعة 440 مليون جالون إمبراطوري بالكويت",
+      },
+      {
+        en: "Major procurement alliances with Saudi Aramco, ADNOC, and KNPC",
+        ar: "شراكات توريدات كبرى مع أرامكو السعودية وأدنوك ونفط الكويت",
+      },
+      {
+        en: "Direct engineering management of 132 KV substations and power switchyards",
+        ar: "إدارة هندسية متكاملة لمحطات التحويل الكهربائي 132 ك.ف وأنظمة SCADA",
+      },
+    ],
+    scopeCategory: "heritage",
+  },
+  {
+    year: "2000",
+    title: {
+      en: "Founding of TAFAWOK in Egypt",
+      ar: "تأسيس شركة تفوق في مصر",
+    },
+    badge: {
+      en: "Cairo Incorporation",
+      ar: "انطلاق العمل في مصر",
+    },
+    description: {
+      en: "TAFAWOK Real Estate Investment and Contracting was officially established in Cairo by a distinguished cadre of Gulf-veteran Egyptian engineers to cater to Egypt's rapidly expanding commercial real estate and urban development boom.",
+      ar: "تأسست شركة تفوق للاستثمار العقاري والمقاولات في القاهرة بكادر هندسي مصري رفيع المستوى من أصحاب الخبرات الطويلة في الخليج، لتلبية الطلب المتسارع على التطوير التجاري والمشروعات الإنشائية الكبرى في مصر.",
+    },
+    highlights: [
+      {
+        en: "Establishment of Cairo corporate headquarters at Building 360",
+        ar: "تأسيس المقر الرئيسي للشركة بمبنى 360 بالقاهرة الجديدة",
+      },
+      {
+        en: "Directly sponsored permanent technical cadre of 50+ core engineers",
+        ar: "كادر هندسي وفني دائم يتجاوز 50 مهندساً واستشارياً متخصصاً",
+      },
+      {
+        en: "First-tier commercial contracting and real estate investment licensure",
+        ar: "حيازة تراخيص المقاولات والاستثمار العقاري التجاري من الفئة الأولى",
+      },
+    ],
+    scopeCategory: "heritage",
+  },
+  {
+    year: "2010 – 2015",
+    title: {
+      en: "Strategic Megaprojects & National Healthcare Wings",
+      ar: "تنفيذ المشروعات القومية والتجهيزات التخصصية",
+    },
+    badge: {
+      en: "Turnkey EPC Leadership",
+      ar: "ريادة المقاولات المتكاملة",
+    },
+    description: {
+      en: "Executed mission-critical institutional projects across healthcare and government infrastructure, highlighted by the complete MEP and structural expansion of Kuwait Ministry of Health's Adan Hospital and nationwide video conferencing networks.",
+      ar: "تنفيذ مشروعات كبرى للقطاعين الحكومي والصحي، تصدرها التوسعة الشاملة لمستشفى العدان لصالح وزارة الصحة الكويتية، وشبكة الفيديو كونفرانس القومية للهيئة العامة للأبنية التعليمية بمصر.",
+    },
+    highlights: [
+      {
+        en: "Cleanroom HEPA filtration and medical gas piping for surgery theaters",
+        ar: "أنظمة تكييف متطورة بغرف العمليات وشبكات الغازات الطبية بمستشفى العدان",
+      },
+      {
+        en: "National video conferencing ICT backbone across all Egyptian governorates",
+        ar: "بنية اتصالات وفيديو كونفرانس رقمية غطت محافظات جمهورية مصر العربية",
+      },
+      {
+        en: "Sole regional agency for Achech Europe industrial valves and certified piping",
+        ar: "الوكيل الحصري لمحابس أشك الأوروبية وتوريدات الأنابيب المعتمدة دولياً",
+      },
+    ],
+    scopeCategory: "infrastructure",
+  },
+  {
+    year: "2018 – 2021",
+    title: {
+      en: "Strategic Transition to Commercial Real Estate Assets",
+      ar: "التحول الاستراتيجي نحو امتلاك وتطوير الأصول التجارية",
+    },
+    badge: {
+      en: "CRE Developer Transformation",
+      ar: "التحول لمطور عقاري تجاري",
+    },
+    description: {
+      en: "Leveraging 25 years of engineering mastery, TAFAWOK pivoted decisively into commercial real estate development — acquiring strategic land in New Cairo and regional hubs to master-plan high-yield office parks and retail destinations.",
+      ar: "استثماراً لربع قرن من الريادة الإنشائية، عززت تفوق حضورها كمطور عقاري تجاري متكامل عبر حيازة أراضٍ استراتيجية بالتجمع الخامس والمحاور الإقليمية لبناء مجمعات إدارية وتجارية ذات عوائد استثمارية مستدامة.",
+    },
+    highlights: [
+      {
+        en: "Groundbreaking and construction of Building 360 Business Park in New Cairo",
+        ar: "بدء تشييد مجمع مبنى 360 الإداري الفاخر بالتجمع الخامس",
+      },
+      {
+        en: "Architectural planning for Tafawok Retail Center with European-style promenade",
+        ar: "التخطيط المعماري لمركز تفوق التجاري بممشى ومطاعم مفتوحة",
+      },
+      {
+        en: "Full integration of LEED Gold design criteria and energy-efficient BMS",
+        ar: "تطبيق معايير LEED الذهبية وأنظمة إدارة المباني الذكية (BMS)",
+      },
+    ],
+    scopeCategory: "commercial",
+  },
+  {
+    year: "2022 – 2025",
+    title: {
+      en: "Portfolio Maturity & 77,500 m² Commercial Footprint",
+      ar: "اكتمال محفظة الأصول التجارية بمساحة 77,500 م²",
+    },
+    badge: {
+      en: "Triple Landmark Portfolio",
+      ar: "تشغيل 3 أصول رائدة",
+    },
+    description: {
+      en: "Successfully brought into full operation three landmark commercial developments totaling 77,500 m² of leasable area, housing tier-1 banking institutions, anchor hypermarkets, engineering consultancies, and logistics operators.",
+      ar: "التشغيل الناجح والكامل لثلاثة مجمعات تجارية كبرى بإجمالي مساحة تأجيرية تبلغ 77,500 م²، تضم فروع بنوك رئيسية، وهايبر ماركت إقليمي، وشركات هندسية ومراكز لوجستية كبرى.",
+    },
+    highlights: [
+      {
+        en: "Building 360 reaching near-100% Grade-A executive office tenancy",
+        ar: "تحقيق نسبة إشغال قياسية لمكاتب الشركات العالمية بمبنى 360",
+      },
+      {
+        en: "Anchor agreement with Grand Hypermarket at Tafawok Retail Center",
+        ar: "افتتاح الفرع الإقليمي الأكبر لجراند هايبر ماركت بمول تفوق",
+      },
+      {
+        en: "Activation of 35,000 m² industrial showroom and trade complex at Logistics Park",
+        ar: "تشغيل مجمع تفوق اللوجستي والتجاري بقوة تحمل أرضيات 7.5 طن/م²",
+      },
+    ],
+    scopeCategory: "commercial",
+  },
+  {
+    year: "2026 & Beyond",
+    title: {
+      en: "Next-Gen Sustainable CRE & Institutional Alliances",
+      ar: "الجيل الجديد من العقارات المستدامة والشراكات المؤسسية",
+    },
+    badge: {
+      en: "Future Horizon",
+      ar: "آفاق المستقبل",
+    },
+    description: {
+      en: "Expanding TAFAWOK's commercial holdings through solar micro-grid integration, smart asset telemetry, and tailored joint ventures with regional sovereign and private wealth partners seeking physical, tangible real estate yield.",
+      ar: "مواصلة التوسع في الأصول التجارية المتطورة عبر دمج محطات الطاقة الشمسية، والأنظمة الذكية، وإبرام شراكات استثمارية مع كبرى المؤسسات والمستثمرين الباحثين عن عوائد حقيقية آمنة في أصول عقارية ملموسة.",
+    },
+    highlights: [
+      {
+        en: "Deployment of rooftop solar arrays providing auxiliary clean power",
+        ar: "توليد الطاقة النظيفة من محطات شمسية على أسطح المجمعات التجارية",
+      },
+      {
+        en: "Direct owner accessibility model removing leasing friction for prime tenants",
+        ar: "نموذج التواصل المباشر مع المالك لتسهيل تعاقدات كبار المستأجرين",
+      },
+      {
+        en: "Continuous adherence to Zero-Harm safety standards across all facilities",
+        ar: "الالتزام الدائم بميثاق السلامة (صفر حوادث) في كافة المنشآت",
+      },
+    ],
+    scopeCategory: "expansion",
+  },
+]
+
+export const CORPORATE_VALUES: CorporateValue[] = [
+  {
+    id: "teamwork",
+    number: "01",
+    title: { en: "Teamwork", ar: "العمل الجماعي" },
+    tagline: {
+      en: "Harmonized multidisciplinary engineering execution",
+      ar: "تناغم الكفاءات الهندسية والتنفيذية المتكاملة",
+    },
+    description: {
+      en: "Cross-functional collaboration between structural engineers, MEP specialists, project managers, and on-site craftsmen to deliver flawless commercial developments.",
+      ar: "تكامل وتناغم كامل بين مهندسي الإنشاءات والكهروميكانيك وإدارة المشروعات والفرق الميدانية لضمان دقة التنفيذ وتسليم الأصول التجارية بأعلى جودة.",
+    },
+    iconName: "users",
+  },
+  {
+    id: "honesty",
+    number: "02",
+    title: { en: "Honesty & Integrity", ar: "النزاهة والأمانة المهنية" },
+    tagline: {
+      en: "Ethical foundation across all commercial partnerships",
+      ar: "أساس أخلاقي راسخ في كافة المعاملات والشراكات",
+    },
+    description: {
+      en: "Maintaining straightforward, principled interactions with tenants, co-investors, regulatory authorities, and supply chain partners with zero ambiguity.",
+      ar: "التعامل بصدق ووضوح تام مع المستأجرين، والمستثمرين، والجهات الرقابية، وموردي المواد الصناعية دون أي مواربة أو التباس.",
+    },
+    iconName: "shield-check",
+  },
+  {
+    id: "transparency",
+    number: "03",
+    title: { en: "Transparency", ar: "الشفافية المطلقة" },
+    tagline: {
+      en: "Open operational communication & verifiable data",
+      ar: "وضوح تشغيلي وبيانات هندسية معلنة ودقيقة",
+    },
+    description: {
+      en: "Complete visibility into architectural specifications, leasable area calculations, maintenance schedules, and commercial contract terms.",
+      ar: "إتاحة كافة المواصفات الإنشائية، وحسابات المساحات التأجيرية الدقيقة، وجداول الصيانة، وبنود العقود التجارية بوضوح ومسؤولية كاملة.",
+    },
+    iconName: "eye",
+  },
+  {
+    id: "credibility",
+    number: "04",
+    title: { en: "Credibility", ar: "المصداقية والوفاء بالعهود" },
+    tagline: {
+      en: "Delivering precisely what is promised without compromise",
+      ar: "تسليم ما وعدنا به تماماً وبأعلى درجات الانضباط",
+    },
+    description: {
+      en: "Honoring every structural guarantee, technical parameter, and handover timeline agreed upon with clients and institutional tenants.",
+      ar: "الالتزام التام بكافة التعهدات الإنشائية، والمعايير الفنية، ومواعيد التسليم المتفق عليها مع العملاء والشركاء التجاريين.",
+    },
+    iconName: "award",
+  },
+  {
+    id: "responsibility",
+    number: "05",
+    title: {
+      en: "Institutional Responsibility",
+      ar: "المسؤولية المؤسسية والمجتمعية",
+    },
+    tagline: {
+      en: "Total ownership of safety, structural integrity & environment",
+      ar: "تحمل المسؤولية الكاملة عن السلامة والبيئة والمجتمع",
+    },
+    description: {
+      en: "Assuming deep accountability for occupant safety, occupational health, carbon reduction, and the enduring civic impact of our commercial hubs.",
+      ar: "تحمل كامل المسؤولية عن سلامة رواد مجمعاتنا، وصحة العاملين، وتقليل الأثر البيئي، وتقديم أصول تفخر بها المجتمعات العمرانية.",
+    },
+    iconName: "landmark",
+  },
+  {
+    id: "commitment",
+    number: "06",
+    title: { en: "Relentless Commitment", ar: "الالتزام الراسخ والمستمر" },
+    tagline: {
+      en: "End-to-end dedication throughout the asset lifecycle",
+      ar: "تفانٍ مستمر عبر كافة مراحل دورة حياة الأصل العقاري",
+    },
+    description: {
+      en: "Unwavering stewardship from initial foundation pouring through ongoing facility management, tenant relations, and multi-decade asset upkeep.",
+      ar: "استمرار الرعاية والالتزام من وضع الأساسات الخرسانية إلى الإدارة اليومية للمرافق، وعلاقات المستأجرين، والصيانة الدورية المستدامة.",
+    },
+    iconName: "compass",
+  },
+  {
+    id: "hard-work",
+    number: "07",
+    title: {
+      en: "Engineering Rigor & Hard Work",
+      ar: "الاجتهاد والانضباط الهندسي",
+    },
+    tagline: {
+      en: "Disciplined hands-on execution on every job site",
+      ar: "عمل ميداني دؤوب وانضباط هندسي صارم في كل موقع",
+    },
+    description: {
+      en: "Hands-on engineering scrutiny, rigorous on-site quality controls, and proactive problem-solving to ensure our buildings perform flawlessly under all conditions.",
+      ar: "إشراف هندسي ميداني مباشر، وفحوصات جودة صارمة، وتفانٍ في مواجهة التحديات لضمان أداء المبنى بأعلى كفاءة في أصعب الظروف التشغيلية.",
+    },
+    iconName: "hard-hat",
+  },
+]
+
+export const HSE_CHARTER: HseCharter = {
+  policyStatement: {
+    en: "TAFAWOK aims to achieve the highest standards of Health, Safety and Environment by incorporating the principles of sustainable improvement throughout its business activities. Every employee shares in the commitment to eliminate unsafe acts and conditions by thinking safely and acting safely at all times.",
+    ar: "تهدف شركة تفوق إلى تحقيق أعلى معايير الصحة والسلامة المهنية والبيئة من خلال ترسيخ مبادئ التحسين المستمر في جميع أنشطتها وأعمالها. ويشارك كل فرد في مؤسستنا في الالتزام بالقضاء على الممارسات غير الآمنة والظروف الخطرة عبر التفكير الآمن والعمل الواعي في كل الأوقات.",
+  },
+  signatory: {
+    name: { en: "Eng. Tarek Ahmed", ar: "م. طارق أحمد" },
+    role: {
+      en: "Chief Executive Officer & Company Owner",
+      ar: "الرئيس التنفيذي ومالك الشركة",
+    },
+  },
+  principles: [
+    {
+      id: "zero-harm",
+      title: {
+        en: "Zero Accidents Target",
+        ar: "مستهدف صفر حوادث مهنية",
+      },
+      description: {
+        en: "Striving for an accident-free workplace across all commercial properties and construction sites by adhering strictly to national regulations and international OSHA standards.",
+        ar: "العمل الدائم على توفير بيئة عمل خالية تماماً من الحوادث والإصابات في كافة الأصول والمواقع بالالتزام التام باللوائح المحلية ومعايير OSHA الدولية.",
+      },
+      standardCode: "OSHA Compliant",
+    },
+    {
+      id: "hazard-id",
+      title: {
+        en: "Systematic Hazard Identification & JSA",
+        ar: "تحديد المخاطر وتحليل سلامة العمل (JSA)",
+      },
+      description: {
+        en: "Proactively identifying, assessing, and mitigating risks prior to every high-load or complex task through systematic Job Safety Analysis and site risk registers.",
+        ar: "فحص وتقييم المخاطر مسبقاً قبل تنفيذ أي أعمال إنشائية أو تشغيلية من خلال إعداد بطاقات تحليل سلامة العمل (JSA) والمتابعة الميدانية الدقيقة.",
+      },
+      standardCode: "ISO 45001",
+    },
+    {
+      id: "environmental",
+      title: {
+        en: "Environmental Preservation & Waste Control",
+        ar: "حماية البيئة والحد من المخلفات",
+      },
+      description: {
+        en: "Preventing environmental contamination, minimizing site construction waste, integrating solar power, and safeguarding natural resources across all facilities.",
+        ar: "منع التلوث البيئي، وتقليل مخلفات البناء، واستخدام محطات الطاقة النظيفة، وترشيد استهلاك الموارد الطبيعية في كافة المنشآت.",
+      },
+      standardCode: "ISO 14001",
+    },
+    {
+      id: "mock-drills",
+      title: {
+        en: "Mandatory Emergency Drills & Training",
+        ar: "محاكاة الطوارئ والتدريب المستمر",
+      },
+      description: {
+        en: "Conducting regular emergency mock evacuation drills and continuous competency training so that personnel and tenants respond swiftly and decisively in contingencies.",
+        ar: "إجراء تدريبات إخلاء وهمية دورية وتدريب الكوادر البشرية على خطط الطوارئ لضمان استجابة سريعة وآمنة عند أي طارئ.",
+      },
+      standardCode: "Emergency Response",
+    },
+    {
+      id: "incident-prevention",
+      title: {
+        en: "Root-Cause Incident Prevention",
+        ar: "التحقيق الجذري ومنع تكرار الحوادث",
+      },
+      description: {
+        en: "Analyzing all near-misses and minor incidents through structured root-cause analysis to implement corrective safeguards before issues can escalate.",
+        ar: "التحقيق الشامل في أي حادث عرضي أو وشيك للوصول إلى الأسباب الجذرية ووضع حلول وقائية هندسية تمنع تكرارها نهائياً.",
+      },
+      standardCode: "Continuous Improvement",
+    },
+    {
+      id: "universal-responsibility",
+      title: {
+        en: "Universal Safety Responsibility",
+        ar: "المسؤولية المشتركة وثقافة السلامة",
+      },
+      description: {
+        en: "Fostering an inclusive culture where every team member has the absolute authority and obligation to halt any unsafe work without reprisal.",
+        ar: "ترسيخ ثقافة السلامة التي تمنح كل عامل ومهندس الصلاحية الكاملة لإيقاف أي عمل غير آمن فوراً لضمان سلامة الجميع.",
+      },
+      standardCode: "Safety Culture",
+    },
+  ],
+  standards: [
+    {
+      name: "Quality Management",
+      code: "ISO 9001:2015",
+      description: {
+        en: "Certified institutional quality management across construction, procurement, and asset administration.",
+        ar: "نظام إدارة الجودة المعتمد دولياً في عمليات المقاولات والتوريدات وإدارة الأصول العقارية.",
+      },
+    },
+    {
+      name: "Occupational Health & Safety",
+      code: "ISO 45001:2018",
+      description: {
+        en: "International benchmark for on-site occupational safety, hazard mitigation, and worker protection.",
+        ar: "المعيار العالمي لإدارة الصحة والسلامة المهنية وحماية العاملين ورواد المنشآت.",
+      },
+    },
+    {
+      name: "Environmental Stewardship",
+      code: "ISO 14001:2015",
+      description: {
+        en: "Certified environmental management ensuring sustainable waste minimization and resource efficiency.",
+        ar: "معايير الإدارة البيئية المعتمدة لتقليل الانبعاثات وإدارة المخلفات وترشيد استهلاك الطاقة.",
+      },
+    },
+    {
+      name: "Fire Protection Standards",
+      code: "NFPA-13 / NFPA-72",
+      description: {
+        en: "National Fire Protection Association compliance across commercial sprinkler grids and early warning systems.",
+        ar: "مطابقة تامة للمواصفات الدولية لمكافحة الحرائق وشبكات المرشات التلقائية والإنذار المبكر.",
+      },
+    },
+  ],
+}
+
+export const CRE_INVESTMENT_THESIS: InvestmentPillar[] = [
+  {
+    id: "arterial-location",
+    number: "01",
+    title: {
+      en: "Strategic Arterial Connectivity",
+      ar: "الموقع الاستراتيجي والاتصال بالمحاور الحيوية",
+    },
+    tagline: {
+      en: "Prime nodes with zero compromise on accessibility",
+      ar: "مواقع حيوية تضمن سهولة الوصول التام دون عوائق",
+    },
+    description: {
+      en: "TAFAWOK exclusively selects commercial land situated on primary regional transport corridors and high-volume interchanges, ensuring corporate tenants and retail visitors benefit from frictionless connectivity.",
+      ar: "تختار تفوق بعناية فائقة أراضيها التجارية على المحاور الإقليمية السريعة والتقاطعات الرئيسية لضمان سهولة وانسيابية وصول الموظفين ورواد الأعمال والمتسوقين.",
+    },
+    metric: {
+      value: "100%",
+      label: {
+        en: "Arterial Highway Access",
+        ar: "اتصال مباشر بالمحاور الرئيسية",
+      },
+    },
+  },
+  {
+    id: "engineered-longevity",
+    number: "02",
+    title: {
+      en: "Engineering Over-Specification & Longevity",
+      ar: "المتانة الإنشائية والوفرة الكهروميكانيكية",
+    },
+    tagline: {
+      en: "Built to institutional EPC standards, not speculative minimums",
+      ar: "مبانٍ مشيدة بمعايير المقاولات الكبرى لا بالحدود الدنيا للمضاربة",
+    },
+    description: {
+      en: "We over-engineer our commercial assets with N+1 backup power generators, VRF/HEPA central climate systems, heavy floor loads (up to 7.5 tons/m²), and optical fiber backbones to guarantee 100% tenant operational uptime.",
+      ar: "نرفع المواصفات الفنية لمجمعاتنا لتشمل مولدات طاقة احتياطية N+1، وتكييفات مركزية موفرة للطاقة، وأرضيات فائقة التحمل حتى 7.5 طن/م² لضمان استمرارية تشغيل بنسبة 100%.",
+    },
+    metric: {
+      value: "100%",
+      label: {
+        en: "Power & MEP Redundancy",
+        ar: "تغطية كهربائية وهندسية احتياطية",
+      },
+    },
+  },
+  {
+    id: "tenant-magnetism",
+    number: "03",
+    title: {
+      en: "Tenant Magnetism & Anchor Tenancy",
+      ar: "مغناطيسية جذب المستأجرين والشركاء الرئيسيين",
+    },
+    tagline: {
+      en: "Master-planned ecosystems that foster high footfall & synergy",
+      ar: "بيئات عمل وتسوق متكاملة تحقق أعلى معدلات الإقبال والتناغم",
+    },
+    description: {
+      en: "By securing Tier-1 institutional anchors—from Grand Hypermarket to leading national banks—we build self-reinforcing commercial environments that sustain high occupancy, tenant profitability, and long-term lease retention.",
+      ar: "من خلال استقطاب كبرى المؤسسات المصرفية وسلاسل الهايبر ماركت العالمية، نصنع بيئة تجارية ذات تدفق زوار مستمر تضمن ربحية المستأجرين واستقرار عقود الإيجار طويلة الأجل.",
+    },
+    metric: {
+      value: "95%+",
+      label: {
+        en: "Target Commercial Occupancy",
+        ar: "نسبة الإشغال التجاري المستهدفة",
+      },
+    },
+  },
+  {
+    id: "generational-equity",
+    number: "04",
+    title: {
+      en: "Generational Equity vs Speculation",
+      ar: "بناء أصول حقيقية للأجيال بدلاً من المضاربة",
+    },
+    tagline: {
+      en: "Long-term ownership alignment with continuous stewardship",
+      ar: "علاقة استثمارية طويلة المدى قائمة على الرعاية المستمرة للأصل",
+    },
+    description: {
+      en: "TAFAWOK develops as a permanent asset owner and operator, not a rapid-turnover broker. Our capital is directly aligned with the structural health, continuous maintenance, and compounding capital appreciation of every development.",
+      ar: "تطور تفوق أصولها كمالك ومشغل دائم وليس كمسوق عابر. رؤوس أموالنا مستثمرة مباشرة في جودة المنشآت وصيانتها المستمرة، مما يضمن تعاظم قيمتها الرأسمالية عبر الأجيال.",
+    },
+    metric: {
+      value: "25+ Yrs",
+      label: {
+        en: "Long-Term Stewardship Horizon",
+        ar: "أفق الرعاية الاستثمارية المستدامة",
+      },
+    },
+  },
+]
+
+export const CEO_PROFILE: CeoProfile = {
+  name: {
+    en: "Eng. Tarek Ahmed",
+    ar: "المهندس طارق أحمد",
+  },
+  role: {
+    en: "Chief Executive Officer & Company Owner",
+    ar: "الرئيس التنفيذي ومالك الشركة",
+  },
+  company: {
+    en: "TAFAWOK Real Estate Investment & Contracting Company",
+    ar: "شركة تفوق للاستثمار العقاري والمقاولات",
+  },
+  education: {
+    en: "B.Sc. in Civil Engineering, Specialized in Structural Dynamics & Regional Megaprojects",
+    ar: "بكالوريوس الهندسة المدنية، متخصص في الهندسة الإنشائية والمشروعات الإقليمية الكبرى",
+  },
+  experienceYears: 25,
+  regionalHeritageDecades: 5,
+  formalAddress: {
+    salutation: {
+      en: "Honorable Partners, Valued Tenants, and Prospective Investors,",
+      ar: "شركاءنا الكرام، مستأجرينا الأعزاء، والمستثمرين الأفاضل،",
+    },
+    opening: {
+      en: "Our clients are our major asset, their satisfaction is our main objective.",
+      ar: "عملاؤنا هم أصلنا الأكبر، ورضاهم هو غايتنا الأولى.",
+    },
+    paragraphs: [
+      {
+        en: "TAFAWOK was established with a clear, unwavering vision: to actively participate in the development and economic booming of Egypt by delivering professional, enduring, and high-quality commercial real estate assets.",
+        ar: "تأسست شركة تفوق برؤية واضحة وراسخة: المشاركة الفعالة في النهضة التنموية والعمرانية التي تشهدها مصر، عبر تقديم أصول عقارية تجارية وهندسية متكاملة تتميز بأعلى درجات الاحترافية والاستدامة.",
+      },
+      {
+        en: "Rooted in five decades of core executive heritage in the Arabian Gulf, we brought home the rigorous standards of multinational oil, gas, and heavy infrastructure engineering. When we develop a commercial business park, a retail mall, or a trade complex, we do not view it merely as concrete and glass. We view it as an operational platform for business longevity, enterprise growth, and generational wealth creation.",
+        ar: "انطلاقاً من خمسة عقود من الخبرة التنفيذية المتواصلة في الخليج العربي، نقلنا إلى مصر المعايير الصارمة المعمول بها في كبرى مشروعات الطاقة والبنية التحتية العالمية. وحينما نطور مجمعاً إدارياً أو مركزاً تجارياً أو منطقة لوجستية، فإننا لا ننظر إليها كخرسانة ومبانٍ، بل نراها منصة حيوية لنمو الأعمال، وازدهار الشركات، وصناعة قيمة استثمارية حقيقية تمتد للأجيال.",
+      },
+      {
+        en: "We take immense pride in our directly sponsored workforce of more than 50 specialized engineers and technical personnel. Unlike developers who subcontract their responsibilities away, TAFAWOK maintains direct executive command over structural execution, precision MEP systems, safety protocols, and daily facility operations.",
+        ar: "نعتز كثيراً بكادرنا الهندسي والفني الدائم الذي يتجاوز 50 مهندساً واستشارياً متخصصاً. وخلافاً للعديد من المطورين، تحتفظ تفوق بإشراف هندسي وتنفيذي مباشر على كافة تفاصيل الإنشاءات، والأنظمة الكهروميكانيكية، ومعايير السلامة، والإدارة اليومية للمرافق.",
+      },
+      {
+        en: "In an era of rapid market speculation, our pledge remains steadfast: absolute credibility, physical engineering integrity, and an open executive door. As owner, my direct telephone and office are accessible to every major partner and prospective tenant who shares our belief in building enduring value.",
+        ar: "وفي عصر تتسارع فيه المضاربات العقارية، يبقى عهدنا ثابتاً لا يتزعزع: مصداقية مطلقة، متانة إنشائية فائقة، وباب تنفيذي مفتوح دائماً. وبصفتي مالكاً للشركة، فإن مكتبي وهاتفي متاحان مباشرة لكل شريك ومستأجر يشاركنا الإيمان بصناعة القيمة الحقيقية.",
+      },
+    ],
+    closing: {
+      en: "We welcome you to explore TAFAWOK's commercial developments and join us in shaping the architectural and commercial future of Egypt.",
+      ar: "يسعدنا ويشرفنا دائماً الترحيب بكم في مجمعات تفوق التجارية، لنبني معاً مستقبلاً تجارياً ومعمارياً متميزاً في مصر.",
+    },
+  },
+  strategicDoctrine: {
+    title: {
+      en: "Three Pillars of Executive Leadership",
+      ar: "الركائز الثلاث للقيادة التنفيذية",
+    },
+    subtitle: {
+      en: "The operational philosophy governing every commercial decision at TAFAWOK",
+      ar: "الفلسفة التشغيلية التي تحكم كل قرار استثماري وهندسي في شركة تفوق",
+    },
+    pillars: [
+      {
+        number: "01",
+        title: {
+          en: "Tangible Asset Value Over Paper Speculation",
+          ar: "القيمة الملموسة للأصل بدلاً من المضاربة الورقية",
+        },
+        description: {
+          en: "Commercial real estate must be backed by real tenant footfall, heavy structural specifications, and sustainable rental cash flow, never illusory marketing hype.",
+          ar: "العقارات التجارية يجب أن تقوم على حركة فعلية للزوار، ومواصفات إنشائية فائقة، وتدفقات نقدية تأجيرية مستدامة، بعيداً عن الوعود التسويقية غير الواقعية.",
+        },
+      },
+      {
+        number: "02",
+        title: {
+          en: "In-House Engineering Cadre & Direct Oversight",
+          ar: "كادر هندسي دائم ورقابة تنفيذية مباشرة",
+        },
+        description: {
+          en: "Directly employing our core technical specialists ensures zero compromise on MEP quality, LEED standards, structural safety, or handover timelines.",
+          ar: "الاعتماد على فريقنا الهندسي الدائم يضمن الالتزام الصارم بجودة الأعمال الكهروميكانيكية، ومعايير السلامة، ودقة مواعيد التسليم دون تهاون.",
+        },
+      },
+      {
+        number: "03",
+        title: {
+          en: "Open Owner Door: Direct Personal Accountability",
+          ar: "باب المالك المفتوح: مسؤولية تنفيذية مباشرة",
+        },
+        description: {
+          en: "Corporate red tape has no place at TAFAWOK. Major tenants, anchor partners, and institutional investors communicate directly with Eng. Tarek Ahmed.",
+          ar: "لا مكان للبيروقراطية في تفوق. كبار المستأجرين والشركاء الاستثماريين يتواصلون مباشرة مع المهندس طارق أحمد لضمان سرعة القرار وثبات الالتزام.",
+        },
+      },
+    ],
+  },
+  careerMilestones: [
+    {
+      period: "1990s",
+      role: {
+        en: "Project Director & Infrastructure Specialist",
+        ar: "مدير مشروعات وخبير بنية تحتية",
+      },
+      scope: {
+        en: "Arabian Gulf Mega-Infrastructure (Kuwait, KSA, UAE)",
+        ar: "مشروعات البنية التحتية الكبرى بالخليج العربي (الكويت، السعودية، الإمارات)",
+      },
+      highlight: {
+        en: "Led civil and piping execution for strategic fresh-water reservoir complexes and petrochemical installations.",
+        ar: "قيادة الأعمال المدنية وتوريدات الأنابيب لمجمعات خزانات المياه الاستراتيجية ومنشآت البتروكيماويات.",
+      },
+    },
+    {
+      period: "2000",
+      role: {
+        en: "Founder & Chief Executive Officer",
+        ar: "مؤسس ورئيس تنفيذي",
+      },
+      scope: {
+        en: "TAFAWOK Real Estate Investment & Contracting (Cairo, Egypt)",
+        ar: "شركة تفوق للاستثمار العقاري والمقاولات (القاهرة، مصر)",
+      },
+      highlight: {
+        en: "Established the enterprise in Cairo, building an elite 50+ engineer team and securing Tier-1 contracting credentials.",
+        ar: "تأسيس الشركة بالقاهرة وبناء فريق هندسي نخبوي والحصول على تصنيف المقاولات والاستثمار من الفئة الأولى.",
+      },
+    },
+    {
+      period: "2012",
+      role: {
+        en: "Executive Lead — Institutional EPC Contracts",
+        ar: "القيادة التنفيذية لمقاولات المشروعات القومية",
+      },
+      scope: {
+        en: "Kuwait MOH Adan Hospital & Egypt GAEB National Video Network",
+        ar: "توسعة مستشفى العدان بالكويت وشبكة الفيديو كونفرانس القومية بمصر",
+      },
+      highlight: {
+        en: "Supervised high-precision medical cleanroom HVAC and nationwide ICT infrastructure handovers.",
+        ar: "الإشراف المباشر على تجهيز المستشفيات التخصصية وبنية الاتصالات القومية المتطورة.",
+      },
+    },
+    {
+      period: "2018 – Present",
+      role: {
+        en: "Master Developer & Commercial Real Estate Steward",
+        ar: "المطور الرئيسي وراعي الأصول العقارية التجارية",
+      },
+      scope: {
+        en: "77,500 m² Prime Commercial Portfolio (New Cairo & Greater Cairo Corridor)",
+        ar: "محفظة الأصول التجارية بمساحة 77,500 م² (التجمع الخامس ومحاور القاهرة الكبرى)",
+      },
+      highlight: {
+        en: "Spearheading development and management of Building 360 Business Park, Tafawok Retail Center, and Logistics Park.",
+        ar: "قيادة تطوير وتشغيل مجمع مبنى 360 الإداري، ومول تفوق التجاري، ومجمع تفوق اللوجستي المتطور.",
+      },
+    },
+  ],
+  directReach: OWNER_DETAILS,
+}

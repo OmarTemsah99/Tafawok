@@ -58,16 +58,16 @@
     - [x] Location 3: `/properties/tafawok-logistics-park` (Industrial & Trade Complex)
   - [x] Verify metadata, SEO, and static generation for all 3 routes
 
-- [ ] **Phase 5: Corporate About Us & Dedicated CEO Message Pages**
-  - [ ] Build About Us page (`app/about/page.tsx`):
-    - [ ] 25+ years track record & 5 decades Gulf heritage timeline
-    - [ ] CRE investment thesis and development philosophy
-    - [ ] Zero-Harm HSE policy and quality assurance standards
-  - [ ] Build Dedicated CEO Message page (`app/ceo-message/page.tsx`):
-    - [ ] Strategic vision by Eng. Tarek Ahmed
-    - [ ] Full executive bio and career milestones
-    - [ ] Direct Owner Access Card (phone, email, WhatsApp, Cairo HQ)
-  - [ ] Verify typecheck and build
+- [x] **Phase 5: Corporate About Us & Dedicated CEO Message Pages**
+  - [x] Build About Us page (`app/about/page.tsx`):
+    - [x] 25+ years track record & 5 decades Gulf heritage timeline
+    - [x] CRE investment thesis and development philosophy
+    - [x] Zero-Harm HSE policy and quality assurance standards
+  - [x] Build Dedicated CEO Message page (`app/ceo-message/page.tsx`):
+    - [x] Strategic vision by Eng. Tarek Ahmed
+    - [x] Full executive bio and career milestones
+    - [x] Direct Owner Access Card (phone, email, WhatsApp, Cairo HQ)
+  - [x] Verify typecheck and build
 
 - [ ] **Phase 6: Contact & RFQ Portal + SMTP Backend Delivery Service**
   - [ ] Build Next.js API Route for SMTP (`app/api/contact/route.ts`) using Nodemailer
@@ -167,15 +167,26 @@
 
 ---
 
-### Phase 5: About Us & Dedicated CEO Message
+### Phase 5: About Us & Dedicated CEO Message (COMPLETED)
 
-- **Objectives:**
-  1. **About Us (`/about`)**: Corporate heritage, regional Gulf experience, multidisciplinary execution, Zero-Harm safety policy, and ISO quality standards.
-  2. **CEO Message (`/ceo-message`)**: Full executive address from Eng. Tarek Ahmed outlining TAFAWOK's CRE vision, values, and direct owner accessibility.
-- **Files to Create:**
-  - `app/about/page.tsx`
-  - `app/ceo-message/page.tsx`
-- **Verification:** Verify text formatting, bilingual parity, and responsive reading flow.
+- **Status:** Done & Verified.
+- **Files Created:**
+  - [`components/about/AboutHeroSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/about/AboutHeroSection.tsx): Architectural banner with 4-metric counter ticker & corporate heritage
+  - [`components/about/TimelineSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/about/TimelineSection.tsx): 6-era chronological timeline with category filters & check items
+  - [`components/about/InvestmentThesisSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/about/InvestmentThesisSection.tsx): 4-pillar CRE investment thesis & contrast matrix (Speculative vs. TAFAWOK)
+  - [`components/about/CorporateValuesSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/about/CorporateValuesSection.tsx): 7 core institutional values with dedicated iconography
+  - [`components/about/HseSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/about/HseSection.tsx): Zero-Harm safety charter signed by CEO with 6 principles & ISO/NFPA standards
+  - [`components/about/AboutCtaSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/about/AboutCtaSection.tsx): Closing commercial portfolio & leadership outreach CTA
+  - [`components/about/AboutUsClient.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/about/AboutUsClient.tsx): Composite client wrapper for `/about`
+  - [`app/about/page.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/app/about/page.tsx): Server Component with SEO metadata & OpenGraph tags
+  - [`components/ceo/CeoHeroSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/ceo/CeoHeroSection.tsx): Executive credentials, philosophy quote & quick reach widget
+  - [`components/ceo/CeoAddressSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/ceo/CeoAddressSection.tsx): Full formal executive address from Eng. Tarek Ahmed
+  - [`components/ceo/CeoDoctrineSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/ceo/CeoDoctrineSection.tsx): 3 core strategic leadership pillars
+  - [`components/ceo/CeoCareerSection.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/ceo/CeoCareerSection.tsx): 4-era executive career milestones from Gulf to Cairo CRE
+  - [`components/ceo/CeoDirectReachCard.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/ceo/CeoDirectReachCard.tsx): Direct phone, WhatsApp, email & Cairo HQ coordinates
+  - [`components/ceo/CeoMessageClient.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/ceo/CeoMessageClient.tsx): Composite client wrapper for `/ceo-message`
+  - [`app/ceo-message/page.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/app/ceo-message/page.tsx): Server Component with SEO metadata
+- **Outcome:** Complete bilingual corporate about & CEO message routes verified with zero type errors, zero lint warnings, static build (SSG) verified, and live browser visual verification in both English (LTR) and Arabic (RTL). Enhanced with React Bits `<LineSidebar />` for desktop monograph chapter navigation with real-time scroll tracking, full card unboxing to minimalist typography + `<Separator />` lines, and complete removal of `Avatar` components site-wide.
 
 ---
 

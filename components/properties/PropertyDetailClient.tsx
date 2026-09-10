@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useMemo } from "react"
 import Link from "next/link"
 import { MapPin, Phone } from "lucide-react"
 import { Property, PropertyType } from "@/types/cre"
@@ -12,6 +12,7 @@ import { PropertyMap } from "@/components/properties/PropertyMap"
 import { PropertyLeasingCard } from "@/components/properties/PropertyLeasingCard"
 import { BiDiIsolate } from "@/components/shared/FormattedUnit"
 import { MotionFade } from "@/components/motion/MotionFade"
+import { PageLineSidebar } from "@/components/motion/PageLineSidebar"
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -26,9 +27,28 @@ interface PropertyDetailClientProps {
 }
 
 export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
-  const { t } = useLocaleStore()
+  const { t, locale } = useLocaleStore()
+  const isRtl = locale === "ar"
 
   const propType: PropertyType = property.type || "office"
+
+  const chapters = useMemo(() => {
+    const list = [
+      { id: "property-overview", label: isRtl ? "نظرة عامة" : "Overview" },
+      { id: "property-specs", label: isRtl ? "المواصفات" : "Technical Specs" },
+    ]
+    if (property.stores && property.stores.length > 0) {
+      list.push({
+        id: "property-directory",
+        label: isRtl ? "دليل المستأجرين" : "Tenants",
+      })
+    }
+    list.push(
+      { id: "property-location", label: isRtl ? "الموقع" : "Location" },
+      { id: "property-leasing", label: isRtl ? "مكتب التأجير" : "Leasing" }
+    )
+    return list
+  }, [isRtl, property.stores])
 
   const typeLabels: Record<PropertyType, { en: string; ar: string }> = {
     office: { en: "Corporate Office Hub", ar: "مجمع إداري للشركات" },
@@ -40,8 +60,16 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
 
   return (
     <div className="flex flex-col">
+      <PageLineSidebar
+        items={chapters}
+        title={isRtl ? "تصفح العقار" : "Property"}
+      />
+
       {/* Property Hero: Architectural Monograph Header */}
-      <section className="relative overflow-hidden border-b border-border/80 bg-background pt-8 pb-14 sm:pt-12 sm:pb-16">
+      <section
+        id="property-overview"
+        className="relative overflow-hidden border-b border-border/80 bg-background pt-8 pb-14 sm:pt-12 sm:pb-16"
+      >
         <div className="container mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
           <Breadcrumb>
@@ -186,26 +214,34 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
       <div className="py-14 sm:py-20">
         <div className="container mx-auto max-w-7xl space-y-20 px-4 sm:px-6 lg:px-8">
           {/* Section 1: Architectural & Engineering Specs */}
-          <MotionFade direction="up">
-            <PropertySpecs property={property} />
-          </MotionFade>
+          <div id="property-specs">
+            <MotionFade direction="up">
+              <PropertySpecs property={property} />
+            </MotionFade>
+          </div>
 
           {/* Section 2: Stores & Tenants Directory (if applicable) */}
           {property.stores && property.stores.length > 0 && (
-            <MotionFade direction="up">
-              <StoreDirectory property={property} />
-            </MotionFade>
+            <div id="property-directory">
+              <MotionFade direction="up">
+                <StoreDirectory property={property} />
+              </MotionFade>
+            </div>
           )}
 
           {/* Section 3: Location & Arterial Accessibility */}
-          <MotionFade direction="up">
-            <PropertyMap property={property} />
-          </MotionFade>
+          <div id="property-location">
+            <MotionFade direction="up">
+              <PropertyMap property={property} />
+            </MotionFade>
+          </div>
 
           {/* Section 4: Commercial Leasing & Executive Stewardship */}
-          <MotionFade direction="up">
-            <PropertyLeasingCard property={property} />
-          </MotionFade>
+          <div id="property-leasing">
+            <MotionFade direction="up">
+              <PropertyLeasingCard property={property} />
+            </MotionFade>
+          </div>
         </div>
       </div>
     </div>

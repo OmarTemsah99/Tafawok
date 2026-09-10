@@ -339,3 +339,213 @@ Chronological decision log tracking major architectural milestones and engineeri
     - `npm run lint`: 0 errors (`eslint`).
     - `npm run build`: 10/10 static pages generated in 377ms.
     - Verified live across 1440px desktop, 768px tablet, and 390px mobile viewports via Chrome DevTools.
+
+---
+
+## Milestone 5: Corporate About Us & Dedicated CEO Message Pages (Phase 5)
+
+- **Date:** September 2026
+- **Scope:**
+  - **Data Layer Expansion (`content/cre-data.ts` & `types/cre.ts`):**
+    - Added comprehensive, strictly typed schemas: `TimelineMilestone`, `CorporateValue`, `HseCharter`, `HsePrinciple`, `InvestmentPillar`, `CeoMilestone`, and `CeoProfile`.
+    - Structured authentic data extracted from corporate knowledge base (`TAFAWOK_ASSETS_AND_CONTENT.md`):
+      - 6-era chronological milestones spanning the 1970s Gulf roots through to 2026+ sustainable CRE expansions.
+      - 7 foundational values (Teamwork, Honesty, Transparency, Credibility, Responsibility, Commitment, Technical Rigor).
+      - Zero-Harm HSE policy charter signed by Eng. Tarek Ahmed with 6 core commitments and ISO 9001 / ISO 45001 / ISO 14001 / NFPA-13 standards.
+      - 4-pillar commercial real estate investment thesis comparing institutional standards against speculative development.
+      - Full executive address, biographical narrative, and 3 pillars of leadership doctrine for Eng. Tarek Ahmed.
+  - **About Us Route (`app/about/page.tsx` & `components/about/`):**
+    - `AboutHeroSection.tsx`: Monumental architectural typography with 4-stat animated counter ticker.
+    - `TimelineSection.tsx`: Interactive vertical timeline with category filters and check-item highlights.
+    - `InvestmentThesisSection.tsx`: 4 investment pillars with metric badges and a side-by-side comparison matrix.
+    - `CorporateValuesSection.tsx`: 7 values grid with lucide icons and numbered badges.
+    - `HseSection.tsx`: Executive safety policy statement with signature block, 6 operational safety commitments, and certified compliance badges.
+    - `AboutCtaSection.tsx`: Closing commercial portfolio and leadership outreach CTA.
+  - **Dedicated CEO Message Route (`app/ceo-message/page.tsx` & `components/ceo/`):**
+    - `CeoHeroSection.tsx`: Executive credentials, core corporate philosophy quote banner, and quick-reach widget.
+    - `CeoAddressSection.tsx`: Formal executive address with salutation, 4 authoritative paragraphs, and direct signature block.
+    - `CeoDoctrineSection.tsx`: 3 strategic leadership pillars (Tangible Asset Value, In-House Engineering Cadre, Open Owner Door).
+    - `CeoCareerSection.tsx`: 4-era career milestones spanning Gulf infrastructure, Cairo founding, institutional EPC, and CRE stewardship.
+    - `CeoDirectReachCard.tsx`: Dedicated executive contact card featuring BiDi-isolated telephone dialing, direct WhatsApp link, email, and Cairo HQ coordinates.
+  - **Bilingual & RTL Alignment:**
+    - Full English and Arabic string parity in `locales/en.json` and `locales/ar.json`.
+    - Dynamic RTL layout mirroring with BiDi isolation for phone numbers and metric units.
+  - **Quality Gates & Build Verification:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 errors (`eslint`).
+    - `npm run build`: 12/12 static pages generated successfully in 357ms.
+    - Live browser inspection verified with Chrome DevTools in both Arabic (RTL) and English (LTR).
+
+---
+
+## Milestone 5.1: Swiss Editorial Unboxed Layout & Shadcn Primitives Integration
+
+- **Date:** September 2026
+- **Scope:**
+  - **User Feedback & Design Realignment:**
+    - Preserved the user-acclaimed `TimelineSection` (`components/about/TimelineSection.tsx`) exactly as loved.
+    - Replaced generic SaaS card grids across both `/about` and `/ceo-message` with unboxed Swiss editorial numbered rows (generous typography, subtle dividers, accent numerals `01`–`07`).
+  - **Official Shadcn UI Components Integration:**
+    - Incorporated shadcn `Avatar` & `AvatarFallback` (`TA` monogram) for executive branding and signatory trust.
+    - Utilized official shadcn `Badge` variants for accreditation codes, tenure markers, and quality benchmarking.
+    - Modeled the single focused executive reach card on `PropertyLeasingCard.tsx` using shadcn `Card`.
+    - Integrated shadcn `Separator` where appropriate.
+  - **HSE Executive Safety Charter:**
+    - Refactored into an authentic signed Executive Safety Charter document signed by Eng. Tarek Ahmed with certification badges (ISO 9001, ISO 45001, ISO 14001, NFPA-13/72) and unboxed commitment rows.
+  - **Arabic Typography Hardening:**
+    - Eliminated cursive ligature disruptions caused by monospace/letter-spacing (`tracking-widest`, `tracking-wider`, `uppercase`) on Arabic text across all About and CEO sections.
+  - **Quality Gates Verification:**
+    - `npm run typecheck`: 0 errors.
+    - `npm run lint`: 0 warnings, 0 errors.
+    - `npm run build`: 12/12 static pages compiled and pre-rendered cleanly.
+    - Verified via Chrome DevTools in both Arabic (RTL) and English (LTR).
+
+---
+
+## Milestone 5.2: Site-Wide Elimination of Pill Badges in Favor of Architectural Typographic Overlines
+
+- **Date:** September 2026
+- **Scope:**
+  - **Design Problem Solved:**
+    - Repetitive, generic SaaS-style pill capsules (`rounded-full`, bordered backgrounds with miscellaneous icons) above section headlines created visual noise and diluted the impact of genuine functional badges.
+  - **Architectural Design Realignment:**
+    - Systematically replaced section header pill bubbles across the entire platform with an understated, elegant architectural typographic overline:
+      - Crisp geometric square marker (`size-1.5 bg-primary shrink-0`) paired with clean category typography (`text-xs font-bold text-primary`).
+      - True RTL protection: `uppercase tracking-wider` applied exclusively to LTR/English to maintain pristine cursive Arabic ligatures.
+      - Preserved `<Badge>` strictly for actual functional and certified data (e.g., ISO certifications, property GLA stats, career milestone years, and unit badges).
+  - **Files Refactored:**
+    - `components/home/MetricsSection.tsx`
+    - `components/home/FeaturedProperties.tsx`
+    - `components/home/ScrollExpandShowcase.tsx`
+    - `components/home/CeoQuoteSection.tsx`
+    - `components/home/ClientMarquee.tsx`
+    - `components/about/AboutHeroSection.tsx`
+    - `components/about/TimelineSection.tsx`
+    - `components/about/InvestmentThesisSection.tsx`
+    - `components/about/CorporateValuesSection.tsx`
+    - `components/about/HseSection.tsx`
+    - `components/about/AboutCtaSection.tsx`
+    - `components/ceo/CeoHeroSection.tsx`
+    - `components/ceo/CeoAddressSection.tsx`
+    - `components/ceo/CeoDoctrineSection.tsx`
+    - `components/ceo/CeoCareerSection.tsx`
+    - `components/ceo/CeoDirectReachCard.tsx`
+    - `components/properties/PropertiesDirectoryClient.tsx`
+  - **Quality Gates Verification:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 warnings, 0 errors (`eslint`).
+    - `npm run build`: 12/12 static pages compiled and pre-rendered cleanly in ~380ms.
+    - Live browser inspection verified across Home, About Us, CEO Message, and Commercial Properties pages.
+
+---
+
+## Milestone 5.3: Minimalist Card Dismantling, Avatar Removal & React Bits LineSidebar Integration
+
+- **Date:** September 2026
+- **Scope:**
+  - **Card Dismantling & Minimalist Separation:**
+    - Dismantled heavy card wrappers (`bg-card`, border frames, shadows) in `CeoHeroSection`, `CeoAddressSection`, `CeoDirectReachCard`, and `HseSection`.
+    - Replaced boxed elements with minimalist typography, generous whitespace, and subtle `<Separator />` hairlines, matching architectural monograph standards (Foster + Partners, Zaha Hadid style).
+    - Unified container width to `max-w-4xl` across all monograph sections on `/ceo-message` for optimal typographical line length (60–75 characters) and consistent spatial rhythm.
+  - **Avatar Removal Across Platform:**
+    - Completely eliminated all `Avatar` and `AvatarFallback` monogram bubbles across executive bylines and safety signatories (`CeoHeroSection`, `CeoAddressSection`, `HseSection`).
+    - Replaced with crisp typographic signatures: Name (`text-base font-black sm:text-lg`), Role (`text-xs font-bold text-primary`), Company (`text-xs text-muted-foreground`), and certified credentials.
+  - **React Bits `<LineSidebar />` Integration:**
+    - Built `components/motion/LineSidebar.tsx` adhering to the React Bits specification, equipped with:
+      - Full TypeScript interfaces and strict typing (zero `any`).
+      - Dynamic CSS custom properties and color-mixing (`color-mix(in srgb, var(--accent-color) ..., var(--text-color))`).
+      - Full bidirectional RTL/LTR support: mirrored origin transforms (`origin-right` vs `origin-left`), reversed shift multiplier, and logical spacing.
+      - Smooth cursor proximity spring animation with `requestAnimationFrame` loop.
+      - React 19 & ESLint compliance: refs updated within `useEffect` without mutating during render.
+  - **Architectural Monograph Chapter Navigation:**
+    - Integrated `<LineSidebar />` into `components/ceo/CeoMessageClient.tsx` as a floating desktop architectural chapter index (`hidden xl:block fixed start-6 2xl:start-10 top-1/2 -translate-y-1/2`).
+    - Anchored 5 monograph chapters:
+      1. `01 Executive Profile` (`#executive-profile`)
+      2. `02 Formal Address` (`#formal-address`)
+      3. `03 Strategic Doctrine` (`#strategic-doctrine`)
+      4. `04 Career Milestones` (`#career-milestones`)
+      5. `05 Direct Reach` (`#direct-reach`)
+    - Implemented bidirectional scroll-spy synchronization that automatically tracks reading position through the sections.
+    - Added smooth-scroll click navigation with sticky navbar offset compensation.
+    - Added bilingual chapter dictionary entries in `locales/en.json` and `locales/ar.json`.
+  - **Quality Gates Verification:**
+    - `npm run typecheck`: 0 errors (`tsc --noEmit`).
+    - `npm run lint`: 0 warnings, 0 errors (`eslint`).
+    - `npm run build`: 12/12 static pages compiled and pre-rendered cleanly via Next.js 16 Turbopack.
+    - Verified via Chrome DevTools in Arabic (RTL) and English (LTR) across both dark and light modes.
+
+---
+
+## Milestone 5.4: Site-Wide LineSidebar Integration, Total Badge Elimination & Full Minimalist Realignment
+
+- **Date:** September 2026
+- **Scope:**
+  - **Site-Wide React Bits `<LineSidebar />` Integration:**
+    - Adopted the exact React Bits design specification provided:
+      - `markerLength = 60`, `markerGap = 0`, `maxShift = 30`, `tickScale = 0.5`, `scaleTick = true`, `itemGap = 20`, `fontSize = 1.1`, `proximityRadius = 100`, `smoothing = 100`.
+      - Built a reusable high-order container `components/motion/PageLineSidebar.tsx` with automated scroll-spy tracking and offset-adjusted smooth-scroll clicks.
+      - Integrated across **all pages** of the platform:
+        1. **Home (`/`):** 6 chapters (`#hero`, `#metrics`, `#showcase`, `#portfolio`, `#leadership`, `#partners`).
+        2. **About Us (`/about`):** 6 chapters (`#heritage`, `#timeline`, `#thesis`, `#values`, `#hse`, `#outreach`).
+        3. **CEO Message (`/ceo-message`):** 5 chapters (`#executive-profile`, `#formal-address`, `#strategic-doctrine`, `#career-milestones`, `#direct-reach`).
+        4. **Properties Directory (`/properties`):** 3 chapters (`#portfolio-hero`, `#portfolio-metrics`, `#asset-directory`).
+        5. **Property Detail (`/properties/[slug]`):** Dynamic chapters (`#property-overview`, `#property-specs`, `#property-directory`, `#property-location`, `#property-leasing`).
+      - Verified bidirectional RTL/LTR support: mirrored origin transforms, dynamic start/end alignment (`start-6 2xl:start-10`), and isolated numerics.
+  - **Total Elimination of Top Badges & Overlines:**
+    - Per user directive, completely removed all top badges, overlines, and section marker chips across all pages so sections open directly into confident, authoritative `<h1>`/`<h2>` typography.
+    - Removed all remaining instances of `<Badge>` across the entire codebase (`FeaturedProperties`, `PropertyCard`, `InvestmentThesisSection`, `HseSection`, `PropertyDropdown`, `MobileNav`), replacing any functional metrics with clean, high-contrast monospace typography.
+  - **Unboxed Architecture & Zero-Avatar Enforcement:**
+    - Converted `PropertyLeasingCard.tsx` from an enclosed box into a clean, unboxed minimalist section with architectural dividers.
+    - Removed all `Avatar` components site-wide.
+  - **Quality Gates Verification:**
+    - `npm run typecheck` (`tsc --noEmit`): 0 errors.
+    - `npm run lint` (`eslint`): 0 warnings, 0 errors.
+    - `npm run build` (`next build`): 12/12 static routes compiled successfully via Next.js 16 Turbopack in ~398ms.
+
+---
+
+## Milestone 5.5: Free-Floating LineSidebar, Plain Text Metrics with Vertical Separators & Single CTA Streamlining
+
+- **Date:** September 2026
+- **Scope:**
+  - **Free-Floating `<LineSidebar />`:**
+    - Removed the enclosing card container (border, background blur box, shadow, padding) from `components/motion/PageLineSidebar.tsx`.
+    - `<LineSidebar />` now floats freely and natively directly on the page surface.
+  - **Metrics Cards Replaced with Plain Text & Vertical `<Separator />`:**
+    - Replaced all `<Card>` components in `MetricsSection.tsx`, `AboutHeroSection.tsx`, and `PropertiesDirectoryClient.tsx` with pure typographic metrics.
+    - Added vertical shadcn `<Separator orientation="vertical" />` components between metrics on desktop, gracefully switching to subtle dividers on mobile.
+  - **Content Reduction & Owner Personal Detail Removal:**
+    - Removed education and academic resume milestones from `CeoHeroSection.tsx`.
+    - Removed `CeoCareerSection.tsx` (the 1998–2026 multi-era resume timeline) to eliminate biographical clutter.
+    - Streamlined `InvestmentThesisSection.tsx` on `/about` by removing the redundant 6-row comparison matrix, focusing entirely on the 4 core Pillars of Investment Excellence.
+  - **Single Focused CTA Per Page (Eliminating Contact Overload):**
+    - Removed the multiple redundant contact channels in `CeoHeroSection.tsx` (direct WhatsApp button, phone button, direct email lines).
+    - Refactored `CeoDirectReachCard.tsx` and `AboutCtaSection.tsx` into single, focused executive CTA sections with a direct telephone call action to the company and a link to the upcoming official contact page.
+    - Updated chapters on `/ceo-message` to 4 clear, focused sections: Profile, Formal Address, Strategic Doctrine, and Direct Reach.
+  - **Quality Gates Verification:**
+    - `npm run typecheck` (`tsc --noEmit`): 0 errors.
+    - `npm run lint` (`eslint`): 0 errors, 0 warnings.
+    - `npm run build` (`next build`): 12/12 static routes compiled in ~392ms.
+
+---
+
+## Milestone 5.6: Home Metrics Unification, 100% Translation Key Parity & Minimalist Realignment
+
+- **Date:** September 2026
+- **Scope:**
+  - **Home Page Minimalist Metric Strip (`MetricsSection.tsx`):**
+    - Replaced boxed cards and heavy section titles with the exact minimalist plain-text style from the properties directory: uppercase muted label on top, bold animated counter value below, separated by vertical `<Separator orientation="vertical" />`.
+    - Maintained full responsive flexibility with horizontal dividers on mobile and vertical hairlines on desktop.
+  - **Hero Section Minimalist Cleanup (`HeroSection.tsx`):**
+    - Removed redundant secondary call buttons; eliminated mobile pill badges, converting credentials into a clean, badge-free dot-separated inline list.
+  - **100% Translation Key & Namespace Audit:**
+    - Scanned all 106 unique `t(...)` keys across the codebase with zero missing translations.
+    - Added missing `about.hseZeroHarm` ("Zero-Harm Enforced Policy" / "ميثاق السلامة الخالية من الحوادث (Zero-Harm)") in both `locales/en.json` and `locales/ar.json`.
+    - Added `propertyDetail.directDeskPhone` and `propertyDetail.callDirect` with complete bidirectional parity.
+    - Verified exact dictionary symmetry: 234 keys in English, 234 keys in Arabic (0 delta).
+  - **Property Detail Leasing Desk Streamlining (`PropertyLeasingCard.tsx`):**
+    - Dismantled redundant two-column founder WhatsApp/personal quote block into a single clean leasing desk CTA with direct phone call and inquiry link.
+  - **Quality Gates Verification:**
+    - `npm run typecheck` (`tsc --noEmit`): 0 errors.
+    - `npm run lint` (`eslint`): 0 errors, 0 warnings.
+    - `npm run build` (`next build`): 12/12 static routes generated cleanly.

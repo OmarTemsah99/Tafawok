@@ -13,7 +13,6 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { MotionFade } from "@/components/motion/MotionFade"
 import {
   AccordionGallery,
@@ -23,7 +22,6 @@ import { BiDiIsolate } from "@/components/shared/FormattedUnit"
 import {
   ArrowRight,
   ArrowLeft,
-  Building2,
   MapPin,
   Layers,
   ArrowUpRight,
@@ -82,20 +80,15 @@ export function FeaturedProperties() {
   }, [isRtl, t])
 
   return (
-    <section className="relative overflow-hidden border-b border-border/70 bg-muted/20 py-20 md:py-28">
+    <section
+      id="portfolio"
+      className="relative overflow-hidden border-b border-border/70 bg-muted/20 py-20 md:py-28"
+    >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <MotionFade delay={0.05} direction="up" className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-xs font-bold tracking-wider text-primary uppercase">
-              <Building2 className="size-3.5" />
-              <span>
-                {isRtl
-                  ? "الأصول التجارية الرائدة"
-                  : "Flagship Commercial Portfolio"}
-              </span>
-            </div>
-            <h2 className="mt-3 text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-4xl">
+            <h2 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-4xl">
               {t(UI_DICTIONARY.home.portfolioTitle)}
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
@@ -149,21 +142,15 @@ export function FeaturedProperties() {
               >
                 <Card className="cursor-target architectural-card group relative flex w-full flex-col justify-between overflow-hidden border-border/80 bg-card shadow-sm transition-all duration-300 hover:border-primary/60 hover:shadow-lg hover:shadow-primary/5">
                   <CardHeader className="pb-2">
-                    <div className="flex items-center justify-between">
-                      <Badge
-                        variant="outline"
-                        className="border-primary/25 bg-primary/5 font-mono text-xs font-bold text-primary"
-                      >
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-mono font-bold text-primary">
                         0{idx + 1} {"//"} {t(property.category)}
-                      </Badge>
-                      <Badge
-                        variant="secondary"
-                        className="font-mono text-xs font-bold text-muted-foreground"
-                      >
+                      </span>
+                      <span className="font-mono font-medium text-muted-foreground">
                         <BiDiIsolate>
                           {property.keyStats.builtUpArea}
                         </BiDiIsolate>
-                      </Badge>
+                      </span>
                     </div>
 
                     <CardTitle className="mt-3 text-xl font-bold text-foreground transition-colors group-hover:text-primary">

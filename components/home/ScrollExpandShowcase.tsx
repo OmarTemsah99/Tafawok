@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ScrollExpand } from "@/components/motion/ScrollExpand"
 import { useLocaleStore } from "@/stores/useLocaleStore"
 import { PROPERTIES } from "@/content/cre-data"
-import { ArrowRight, ArrowLeft, Building2, MapPin } from "lucide-react"
+import { ArrowRight, ArrowLeft, MapPin } from "lucide-react"
 import { BiDiIsolate } from "@/components/shared/FormattedUnit"
 
 export function ScrollExpandShowcase() {
@@ -25,20 +25,11 @@ export function ScrollExpandShowcase() {
   }, [])
 
   return (
-    <section className="relative w-full bg-background">
+    <section id="showcase" className="relative w-full bg-background">
       {/* Outer Section Header */}
       <div className="container mx-auto max-w-7xl px-4 pt-16 pb-6 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold text-primary">
-            <Building2 className="size-3.5" />
-            <span>
-              {isArabic
-                ? "التوسع المعماري التفاعلي للأصول"
-                : "Interactive Architectural Expansion"}
-            </span>
-          </div>
-
-          <h2 className="mt-4 max-w-3xl text-2xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
+          <h2 className="max-w-3xl text-2xl font-black tracking-tight text-foreground sm:text-4xl md:text-5xl">
             {isArabic
               ? "مساحات تجارية بحجم طموحك المؤسسي"
               : "Commercial Architecture at Institutional Scale"}

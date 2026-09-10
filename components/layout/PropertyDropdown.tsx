@@ -17,7 +17,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { PROPERTIES } from "@/content/cre-data"
 import { useLocaleStore } from "@/stores/useLocaleStore"
@@ -73,7 +72,7 @@ export function PropertyDropdown({
       <DropdownMenuContent
         align="center"
         sideOffset={8}
-        className="w-[92vw] max-w-[620px] overflow-hidden rounded-2xl border border-border bg-background p-4 text-foreground shadow-2xl sm:w-[580px]"
+        className="w-[92vw] max-w-155 overflow-hidden rounded-2xl border border-border bg-background p-4 text-foreground shadow-2xl sm:w-145"
       >
         {/* Header summary */}
         <div className="mb-2 flex items-center justify-between border-b border-border/50 px-2 py-1.5">
@@ -115,8 +114,8 @@ export function PropertyDropdown({
                     sizes="64px"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  <div className="absolute start-1 bottom-1 text-white">
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute inset-s-1 bottom-1 text-white">
                     <Icon className="h-3.5 w-3.5" />
                   </div>
                 </div>
@@ -127,12 +126,9 @@ export function PropertyDropdown({
                     <h4 className="truncate text-sm font-bold text-foreground transition-colors group-hover:text-primary">
                       {t(prop.name)}
                     </h4>
-                    <Badge
-                      variant="outline"
-                      className="h-5 border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary"
-                    >
+                    <span className="font-mono text-[11px] font-semibold text-primary">
                       {prop.keyStats.gla}
-                    </Badge>
+                    </span>
                   </div>
                   <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
                     {t(prop.tagline)}
