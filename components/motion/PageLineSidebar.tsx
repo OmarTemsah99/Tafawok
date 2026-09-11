@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react"
 import { useLocaleStore } from "@/stores/useLocaleStore"
 import { LineSidebar } from "@/components/motion/LineSidebar"
+import { PanelLeftOpen, PanelLeftClose } from "lucide-react"
 
 export interface PageLineSidebarItem {
   id: string
@@ -23,6 +24,7 @@ export function PageLineSidebar({
   const { locale } = useLocaleStore()
   const isRtl = locale === "ar"
   const [activeSection, setActiveSection] = useState<number>(0)
+  const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
   const isClickScrollingRef = useRef(false)
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -164,17 +166,61 @@ export function PageLineSidebar({
   return (
     <aside
       aria-label={title || "Page Navigation"}
-      className={`fixed inset-s-6 top-1/2 z-30 hidden -translate-y-1/2 select-none min-[1440px]:block 2xl:inset-s-10 ${className}`}
+      className={`fixed top-1/2 z-30 hidden -translate-y-1/2 transition-all duration-200 select-none min-[1440px]:block ${
+        isExpanded
+          ? "inset-s-4 max-w-xs rounded-xl border border-border/80 bg-background/95 p-4 shadow-2xl backdrop-blur-md"
+          : "inset-s-3 min-[1440px]:inset-s-4 min-[1800px]:inset-s-8"
+      } ${className}`}
     >
-      {title && (
-        <div className="mb-2 px-1 font-mono text-[10px] font-bold text-muted-foreground uppercase">
-          <span className={isRtl ? "" : "tracking-wider"}>{title}</span>
-        </div>
-      )}
+      <div className="mb-2 flex items-center justify-between gap-2 px-1">
+        {title && (
+          <div className="font-mono text-[9px] font-bold tracking-widest text-muted-foreground uppercase">
+            {isExpanded ? (
+              <span>{title}</span>
+            ) : (
+              <>
+                <span className="hidden min-[1800px]:inline">{title}</span>
+                <span className="inline min-[1800px]:hidden">
+                  {isRtl ? "فهرس" : "DIR"}
+                </span>
+              </>
+            )}
+          </div>
+        )}
+        {/* Expand / Collapse toggle for viewports < 1800px */}
+        <button
+          type="button"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          title={
+            isExpanded
+              ? isRtl
+                ? "تصغير الفهرس"
+                : "Collapse directory"
+              : isRtl
+                ? "توسيع الفهرس"
+                : "Expand directory"
+          }
+          className="flex size-5 cursor-pointer items-center justify-center rounded text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:ring-1 focus-visible:ring-primary focus-visible:outline-none min-[1800px]:hidden"
+          aria-expanded={isExpanded}
+        >
+          {isExpanded ? (
+            <PanelLeftClose
+              className={`size-3.5 ${isRtl ? "rotate-180" : ""}`}
+            />
+          ) : (
+            <PanelLeftOpen
+              className={`size-3.5 ${isRtl ? "rotate-180" : ""}`}
+            />
+          )}
+        </button>
+      </div>
+
       <LineSidebar
         items={items.map((i) => i.label)}
         activeItem={activeSection}
         onItemClick={handleItemClick}
+        compact={!isExpanded}
+        forceExpanded={isExpanded}
       />
     </aside>
   )

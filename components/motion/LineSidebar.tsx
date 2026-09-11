@@ -32,6 +32,8 @@ export interface LineSidebarProps {
   activeItem?: number | null
   onItemClick?: (index: number, label: string) => void
   className?: string
+  compact?: boolean
+  forceExpanded?: boolean
 }
 
 const FALLOFF_CURVES: Record<Falloff, (p: number) => number> = {
@@ -63,19 +65,21 @@ export function LineSidebar({
   showIndex = true,
   showMarker = true,
   proximityRadius = 100,
-  maxShift = 30,
+  maxShift = 24,
   falloff = "smooth",
-  markerLength = 60,
+  markerLength = 48,
   markerGap = 0,
   tickScale = 0.5,
   scaleTick = true,
-  itemGap = 20,
-  fontSize = 1.1,
+  itemGap = 18,
+  fontSize = 1.0,
   smoothing = 100,
   defaultActive = null,
   activeItem,
   onItemClick,
   className = "",
+  compact = true,
+  forceExpanded = false,
 }: LineSidebarProps) {
   const { locale } = useLocaleStore()
   const isRtl = locale === "ar"
@@ -205,24 +209,46 @@ export function LineSidebar({
 
   return (
     <nav
-      className={`relative flex justify-start${
+      className={`relative flex justify-start ${
         showMarker
           ? isRtl
-            ? " pr-[calc(var(--marker-length)+var(--marker-gap))]"
-            : " pl-[calc(var(--marker-length)+var(--marker-gap))]"
+            ? "pr-[calc(var(--marker-length)+var(--marker-gap))]"
+            : "pl-[calc(var(--marker-length)+var(--marker-gap))]"
           : ""
+      } ${
+        forceExpanded
+          ? ""
+          : compact
+            ? "min-[1800px]:[--rail-font-size:1.05rem] min-[1800px]:[--rail-item-gap:20px] min-[1800px]:[--rail-marker-len:48px] min-[1800px]:[--rail-max-shift:22px]"
+            : ""
       }${className ? ` ${className}` : ""}`}
       style={
         {
           "--accent-color": accentColor,
           "--text-color": textColor,
           "--marker-color": markerColor,
-          "--marker-length": `${markerLength}px`,
+          "--marker-length": forceExpanded
+            ? "36px"
+            : compact
+              ? "var(--rail-marker-len, 22px)"
+              : `${markerLength}px`,
           "--marker-gap": `${markerGap}px`,
           "--tick-scale": tickScale,
-          "--max-shift": `${maxShift}px`,
-          "--item-gap": `${itemGap}px`,
-          "--font-size": `${fontSize}rem`,
+          "--max-shift": forceExpanded
+            ? "14px"
+            : compact
+              ? "var(--rail-max-shift, 8px)"
+              : `${maxShift}px`,
+          "--item-gap": forceExpanded
+            ? "16px"
+            : compact
+              ? "var(--rail-item-gap, 16px)"
+              : `${itemGap}px`,
+          "--font-size": forceExpanded
+            ? "0.92rem"
+            : compact
+              ? "var(--rail-font-size, 0.875rem)"
+              : `${fontSize}rem`,
           "--smoothing": `${smoothing}ms`,
         } as CSSProperties
       }
@@ -231,7 +257,7 @@ export function LineSidebar({
         ref={listRef}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
-        className="m-0 flex list-none flex-col gap-(--item-gap) py-4"
+        className="m-0 flex list-none flex-col gap-(--item-gap) py-2"
       >
         {items.map((label, index) => (
           <li
@@ -241,7 +267,7 @@ export function LineSidebar({
             }}
             aria-current={activeIndex === index ? "true" : undefined}
             onClick={() => handleClick(index, label)}
-            className={`relative cursor-pointer before:absolute before:-inset-x-12 before:-inset-y-1.5 before:content-[''] ${tickClass}`}
+            className={`group/item relative cursor-pointer before:absolute before:-inset-x-8 before:-inset-y-2 before:content-[''] ${tickClass}`}
           >
             {showMarker && (
               <span
@@ -264,13 +290,40 @@ export function LineSidebar({
                 <span
                   className={`${
                     isRtl ? "ml-[0.6rem]" : "mr-[0.6rem]"
-                  } font-mono text-[0.85em] opacity-[calc(0.55+var(--effect,0)*0.45)]`}
+                  } font-mono text-[0.85em] font-semibold opacity-[calc(0.55+var(--effect,0)*0.45)]`}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
               )}
-              <span>{label}</span>
+              {forceExpanded ? (
+                <span className="inline-block max-w-56 truncate font-medium">
+                  {label}
+                </span>
+              ) : compact ? (
+                <span className="hidden max-w-56 truncate min-[1800px]:inline-block">
+                  {label}
+                </span>
+              ) : (
+                <span>{label}</span>
+              )}
             </span>
+
+            {/* Floating Architectural Tooltip for Compact Rail Mode (< 1800px) */}
+            {compact && !forceExpanded && (
+              <span
+                role="tooltip"
+                className={`pointer-events-none absolute top-1/2 z-50 -translate-y-1/2 rounded-md border border-border/80 bg-background/95 px-2.5 py-1 font-mono text-xs whitespace-nowrap shadow-2xl backdrop-blur-md transition-all duration-150 ease-out ${
+                  isRtl
+                    ? "right-full mr-3 translate-x-1 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100"
+                    : "left-full ml-3 -translate-x-1 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100"
+                } min-[1800px]:hidden`}
+              >
+                <span className="me-1.5 font-mono font-semibold text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-medium text-foreground">{label}</span>
+              </span>
+            )}
           </li>
         ))}
       </ul>

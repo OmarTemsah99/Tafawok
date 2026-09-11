@@ -607,3 +607,26 @@ Chronological decision log tracking major architectural milestones and engineeri
     - `npm run typecheck` (`tsc --noEmit`): 0 errors.
     - Live API test via Node script: Verified 400 on invalid payload, 200 on valid payload with preview mode, and 200 on `/contact` HTML rendering.
     - `npm run build` (`next build`): 14/14 static & dynamic routes compiled cleanly in 531ms.
+
+---
+
+## Milestone 6.1: Two-Tier Adaptive Navigation Rail & 1440p Viewport Collision Elimination
+
+- **Date:** September 2026
+- **Scope:**
+  - **1440p Desktop Viewport Collision Fix (`components/motion/LineSidebar.tsx` & `PageLineSidebar.tsx`):**
+    - Identified root layout conflict where the centered `max-w-7xl` (1280px) container left an 80px margin on 1440px desktop screens, whereas the unconstrained sidebar with full labels required 260px+, intruding 170px over the page title and body text.
+    - Refactored [`LineSidebar.tsx`](file:///c:/Users/shine/WebProjects/Tafawok/components/motion/LineSidebar.tsx) and [`PageLineSidebar.tsx`](file:///c:/Users/shine/WebProjects/Tafawok/components/motion/PageLineSidebar.tsx) with a responsive two-tier layout system:
+      1. **Compact Architectural Rail (`1440px – 1799px`):** Positioned at `inset-s-4` (16px from viewport boundary) with width restricted to ~42px, maintaining a generous 54px whitespace buffer before central page typography.
+      2. **Architectural Ticks & Active Indicator:** Features compact 22px tick marks, 8px proximity shift, and high-contrast monospace chapter numbers (`— 01`, `— 02`, `— 03`, `— 04`) with active state highlighted in TAFAWOK architectural bronze (`var(--primary)`).
+      3. **Floating Frosted-Glass Tooltip Peeking:** Hovering over individual tick markers instantly reveals the localized section title (`01 — Inquiry Portal` / `01 — بوابة الاستفسار`) in an elevated floating badge (`bg-background/95 backdrop-blur-md border border-border/80 shadow-2xl`) anchored to the tick (`left-full ml-3` / `right-full mr-3` in RTL) with zero layout shift.
+      4. **Full Monograph Panel Overlay Toggle:** Added an interactive expand/collapse toggle (`PanelLeftOpen` / `PanelLeftClose`) in the rail header, allowing users on 1440px screens to temporarily expand the entire directory table of contents in an intentional frosted-glass overlay card with full inline labels.
+      5. **Ultra-Wide Monograph Expansion (`≥ 1800px`):** Automatically expands to full inline text labels and 48px tick markers where the viewport gutter exceeds 260px.
+      6. **Bilingual RTL/LTR Parity:** Verified in Arabic RTL mode (`dir="rtl"`) with mirrored `rotate-180` icons, `start-4` right-gutter positioning, and isolated chapter numerics.
+  - **Site-Wide Cohesion:**
+    - All 6 platform pages consuming `PageLineSidebar` (`/`, `/about`, `/ceo-message`, `/properties`, `/properties/[slug]`, `/contact`) instantly inherit this collision-free navigation rail.
+  - **Quality Gates Verification:**
+    - `npm run typecheck` (`tsc --noEmit`): 0 errors.
+    - `npm run lint` (`eslint`): 0 errors, 0 warnings.
+    - `npm run build` (`next build`): 14/14 static and dynamic routes compiled in 641ms.
+    - Live Chrome DevTools verification across 1440x650 viewport in both English LTR and Arabic RTL modes.
