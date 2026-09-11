@@ -69,7 +69,7 @@ export function PropertiesDirectoryClient({
       {/* Directory Page Header */}
       <section
         id="portfolio-hero"
-        className="relative overflow-hidden border-b border-border/80 bg-linear-to-b from-secondary/40 via-background to-background py-16 sm:py-20"
+        className="relative scroll-mt-20 overflow-hidden border-b border-border/80 bg-linear-to-b from-secondary/40 via-background to-background py-16 sm:py-20"
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <MotionFade direction="up" delay={0.05}>
@@ -90,7 +90,7 @@ export function PropertiesDirectoryClient({
       <section className="py-12 sm:py-16">
         <div className="container mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
           {/* Portfolio Overview Summary Strip */}
-          <div id="portfolio-metrics">
+          <section id="portfolio-metrics" className="scroll-mt-20">
             <MotionFade direction="up" delay={0.1}>
               <div className="flex flex-col divide-y divide-border/60 py-2 sm:flex-row sm:items-stretch sm:divide-y-0">
                 <div className="flex-1 py-4 text-start sm:py-0 sm:pe-8">
@@ -145,10 +145,10 @@ export function PropertiesDirectoryClient({
                 </div>
               </div>
             </MotionFade>
-          </div>
+          </section>
 
           {/* Filter and Search Controls & Directory Grid */}
-          <div id="asset-directory" className="space-y-8">
+          <section id="asset-directory" className="scroll-mt-20 space-y-8">
             <MotionFade direction="up" delay={0.2}>
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 {/* Category Filter Tabs */}
@@ -212,7 +212,7 @@ export function PropertiesDirectoryClient({
                 ))}
               </div>
             )}
-          </div>
+          </section>
         </div>
       </section>
     </div>

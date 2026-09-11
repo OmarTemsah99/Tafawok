@@ -15,7 +15,7 @@ export function CeoQuoteSection() {
   return (
     <section
       id="leadership"
-      className="relative border-b border-border/60 bg-background py-20 md:py-28 lg:py-32"
+      className="relative scroll-mt-20 border-b border-border/60 bg-background py-20 md:py-28 lg:py-32"
     >
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <MotionFade delay={0.05} direction="up">

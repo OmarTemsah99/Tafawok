@@ -82,7 +82,7 @@ export function FeaturedProperties() {
   return (
     <section
       id="portfolio"
-      className="relative overflow-hidden border-b border-border/70 bg-muted/20 py-20 md:py-28"
+      className="relative scroll-mt-20 overflow-hidden border-b border-border/70 bg-muted/20 py-20 md:py-28"
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

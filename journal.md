@@ -549,3 +549,25 @@ Chronological decision log tracking major architectural milestones and engineeri
     - `npm run typecheck` (`tsc --noEmit`): 0 errors.
     - `npm run lint` (`eslint`): 0 errors, 0 warnings.
     - `npm run build` (`next build`): 12/12 static routes generated cleanly.
+
+---
+
+## Milestone 5.7: Timeline Sidebar Bounding Area Tracking & End-of-Page Active State Fix
+
+- **Date:** September 2026
+- **Scope:**
+  - **Timeline Sidebar (`components/motion/PageLineSidebar.tsx`) Precision Scroll Engine:**
+    - Resolved the issue where the final item in the sidebar never became active when scrolled to the complete bottom of the page.
+    - Replaced the brittle linear `top <= scrollY + 160` scroll check with a multi-tiered viewport bounding area algorithm:
+      1. **End-of-Page Guarantee:** When reaching the bottom of the document (`remainingScroll <= 60px`), the final chapter is unconditionally activated.
+      2. **Top-of-Page Detection:** When at the top (`scrollY <= 60px`), the first chapter is unconditionally activated.
+      3. **Last Section Early-Entry Logic:** If the final section enters the viewport and physical page scroll constraints prevent its top from reaching the standard focal line, it cleanly activates.
+      4. **Bounding Box Focal Intersection:** Determines active sections by checking if the reader's eye focal line (~35% down the viewport) is inside the section's bounding rectangle (`rect.top <= focalLine && rect.bottom > focalLine`), with a graceful fallback to the last entered section.
+      5. **Scroll Performance & Click Smoothness:** Wrapped scroll measurement in `requestAnimationFrame` to eliminate layout thrashing, and added click-scroll locking with interruptible cancel on user wheel/touch events.
+  - **Semantic Section IDs & Anchor Clearance:**
+    - Standardized all chapter targets across the platform to semantic `<section id="...">` elements with `scroll-mt-20` for proper sticky header clearance.
+    - Updated [`PropertiesDirectoryClient.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/properties/PropertiesDirectoryClient.tsx) (`#portfolio-hero`, `#portfolio-metrics`, `#asset-directory`) and [`PropertyDetailClient.tsx`](file:///C:/Users/shine/WebProjects/Tafawok/components/properties/PropertyDetailClient.tsx) (`#property-overview`, `#property-specs`, `#property-directory`, `#property-location`, `#property-leasing`).
+    - Added `scroll-mt-20` to all sections on Home (`/`), About (`/about`), and CEO Message (`/ceo-message`).
+  - **Quality Gates Verification:**
+    - `npm run typecheck` (`tsc --noEmit`): 0 errors.
+    - `npm run build` (`next build`): 12/12 static routes compiled in ~410ms.

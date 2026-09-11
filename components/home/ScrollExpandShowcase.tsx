@@ -25,7 +25,10 @@ export function ScrollExpandShowcase() {
   }, [])
 
   return (
-    <section id="showcase" className="relative w-full bg-background">
+    <section
+      id="showcase"
+      className="relative w-full scroll-mt-20 bg-background"
+    >
       {/* Outer Section Header */}
       <div className="container mx-auto max-w-7xl px-4 pt-16 pb-6 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">

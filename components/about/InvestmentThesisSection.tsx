@@ -11,7 +11,7 @@ export function InvestmentThesisSection() {
   return (
     <section
       id="thesis"
-      className="relative border-b border-border/70 py-16 sm:py-24"
+      className="relative scroll-mt-20 border-b border-border/70 py-16 sm:py-24"
     >
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

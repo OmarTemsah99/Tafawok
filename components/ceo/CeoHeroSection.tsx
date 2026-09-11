@@ -11,7 +11,7 @@ export function CeoHeroSection() {
   return (
     <section
       id="executive-profile"
-      className="relative overflow-hidden border-b border-border/70 bg-linear-to-b from-secondary/40 via-background to-background pt-16 pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24"
+      className="relative scroll-mt-20 overflow-hidden border-b border-border/70 bg-linear-to-b from-secondary/40 via-background to-background pt-16 pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24"
     >
       {/* Background architectural pattern */}
       <div

@@ -13,7 +13,7 @@ export function MetricsSection() {
   return (
     <section
       id="metrics"
-      className="relative border-b border-border/70 bg-card/30 py-12 md:py-16"
+      className="relative scroll-mt-20 border-b border-border/70 bg-card/30 py-12 md:py-16"
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Plain Text Minimalist Metrics Strip with Vertical Separators */}

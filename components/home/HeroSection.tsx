@@ -22,7 +22,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden border-b border-border/70 bg-background pt-16 pb-20 md:pt-24 md:pb-28 lg:pt-32 lg:pb-36"
+      className="relative scroll-mt-20 overflow-hidden border-b border-border/70 bg-background pt-16 pb-20 md:pt-24 md:pb-28 lg:pt-32 lg:pb-36"
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">

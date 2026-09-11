@@ -13,7 +13,7 @@ export function AboutHeroSection() {
   return (
     <section
       id="heritage"
-      className="relative overflow-hidden border-b border-border/70 bg-linear-to-b from-secondary/40 via-background to-background pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-28 lg:pb-32"
+      className="relative scroll-mt-20 overflow-hidden border-b border-border/70 bg-linear-to-b from-secondary/40 via-background to-background pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-28 lg:pb-32"
     >
       {/* Background radial dot pattern */}
       <div

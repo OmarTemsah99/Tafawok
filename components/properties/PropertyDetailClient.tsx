@@ -68,7 +68,7 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
       {/* Property Hero: Architectural Monograph Header */}
       <section
         id="property-overview"
-        className="relative overflow-hidden border-b border-border/80 bg-background pt-8 pb-14 sm:pt-12 sm:pb-16"
+        className="relative scroll-mt-20 overflow-hidden border-b border-border/80 bg-background pt-8 pb-14 sm:pt-12 sm:pb-16"
       >
         <div className="container mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
@@ -214,34 +214,34 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
       <div className="py-14 sm:py-20">
         <div className="container mx-auto max-w-7xl space-y-20 px-4 sm:px-6 lg:px-8">
           {/* Section 1: Architectural & Engineering Specs */}
-          <div id="property-specs">
+          <section id="property-specs" className="scroll-mt-20">
             <MotionFade direction="up">
               <PropertySpecs property={property} />
             </MotionFade>
-          </div>
+          </section>
 
           {/* Section 2: Stores & Tenants Directory (if applicable) */}
           {property.stores && property.stores.length > 0 && (
-            <div id="property-directory">
+            <section id="property-directory" className="scroll-mt-20">
               <MotionFade direction="up">
                 <StoreDirectory property={property} />
               </MotionFade>
-            </div>
+            </section>
           )}
 
           {/* Section 3: Location & Arterial Accessibility */}
-          <div id="property-location">
+          <section id="property-location" className="scroll-mt-20">
             <MotionFade direction="up">
               <PropertyMap property={property} />
             </MotionFade>
-          </div>
+          </section>
 
           {/* Section 4: Commercial Leasing & Executive Stewardship */}
-          <div id="property-leasing">
+          <section id="property-leasing" className="scroll-mt-20">
             <MotionFade direction="up">
               <PropertyLeasingCard property={property} />
             </MotionFade>
-          </div>
+          </section>
         </div>
       </div>
     </div>

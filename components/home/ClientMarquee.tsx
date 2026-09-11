@@ -42,7 +42,7 @@ export function ClientMarquee() {
   return (
     <section
       id="partners"
-      className="relative border-b border-border/70 bg-card/50 py-16 md:py-24"
+      className="relative scroll-mt-20 border-b border-border/70 bg-card/50 py-16 md:py-24"
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
