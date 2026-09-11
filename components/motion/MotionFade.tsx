@@ -1,7 +1,7 @@
 "use client"
 
 import { ReactNode } from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 
 interface MotionFadeProps {
   children: ReactNode
@@ -22,7 +22,10 @@ export function MotionFade({
   distance = 16,
   scale = false,
 }: MotionFadeProps) {
+  const shouldReduceMotion = useReducedMotion()
+
   const getInitialTransform = () => {
+    if (shouldReduceMotion) return "none"
     switch (direction) {
       case "up":
         return `translateY(${distance}px)`
@@ -40,9 +43,11 @@ export function MotionFade({
 
   const initial = {
     opacity: 0,
-    transform: scale
-      ? `${getInitialTransform()} scale(0.98)`
-      : getInitialTransform(),
+    transform: shouldReduceMotion
+      ? "none"
+      : scale
+        ? `${getInitialTransform()} scale(0.98)`
+        : getInitialTransform(),
   }
 
   const animate = {
@@ -56,8 +61,8 @@ export function MotionFade({
       whileInView={animate}
       viewport={{ once: true, margin: "-40px" }}
       transition={{
-        duration,
-        delay,
+        duration: shouldReduceMotion ? 0.05 : duration,
+        delay: shouldReduceMotion ? 0 : delay,
         ease: [0.23, 1, 0.32, 1],
       }}
       className={className}

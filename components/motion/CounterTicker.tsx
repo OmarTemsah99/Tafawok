@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
-import { useInView, animate } from "motion/react"
+import { useInView, animate, useReducedMotion } from "motion/react"
 
 interface CounterTickerProps {
   value: number
@@ -22,6 +22,7 @@ export function CounterTicker({
 }: CounterTickerProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-40px" })
+  const shouldReduceMotion = useReducedMotion()
   const [displayValue, setDisplayValue] = useState<number>(0)
   const mounted = useSyncExternalStore(
     emptySubscribe,
@@ -30,7 +31,7 @@ export function CounterTicker({
   )
 
   useEffect(() => {
-    if (!mounted || !isInView) return
+    if (!mounted || !isInView || shouldReduceMotion) return
 
     const controls = animate(0, value, {
       duration,
@@ -41,9 +42,9 @@ export function CounterTicker({
     })
 
     return () => controls.stop()
-  }, [mounted, isInView, value, duration])
+  }, [mounted, isInView, value, duration, shouldReduceMotion])
 
-  const activeValue = !mounted ? value : displayValue
+  const activeValue = !mounted || shouldReduceMotion ? value : displayValue
   const formattedNumber = new Intl.NumberFormat("en-US").format(activeValue)
 
   return (
