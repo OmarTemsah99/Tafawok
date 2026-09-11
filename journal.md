@@ -571,3 +571,39 @@ Chronological decision log tracking major architectural milestones and engineeri
   - **Quality Gates Verification:**
     - `npm run typecheck` (`tsc --noEmit`): 0 errors.
     - `npm run build` (`next build`): 12/12 static routes compiled in ~410ms.
+
+---
+
+## Milestone 6.0: Contact Portal, Executive Owner Reach & Secure SMTP Backend Delivery Service
+
+- **Date:** September 2026
+- **Scope:**
+  - **Secure SMTP Backend Delivery Route (`app/api/contact/route.ts`):**
+    - Built a robust Next.js API Route for handling official commercial inquiries via `nodemailer`.
+    - Supports standard environment variables: `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, and `CONTACT_RECEIVER_EMAIL`.
+    - Integrated safe dev-mode preview fallback that logs structured inquiries to the server console with a 200 OK preview response when SMTP credentials are unset.
+    - Added strict field-level server validation (name, corporate email, phone, requirements message) returning 400 Bad Request with mapped error messages.
+    - Architectural HTML email template featuring TAFAWOK copper branding, metadata table, and tenant requirements block.
+  - **Bilingual Inquiry & RFQ Form (`components/contact/ContactForm.tsx`):**
+    - Unboxed, high-contrast CRE styling matching platform aesthetic.
+    - Supports initial pre-selected property via URL query param (`?property=...`).
+    - Multi-option classification selector (Office/Retail Leasing, CRE Investment & JVs, Turnkey EPC, Executive Meeting).
+    - Client-side validation with localized inline errors, loading indicator, success confirmation, and direct phone error fallback.
+  - **Executive Owner Reach Card (`components/contact/OwnerCard.tsx`):**
+    - Direct access card for Eng. Tarek Ahmed (CEO & Company Owner).
+    - Direct phone dial, secondary line, executive email, direct WhatsApp with pre-filled bilingual message, and copy-to-clipboard functionality with feedback.
+    - Uses `<PhoneNumber />` for BiDi LTR isolation in RTL Arabic contexts.
+  - **Interactive Cairo HQ Map (`components/contact/HqMap.tsx`):**
+    - Highlighting Building 360 Business Park in Fifth Settlement, New Cairo.
+    - Embedded Google Map with custom architectural styling and floating address badge.
+    - Arterial connectivity ribbon displaying travel times (Ring Road, Cairo Airport, New Administrative Capital).
+  - **Operating Schedule & SLA Assurance (`components/contact/OperatingHoursSection.tsx`):**
+    - Displaying 9:00 AM – 5:00 PM operating hours, official weekend schedule, and guaranteed 24-hour response SLA.
+  - **Composite Contact Page & Route (`app/contact/page.tsx` & `components/contact/ContactPageClient.tsx`):**
+    - Full Server Component with OpenGraph and SEO metadata.
+    - Responsive 2-column layout (Inquiry Form + Owner Reach) with desktop `PageLineSidebar` chapter navigation.
+    - Wrapped in `Suspense` for App Router static optimization.
+  - **Quality Gates Verification:**
+    - `npm run typecheck` (`tsc --noEmit`): 0 errors.
+    - Live API test via Node script: Verified 400 on invalid payload, 200 on valid payload with preview mode, and 200 on `/contact` HTML rendering.
+    - `npm run build` (`next build`): 14/14 static & dynamic routes compiled cleanly in 531ms.
