@@ -41,6 +41,7 @@ export interface ScrollExpandProps {
   holdDistance?: number
   smoothing?: number
   overlayScrim?: number
+  scrimClassName?: string
   useWindowScroll?: boolean
   enabled?: boolean
   children?: ReactNode
@@ -65,6 +66,7 @@ export function ScrollExpand({
   holdDistance = 0.35,
   smoothing = 0.1,
   overlayScrim = 0.45,
+  scrimClassName = "bg-[linear-gradient(to_top,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.65)_40%,rgba(0,0,0,0.70)_70%,rgba(0,0,0,0.85)_100%)]",
   useWindowScroll = false,
   enabled = true,
   children,
@@ -275,6 +277,7 @@ export function ScrollExpand({
         fill
         sizes="100vw"
         priority
+        loading="eager"
         draggable={false}
       />
     )
@@ -296,9 +299,11 @@ export function ScrollExpand({
             className="absolute inset-0 will-change-[clip-path] [clip-path:inset(21%_29%_21%_29%_round_24px)]"
           >
             {media}
+            {/* Base ambient tone for text contrast on high-exposure imagery */}
+            <div className="pointer-events-none absolute inset-0 bg-black/25" />
             <div
               ref={scrimRef}
-              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85),rgba(0,0,0,0.25)_45%,rgba(0,0,0,0.45))] opacity-0"
+              className={`pointer-events-none absolute inset-0 opacity-0 ${scrimClassName}`}
             />
             {children ? (
               <div

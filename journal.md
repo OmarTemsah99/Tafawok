@@ -691,4 +691,58 @@ Chronological decision log tracking major architectural milestones and engineeri
     - Updated [`components/home/ScrollExpandShowcase.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/home/ScrollExpandShowcase.tsx): Swapped the expanding canvas image to `IMG_5918` (`/MallChilloutAlshrouk/IMG_5918.webp` — the illuminated nighttime facade showcasing Ashraf Ali Faid & Seoudi), harmonizing all textual overlays, metrics, and CTA links with Mall ChillOut El Shorouk.
     - Added `IMG_5918.webp` to `Mall ChillOut El Shorouk` photography gallery in [`content/cre-data.ts`](file:///Users/omartemsah/webProjects/tafawok/content/cre-data.ts).
     - Rotated the last two images in Mall ChillOut gallery (`IMG_9239.webp` and `IMG_7490.webp`) 90° clockwise from landscape into their intended portrait orientation.
+    - Added high-contrast frosted glass overlay card (`bg-black/60 backdrop-blur-md border border-white/15 rounded-2xl md:rounded-3xl`) to the title and narrative text in [`components/home/ScrollExpandShowcase.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/home/ScrollExpandShowcase.tsx), elevated `overlayScrim` to `0.65`, and strengthened scrim gradient in [`components/motion/ScrollExpand.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/motion/ScrollExpand.tsx) to ensure pristine legibility over high-exposure nighttime facade neon lighting.
 
+---
+
+## Milestone 9.0: Largest Contentful Paint (LCP) Optimization & Modern Image Architecture
+
+- **Date:** September 2026
+- **Scope:**
+  - **Root Cause Analysis of LCP Warnings:**
+    - Next.js internal image registry (`allImgs`) tracks rendered images by URL key. When property thumbnails used `<Image fill>` with the same asset URL as the hero image, the thumbnail's `loading="lazy"` collided with and overwrote the hero image's `loading="eager"`.
+    - Furthermore, on fast network connections, small thumbnail images rendered before massive 3840w unconstrained hero images, causing Chrome's `PerformanceObserver` to emit an intermediate LCP candidate event for the thumbnail, triggering Next.js runtime dev warnings (`Image with src "..." was detected as the Largest Contentful Paint (LCP)`).
+  - **Thumbnail Dimension & Registry Optimization (`PropertyGallery.tsx` & `PropertyDropdown.tsx`):**
+    - Replaced `<Image fill>` with intrinsic dimensions (`width={160} height={100}` for gallery strips, `width={160} height={112}` for lightbox thumbnails, and `width={64} height={64}` for navbar dropdown items).
+    - This changes Next.js's optimized query parameters (`&w=384` for thumbnails vs. `&w=1280` for hero images), isolating registry keys and preventing key collision in `allImgs`.
+    - Added `loading="eager"` to visible above-the-fold gallery thumbnails to eliminate intermediate LCP flags.
+  - **Hero Responsive Sizing & Priority Preloading:**
+    - Refined `sizes` attribute on the showcase hero image in [`PropertyGallery.tsx`](file:///Users/omartemsah/WebProjects/Tafawok/components/properties/PropertyGallery.tsx) from generic `(max-width: 1200px) 100vw, 1200px` to `(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px`, preventing browsers from fetching oversized 3840w variants on high-DPI viewports.
+    - Added `key={images[activeIndex]}` and `loading="eager"` to guarantee immediate preloading upon slide selection.
+    - Updated [`PropertiesDirectoryClient.tsx`](file:///Users/omartemsah/WebProjects/Tafawok/components/properties/PropertiesDirectoryClient.tsx) priority threshold from `idx === 0` to `idx < 3`, ensuring all 3 above-the-fold commercial property cards (Fagala Plaza, Mall ChillOut, October Festival Mall) receive eager preloading.
+    - Synchronized `loading={priority ? "eager" : "lazy"}` in [`PropertyCard.tsx`](file:///Users/omartemsah/WebProjects/Tafawok/components/properties/PropertyCard.tsx).
+    - Added `loading="eager"` in [`ScrollExpand.tsx`](file:///Users/omartemsah/WebProjects/Tafawok/components/motion/ScrollExpand.tsx) and prioritized hero cards in [`AccordionGallery.tsx`](file:///Users/omartemsah/WebProjects/Tafawok/components/motion/AccordionGallery.tsx).
+  - **Next.js Image Pipeline Configuration (`next.config.ts` & `app/layout.tsx`):**
+    - Configured `images: { formats: ["image/avif", "image/webp"] }` in `next.config.ts` for AVIF/WebP automatic format negotiation.
+    - Defined `metadataBase` in `app/layout.tsx` using `process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"` to eliminate OpenGraph URL resolution warnings.
+  - **Quality Gates Verification:**
+    - Live Chrome DevTools verification across all pages: `/`, `/properties`, `/properties/[slug]`, `/about`, `/ceo-message`, and `/contact`.
+    - Zero LCP runtime warnings in dev server terminal or browser console.
+    - `npx tsc --noEmit`: 0 errors.
+    - `npm run build`: 14/14 static pages successfully compiled and pre-rendered in 581ms.
+
+---
+
+## Milestone 9.1: Fagala Plaza Architectural Video Tour & Unified Gallery Media Integration
+
+- **Date:** September 2026
+- **Scope:**
+  - **Data Layer & CRE Types (`types/cre.ts` & `content/cre-data.ts`):**
+    - Introduced `PropertyVideo` interface supporting typed `src`, `poster`, and bilingual `title: LocalizedString`.
+    - Extended `Property` model with optional `video?: PropertyVideo`.
+    - Configured Fagala Plaza (`fagala-plaza`) with authentic commercial video tour asset: `src: "/FagalaPlaza/IMG_6803.webm"`, `poster: "/FagalaPlaza/IMG_6803.webp"`, and bilingual title: _"Fagala Plaza — Architectural Promenade & Commercial Hub Tour"_ / _"فجالة بلازا – جولة في الممشى التجاري والمجمع المتطور"_.
+  - **PropertyGallery Component Enhancement (`components/properties/PropertyGallery.tsx`):**
+    - Built unified `GalleryMediaItem` architecture seamlessly supporting both photography and video tours while preserving LCP performance (cover photo remains #1 eager asset; video tour seamlessly positioned as #2).
+    - Added high-visibility thumbnail play button overlays with primary copper/bronze accent, dark scrim, and `VIDEO TOUR` / `فيديو تعريفي` badge.
+    - Injected interactive HTML5 `<video>` player with `controls`, `playsInline`, `preload="metadata"`, and responsive object-contain letterboxing.
+    - Added floating live indicator pill badge (`● Fagala Plaza — Architectural Video Tour`) with animated ping pulse on video playback.
+    - Implemented quick-action `[ ▶ Watch Video Tour ]` / `[ ▶ جولة بالفيديو ]` button in the gallery header and floating overlay.
+    - Upgraded full-screen shadcn `Dialog` Lightbox to support interactive video playback, modal media type badges, and filmstrip video thumbnails.
+    - Integrated lifecycle hooks pausing active video playback whenever users navigate to photo slides or dismiss the lightbox modal.
+  - **Bilingual Dictionaries (`locales/en.json` & `locales/ar.json`):**
+    - Added keys: `videoTour`, `videoBadge`, `playVideo`, and `pauseVideo` in both English and Arabic with full RTL logical styling.
+  - **Quality Gates Verification:**
+    - Chrome DevTools MCP live verification in both English (LTR) and Arabic (RTL) mode.
+    - Lightbox full-screen video playback verified.
+    - `npx tsc --noEmit`: 0 errors.
+    - `npm run build`: 14/14 static routes compiled in 648ms.

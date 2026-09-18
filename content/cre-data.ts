@@ -208,7 +208,16 @@ export const PROPERTIES: Property[] = [
       ar: "يمتد مجمع فجالة بلازا على مساحة تجارية مميزة تزيد عن 16,500 متر مربع في موقع استراتيجي حيوي بالحي العاشر بمدينة نصر، جامعاً تحت سقف واحد كبرى قلاع الأدوات المكتبية والمدرسية في مصر مثل مكتبات برناسو (منذ 1918)، وسمير وعلي أوتلت، ومكتبات اليانور، ومؤسسة الأزهري، ومؤسسة جلال، ومكتبات أشرف علي فايد. يتميز بممشى تجاري مفتوح، ونافورات مائية وإضاءات ديكورية، ومواقف سيارات فسيحة، وأرصفة مخصصة لشحن وتفريغ بضائع الجملة، مما يجعله المقصد التجاري الأول لتوريدات المكاتب والمدارس.",
     },
     mainImage: "/FagalaPlaza/ef0aed6e-0521-483c-886d-cf366d835f71.webp",
+    video: {
+      src: "/FagalaPlaza/IMG_6803.webm",
+      poster: "/FagalaPlaza/IMG_6803.webp",
+      title: {
+        en: "Fagala Plaza — Architectural Promenade & Commercial Hub Tour",
+        ar: "فجالة بلازا – جولة في الممشى التجاري والمجمع المتطور",
+      },
+    },
     gallery: [
+      "/FagalaPlaza/IMG_6803.webm",
       "/FagalaPlaza/d887e3e7-2613-476e-a161-f820ba1edf95.webp",
       "/FagalaPlaza/ef0aed6e-0521-483c-886d-cf366d835f71.webp",
       "/FagalaPlaza/43eee45b-6c76-444b-b9cc-87ce6ac1e50b.webp",

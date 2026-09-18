@@ -25,6 +25,9 @@ const cairo = Cairo({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
   title: {
     template: "%s | TAFAWOK Real Estate Investment & Contracting",
     default: "TAFAWOK — Commercial Real Estate Investment & Contracting Co.",

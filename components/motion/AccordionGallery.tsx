@@ -319,6 +319,8 @@ export function AccordionGallery({
                   alt={item.alt || item.label || ""}
                   fill
                   sizes="(max-width: 768px) 100vw, 400px"
+                  priority={i === 0}
+                  loading={i < 3 ? "eager" : "lazy"}
                   draggable={false}
                   className="block h-full w-full object-cover transition-transform duration-700 select-none [-webkit-user-drag:none] group-hover:scale-105"
                 />

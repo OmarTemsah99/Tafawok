@@ -65,22 +65,25 @@ export function ScrollExpandShowcase() {
         scrollDistance={1.0}
         holdDistance={0.25}
         smoothing={0.12}
-        overlayScrim={0.55}
+        overlayScrim={0.65}
         className="w-full"
       >
         <div className="mx-auto max-w-4xl px-3 text-center text-white sm:px-6">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/40 px-3.5 py-1 font-mono text-[11px] font-bold tracking-wider text-white backdrop-blur-md sm:text-xs">
-            <MapPin className="size-3 text-primary sm:size-3.5" />
+            <MapPin className="size-3 shrink-0 text-primary sm:size-3.5" />
             <span>{t(flagship.location.address)}</span>
           </div>
 
-          <h3 className="mt-3 text-2xl font-black tracking-tight text-white drop-shadow-lg sm:mt-4 sm:text-5xl md:text-6xl">
-            {t(flagship.name)}
-          </h3>
+          {/* Title & Narrative Frosted Dark Overlay Card */}
+          <div className="mx-auto mt-4 max-w-3xl rounded-2xl border border-white/15 bg-black/60 px-5 py-4 shadow-2xl backdrop-blur-md sm:mt-5 sm:px-8 sm:py-6 md:rounded-3xl">
+            <h3 className="text-2xl font-black tracking-tight text-white drop-shadow-md sm:text-4xl md:text-5xl">
+              {t(flagship.name)}
+            </h3>
 
-          <p className="mx-auto mt-2 max-w-2xl text-xs leading-relaxed text-white/90 drop-shadow-md sm:mt-3 sm:text-lg">
-            {t(flagship.description)}
-          </p>
+            <p className="mx-auto mt-2 max-w-2xl text-xs leading-relaxed text-white/90 drop-shadow-sm sm:mt-3 sm:text-base md:text-lg">
+              {t(flagship.description)}
+            </p>
+          </div>
 
           {/* Quick Specs Matrix — 3 Col Grid on Mobile, Flex on Tablet/Desktop */}
           <div className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-6">

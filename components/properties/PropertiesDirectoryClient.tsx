@@ -205,7 +205,7 @@ export function PropertiesDirectoryClient({
                   >
                     <PropertyCard
                       property={property}
-                      priority={idx === 0}
+                      priority={idx < 3}
                       className="h-full w-full"
                     />
                   </MotionFade>

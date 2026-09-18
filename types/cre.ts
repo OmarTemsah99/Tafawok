@@ -32,6 +32,12 @@ export type Store = StoreItem
 export type PropertyType = "office" | "retail" | "logistics"
 export type PropertyStatus = "active" | "completed" | "pipeline"
 
+export interface PropertyVideo {
+  src: string
+  poster?: string
+  title?: LocalizedString
+}
+
 export interface Property {
   id: string
   slug: string
@@ -44,6 +50,7 @@ export interface Property {
   fullOverview: LocalizedString
   mainImage: string
   gallery: string[]
+  video?: PropertyVideo
   location: {
     address: LocalizedString
     city: LocalizedString

@@ -110,9 +110,9 @@ export function PropertyDropdown({
                   <Image
                     src={prop.mainImage}
                     alt={t(prop.name)}
-                    fill
-                    sizes="64px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    width={64}
+                    height={64}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
                   <div className="absolute inset-s-1 bottom-1 text-white">

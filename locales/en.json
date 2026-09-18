@@ -154,7 +154,11 @@
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
     "gallerySubtitle": "High-resolution architectural photography of exteriors, atriums, and interior floorplates",
-    "fullscreenBtn": "Fullscreen Gallery"
+    "fullscreenBtn": "Fullscreen Gallery",
+    "videoTour": "Watch Video Tour",
+    "videoBadge": "Video Tour",
+    "playVideo": "Play video",
+    "pauseVideo": "Pause video"
   },
   "owner": {
     "title": "Executive Leadership & Ownership",
