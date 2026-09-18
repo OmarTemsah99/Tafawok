@@ -37,44 +37,26 @@ export function FeaturedProperties() {
       {
         image: PROPERTIES[0].mainImage,
         label: isRtl
-          ? "مبنى 360 للأعمال — القاهرة الجديدة (45,000 م²)"
-          : "Building 360 Business Park — New Cairo (45,000 m²)",
+          ? `${PROPERTIES[0].name.ar} — ${PROPERTIES[0].location.city.ar} (${PROPERTIES[0].keyStats.gla})`
+          : `${PROPERTIES[0].name.en} — ${PROPERTIES[0].location.city.en} (${PROPERTIES[0].keyStats.gla})`,
         link: `/properties/${PROPERTIES[0].slug}`,
         alt: t(PROPERTIES[0].name),
       },
       {
         image: PROPERTIES[1].mainImage,
         label: isRtl
-          ? "مركز تفوق التجاري — وجهة التسوق والترفيه (28,000 م²)"
-          : "Tafawok Retail Center — Destination Retail Hub (28,000 m²)",
+          ? `${PROPERTIES[1].name.ar} — ${PROPERTIES[1].location.city.ar} (${PROPERTIES[1].keyStats.gla})`
+          : `${PROPERTIES[1].name.en} — ${PROPERTIES[1].location.city.en} (${PROPERTIES[1].keyStats.gla})`,
         link: `/properties/${PROPERTIES[1].slug}`,
         alt: t(PROPERTIES[1].name),
       },
       {
         image: PROPERTIES[2].mainImage,
         label: isRtl
-          ? "مجمع تفوق اللوجستي — محور الصناعة والتجارة (62,000 م²)"
-          : "Tafawok Logistics Park — Industrial & Trade Hub (62,000 m²)",
+          ? `${PROPERTIES[2].name.ar} — ${PROPERTIES[2].location.city.ar} (${PROPERTIES[2].keyStats.gla})`
+          : `${PROPERTIES[2].name.en} — ${PROPERTIES[2].location.city.en} (${PROPERTIES[2].keyStats.gla})`,
         link: `/properties/${PROPERTIES[2].slug}`,
         alt: t(PROPERTIES[2].name),
-      },
-      {
-        image:
-          "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=1200&q=80",
-        label: isRtl
-          ? "المقاولات العامة والإنشاءات المتكاملة (EPC Execution)"
-          : "Turnkey EPC Execution & Engineering Precision",
-        link: "/properties",
-        alt: "Turnkey EPC Execution",
-      },
-      {
-        image:
-          "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
-        label: isRtl
-          ? "الأصول متعددة الاستخدامات والاستثمار التجاري"
-          : "Prime Mixed-Use Commercial & Hospitality Hubs",
-        link: "/properties",
-        alt: "Mixed-Use Developments",
       },
     ]
   }, [isRtl, t])

@@ -9,7 +9,7 @@ import {
   ArrowLeft,
   Building2,
   ShoppingBag,
-  Warehouse,
+  Store,
   Phone,
 } from "lucide-react"
 import {
@@ -29,9 +29,9 @@ interface PropertyDropdownProps {
 }
 
 const PROPERTY_ICONS: Record<string, React.ElementType> = {
-  "building-360-business-park": Building2,
-  "tafawok-retail-center": ShoppingBag,
-  "tafawok-logistics-park": Warehouse,
+  "fagala-plaza": ShoppingBag,
+  "mall-chillout-el-shorouk": Building2,
+  "october-festival-mall": Store,
 }
 
 export function PropertyDropdown({

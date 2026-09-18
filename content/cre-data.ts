@@ -96,30 +96,30 @@ export const NAV_ITEMS: NavItem[] = [
     label: { en: "Commercial Assets", ar: "الأصول التجارية" },
     subItems: [
       {
-        href: "/properties/building-360-business-park",
-        label: { en: "Building 360 Business Park", ar: "مجمع 360 الإداري" },
+        href: "/properties/fagala-plaza",
+        label: { en: "Fagala Plaza", ar: "فجالة بلازا" },
         description: {
-          en: "Flagship Corporate Headquarters & Prime Office Hub in New Cairo",
-          ar: "المقر الإداري الرئيسي ومكاتب الشركات بالتجمع الخامس",
+          en: "Modernized Wholesale & Retail Stationery Hub in Nasr City",
+          ar: "مجمع تجاري حديث لتجارة الأدوات المكتبية والمدرسية بمدينة نصر",
         },
       },
       {
-        href: "/properties/tafawok-retail-center",
-        label: { en: "Tafawok Retail Center", ar: "مركز تفوق التجاري والمول" },
+        href: "/properties/mall-chillout-el-shorouk",
+        label: { en: "Mall ChillOut El Shorouk", ar: "مول شل أوت الشروق" },
         description: {
-          en: "Regional Destination Mall with Anchor Hypermarket & Dining",
-          ar: "وجهة التسوق الإقليمية وهايبر ماركت ومطاعم عائلية",
+          en: "Integrated Commercial Lifestyle Zone, Arcade, Dining & Stationery",
+          ar: "وجهة تجارية متكاملة تضم ألعاب أطفال، آركيد، كافيهات، ومكتبات",
         },
       },
       {
-        href: "/properties/tafawok-logistics-park",
+        href: "/properties/october-festival-mall",
         label: {
-          en: "Tafawok Logistics Park",
-          ar: "مجمع تفوق اللوجستي والتجاري",
+          en: "October Festival Mall",
+          ar: "مول أكتوبر فيستيفال",
         },
         description: {
-          en: "Integrated Commercial Showrooms & Advanced Warehousing Hub",
-          ar: "معارض تجارية متطورة ومستودعات ومكاتب هندسية",
+          en: "Commercial & Retail Destination on Gamal Abdel Nasser Axis, Northern Expansions",
+          ar: "صرح تجاري متكامل بمحور جمال عبد الناصر، التوسعات الشمالية بـ 6 أكتوبر",
         },
       },
     ],
@@ -156,15 +156,15 @@ export const CORPORATE_METRICS: CorporateMetric[] = [
     },
   },
   {
-    value: 77500,
+    value: 64500,
     suffix: " m²",
     label: {
       en: "Commercial Portfolio GLA",
       ar: "متر مربع مساحات تأجيرية تجارية",
     },
     description: {
-      en: "Prime leasable footprint across commercial offices, retail & logistics",
-      ar: "مساحات متميزة تشمل المكاتب والمراكز التجارية واللوجستية",
+      en: "Prime leasable footprint across destination retail, commercial plazas & lifestyle hubs",
+      ar: "مساحات متميزة تشمل البلازا التجارية، والمولات، ومراكز التوريدات بالجملة والتجزئة",
     },
   },
   {
@@ -183,788 +183,944 @@ export const CORPORATE_METRICS: CorporateMetric[] = [
 
 export const PROPERTIES: Property[] = [
   {
-    id: "building-360",
-    slug: "building-360-business-park",
+    id: "fagala-plaza",
+    slug: "fagala-plaza",
     name: {
-      en: "Building 360 Business Park",
-      ar: "مجمع 360 الإداري والتجاري",
+      en: "Fagala Plaza",
+      ar: "مجمع فجالة بلازا",
     },
     tagline: {
-      en: "Prime Grade-A Corporate Office Hub & Executive Suites in New Cairo",
-      ar: "أرقى المكاتب الإدارية والمقرات المؤسسية من الفئة (A) بالتجمع الخامس",
+      en: "Modernized Wholesale & Retail Stationery Hub in Nasr City",
+      ar: "النسخة العصرية المتطورة لأسواق الفجالة – جملة وقطاعي للأدوات المكتبية والمدرسية بمدينة نصر",
     },
-    type: "office",
+    type: "retail",
     status: "active",
     category: {
-      en: "Office & Corporate Hub",
-      ar: "مكاتب إدارية ومقرات شركات",
+      en: "Commercial Retail & Wholesale Plaza",
+      ar: "مجمع تجاري وتسوق (جملة وقطاعي)",
     },
     description: {
-      en: "Building 360 is TAFAWOK's flagship corporate address, situated in the premier commercial heart of New Cairo's Fifth Settlement. Engineered for multinational corporations, financial institutions, and regional headquarters, it combines monumental architectural presence with energy-efficient MEP infrastructure, high-speed fiber backbone, and executive hospitality amenities.",
-      ar: "يعد مبنى 360 المجمع الإداري الرئيسي لشركة تفوق في قلب التجمع الخامس بالقاهرة الجديدة. صُمم المجمع ليلبي متطلبات الشركات العالمية والمؤسسات المالية والمقرات الإقليمية، جامِعاً بين الفخامة المعمارية وأحدث بنية تحتية كهروميكانيكية، وشبكات ألياف ضوئية فائقة السرعة، ومرافق ضيافة تنفيذية.",
+      en: "Fagala Plaza represents the modern architectural evolution of Cairo's historic El Fagala market. Master-planned as an organized, high-standard commercial promenade, it offers corporate offices, schools, and institutions direct access to stationery and office supplies at bulk wholesale ('gomla') prices, while empowering families and parents to purchase top-quality school supplies at accessible prices far below inflated retail brand-name markups.",
+      ar: "يمثل مجمع فجالة بلازا نقلة حضارية وعصرية مبتكرة لأسواق الفجالة التاريخية الشهيرة بالقاهرة. صُمم المجمع كوجهة تجارية راقية ومنظمة تتيح للشركات والمدارس والمؤسسات شراء كافة الأدوات المكتبية والمستلزمات بأسعار الجملة المباشرة، مع تمكين العائلات وأولياء الأمور من توفير مستلزمات المدارس والكتب لأبنائهم بجودة عالية وأسعار اقتصادية عادلة تنافس المتاجر الاستهلاكية ذات الأسعار المضاعفة.",
     },
     fullOverview: {
-      en: "Spanning 18,500 square meters of prime Gross Leasable Area across six meticulously planned floorplates, Building 360 offers flexible open-span floor configurations ranging from 250 m² executive suites to 2,800 m² contiguous corporate headquarters. Featuring an imposing double-height marble atrium, integrated access control systems, 3 levels of underground secure parking, and round-the-clock facility management, the development serves as an unmatched business address.",
-      ar: "يمتد مجمع 360 على مساحة تأجيرية إجمالية قدرها 18,500 متر مربع عبر ستة طوابق روعي في تصميمها المرونة التامة، حيث تتراوح المساحات من 250 متراً مربعاً للأجنحة التنفيذية حتى 2,800 متر مربع لمقرات الشركات الكاملة. يتميز بردهة استقبال رخامية بارتفاع مزدوج، وبوابات أمنية إلكترونية، و3 طوابق سفلية لمواقف السيارات المجهزة، وإدارة متكاملة للمرافق على مدار الساعة.",
+      en: "Spanning over 16,500 square meters of prime commercial promenade in the heart of Nasr City's 10th District, Fagala Plaza gathers Egypt's most prestigious bookstore and stationery titans—including Bernasos (established 1918), Samir & Aly Outlet, Alyanour, El-Azhary Institution, Galal Trading, and Ashraf Aly Faid. Featuring wide pedestrian walkways, illuminated plazas, central water fountains, dedicated vehicular parking, and heavy logistics loading bays, Fagala Plaza bridges institutional wholesale distribution with an elevated community shopping experience.",
+      ar: "يمتد مجمع فجالة بلازا على مساحة تجارية مميزة تزيد عن 16,500 متر مربع في موقع استراتيجي حيوي بالحي العاشر بمدينة نصر، جامعاً تحت سقف واحد كبرى قلاع الأدوات المكتبية والمدرسية في مصر مثل مكتبات برناسو (منذ 1918)، وسمير وعلي أوتلت، ومكتبات اليانور، ومؤسسة الأزهري، ومؤسسة جلال، ومكتبات أشرف علي فايد. يتميز بممشى تجاري مفتوح، ونافورات مائية وإضاءات ديكورية، ومواقف سيارات فسيحة، وأرصفة مخصصة لشحن وتفريغ بضائع الجملة، مما يجعله المقصد التجاري الأول لتوريدات المكاتب والمدارس.",
     },
-    mainImage:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
+    mainImage: "/FagalaPlaza/ef0aed6e-0521-483c-886d-cf366d835f71.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+      "/FagalaPlaza/d887e3e7-2613-476e-a161-f820ba1edf95.webp",
+      "/FagalaPlaza/ef0aed6e-0521-483c-886d-cf366d835f71.webp",
+      "/FagalaPlaza/43eee45b-6c76-444b-b9cc-87ce6ac1e50b.webp",
+      "/FagalaPlaza/IMG_5860.webp",
+      "/FagalaPlaza/IMG_3115.webp",
+      "/FagalaPlaza/b45941ad-594d-4c32-90f9-d01932b62797.webp",
+      "/FagalaPlaza/8e822bc3-1c5e-4434-93f6-1fcbcf32755e.webp",
+      "/FagalaPlaza/IMG_6525.webp",
     ],
     location: {
       address: {
-        en: "Building 360, Industrial Area, Fifth Settlement, New Cairo",
-        ar: "مبنى 360، المنطقة الصناعية، التجمع الخامس، القاهرة الجديدة",
+        en: "29WJ+879, 10th District, Nasr City, Cairo Governorate, Egypt",
+        ar: "الرمز البريدي 29WJ+879، الحي العاشر، مدينة نصر، محافظة القاهرة، مصر",
       },
-      city: { en: "New Cairo", ar: "القاهرة الجديدة" },
+      city: { en: "Nasr City, Cairo", ar: "مدينة نصر، القاهرة" },
       country: { en: "Egypt", ar: "مصر" },
-      coordinates: { lat: 30.0135, lng: 31.4287 },
+      coordinates: { lat: 30.0139, lng: 31.3486 },
       googleMapsEmbedUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110543.91894223062!2d31.428781446702587!3d30.013583279144865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145822f306637e6f%3A0x6b1070e3eb7d8c47!2sFifth%20Settlement%2C%20New%20Cairo%201%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1700000000000!5m2!1sen!2seg",
-      googleMapsDirectUrl:
-        "https://maps.google.com/?q=Building+360+Fifth+Settlement+New+Cairo",
+        "https://maps.google.com/maps?q=29WJ%2B879%20%D9%85%D8%B1%D9%83%D8%B2%20%D9%81%D8%AC%D8%A7%D9%84%D8%A9%20%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D9%86%D8%B5%D8%B1&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      googleMapsDirectUrl: "https://maps.app.goo.gl/CQn1vuvLMWFmSq9S7?g_st=iw",
+    },
+    contact: {
+      phone: "+20 110 042 4829",
+      altPhone: "+20 114 067 1104",
+      email: "info@tafawok.co",
+      leasingOffice: {
+        en: "Fagala Plaza Leasing & Commercial Directorate — Unit 01",
+        ar: "إدارة الحجز والتأجير التجاري بفجالة بلازا – الوحدة 01",
+      },
+    },
+    keyStats: {
+      gla: "16,500 m²",
+      builtUpArea: "21,800 m²",
+      floors: {
+        en: "Ground Promenade Plaza + Retail Showrooms",
+        ar: "طابق تجاري أرضي وممشى بلازا مفتوح",
+      },
+      parkingCapacity: {
+        en: "420 Vehicles",
+        ar: "420 سيارة",
+      },
+      zoning: {
+        en: "Commercial Wholesale, Retail Stationery & F&B Plaza",
+        ar: "تجاري تجزئة وجملة، أدوات مكتبية ومطاعم",
+      },
+    },
+    specs: [
+      {
+        label: { en: "Gross Leasable Area", ar: "المساحة التأجيرية الإجمالية" },
+        value: "16,500",
+        unit: { en: "m²", ar: "م²" },
+      },
+      {
+        label: { en: "Commercial Showrooms", ar: "إجمالي المحلات والمعارض" },
+        value: "72",
+        unit: { en: "Units", ar: "وحدة تجارية" },
+      },
+      {
+        label: {
+          en: "Pedestrian Concourse Width",
+          ar: "عرض ممشى المشاة الرئيسي",
+        },
+        value: "18",
+        unit: { en: "m", ar: "متر" },
+      },
+      {
+        label: { en: "Dedicated Parking Bays", ar: "مواقف السيارات المخصصة" },
+        value: "420",
+        unit: { en: "Slots", ar: "مكان للسيارات" },
+      },
+      {
+        label: {
+          en: "Wholesale Loading Bays",
+          ar: "أرصفة تحميل وتفريغ الجملة",
+        },
+        value: "6",
+        unit: { en: "Heavy Bays", ar: "أرصفة شاحنات" },
+      },
+      {
+        label: { en: "Average Daily Footfall", ar: "متوسط الزوار اليومي" },
+        value: "15,000+",
+        unit: { en: "Visitors", ar: "زائر يومياً" },
+      },
+    ],
+    highlights: [
+      {
+        en: "Modernized transformation of the legendary El Fagala paper & stationery trade into an upscale, organized commercial plaza",
+        ar: "نقلة حضارية متطورة لسوق الفجالة التاريخي في مجمع تجاري مفتوح ومنظم ومجهز بالكامل",
+      },
+      {
+        en: "Direct wholesale ('gomla') pricing access for schools, universities, and corporate office bulk orders",
+        ar: "توفير أسعار الجملة المباشرة للمدارس والجامعات والشركات دون وسيط تجاري",
+      },
+      {
+        en: "Affordable back-to-school retail shopping for parents and families without inflated brand-name markups",
+        ar: "أسعار اقتصادية في متناول أولياء الأمور والطلاب بديلة للمتاجر الاستهلاكية المرتفعة التكلفة",
+      },
+      {
+        en: "Anchor presence of national bookstore titans: Bernasos (since 1918), Samir & Aly Outlet, Alyanour, and El-Azhary",
+        ar: "تواجد كبرى كبرى المكتبات المصرية العريقة: برناسو (منذ 1918)، سمير وعلي، اليانور، والأزهري",
+      },
+    ],
+    stores: [
+      {
+        id: "fp-samir-aly",
+        name: {
+          en: "Samir & Aly Outlet",
+          ar: "سمير وعلي – أوتلت",
+        },
+        category: {
+          en: "Stationery & School Supplies",
+          ar: "أدوات مكتبية ومدرسية",
+        },
+        floor: {
+          en: "Plaza Concourse Unit 08",
+          ar: "بهو البلازا – الوحدة 08",
+        },
+        unitNumber: "PLZ-08",
+        status: "open",
+        description: {
+          en: "Egypt's premier stationery and fine arts retailer providing wholesale outlet pricing on school and office supplies.",
+          ar: "الفرع الأوتلت لكبرى سلاسل الأدوات المكتبية والمدرسية والفنية بأسعار مخفضة ومباشرة.",
+        },
+        phone: "+20 110 042 4829",
+      },
+      {
+        id: "fp-bernasos",
+        name: {
+          en: "Bernasos Bookstores (Since 1918)",
+          ar: "مكتبات برناسو (منذ 1918)",
+        },
+        category: {
+          en: "Books, Luxury Pens & Paper Goods",
+          ar: "كتب وأقلام فاخرة وأدوات ورقية",
+        },
+        floor: {
+          en: "Plaza West Concourse Unit 04",
+          ar: "الجناح الغربي للبلازا – الوحدة 04",
+        },
+        unitNumber: "PLZ-04",
+        status: "open",
+        description: {
+          en: "Over a century of heritage in high-grade stationery, international writing instruments, and school materials.",
+          ar: "أكثر من قرن من التميز في تجارة وتوزيع الأدوات المكتبية الراقية والكتب والمستلزمات المدرسية.",
+        },
+      },
+      {
+        id: "fp-alyanour",
+        name: {
+          en: "Alyanour Mega Bookstore",
+          ar: "مكتبات اليانور – جملة وقطاعي",
+        },
+        category: {
+          en: "Wholesale Books & School Curricula",
+          ar: "كتب خارجية وأدوات مدرسية ولعب أطفال",
+        },
+        floor: {
+          en: "Plaza Concourse Units 12-14",
+          ar: "بهو البلازا – الوحدات 12-14",
+        },
+        unitNumber: "PLZ-12",
+        status: "open",
+        description: {
+          en: "Official school curricula books, photocopying, printing, educational toys, and office paper at wholesale rates.",
+          ar: "موزع لجميع الكتب الخارجية ومستلزمات الطباعة والتصوير ولعب الأطفال وتوريدات المدارس.",
+        },
+        phone: "+20 110 192 9992",
+      },
+      {
+        id: "fp-elazhary",
+        name: {
+          en: "El-Azhary Stationery & Engineering Supplies",
+          ar: "مؤسسة الأزهري لتجارة الأدوات الكتابية والمدرسية والهندسية",
+        },
+        category: {
+          en: "Engineering & Office Supplies",
+          ar: "أدوات هندسية ومستلزمات مكتبية",
+        },
+        floor: {
+          en: "Plaza Central Pavilion",
+          ar: "الجناح الأوسط للبلازا",
+        },
+        unitNumber: "PLZ-22",
+        status: "open",
+        description: {
+          en: "Bulk distribution of technical drawing instruments, architecture supplies, notebooks, and writing equipment.",
+          ar: "توريدات متخصصة في الأدوات الهندسية والمكتبية والكتابية وكشاكيل ومدارس لكافة الفئات.",
+        },
+      },
+      {
+        id: "fp-galal",
+        name: {
+          en: "Galal Import & Stationery Trading",
+          ar: "مؤسسة جلال للاستيراد والتجارة",
+        },
+        category: {
+          en: "Imported Paper & Bulk Goods",
+          ar: "استيراد وتوزيع الورق والمستلزمات",
+        },
+        floor: {
+          en: "Plaza North Concourse Unit 06",
+          ar: "الممشى الشمالي – الوحدة 06",
+        },
+        unitNumber: "PLZ-06",
+        status: "open",
+        description: {
+          en: "Direct import house for paper products, student bags, notebooks, and commercial printing supplies.",
+          ar: "استيراد وتوزيع مباشر لمنتجات الورق والأدوات الكتابية وتجهيزات المدارس والشنط.",
+        },
+      },
+      {
+        id: "fp-ashraf-aly",
+        name: {
+          en: "Ashraf Aly Faid Bookstores",
+          ar: "مكتبات أشرف علي فايد",
+        },
+        category: {
+          en: "Educational Supplies & Textbooks",
+          ar: "كتب دراسية ومستلزمات تعليمية",
+        },
+        floor: {
+          en: "Plaza Concourse Unit 18",
+          ar: "بهو البلازا – الوحدة 18",
+        },
+        unitNumber: "PLZ-18",
+        status: "open",
+        description: {
+          en: "Specialized supplier of national curricula textbooks, educational reference guides, and student workbooks.",
+          ar: "توفير كافة المناهج التعليمية والكتب الخارجية والكتب المدرسية والمذكرات بأسعار تنافسية.",
+        },
+      },
+      {
+        id: "fp-belal",
+        name: {
+          en: "Belal Stationery",
+          ar: "مكتبة بلال للأدوات المكتبية والمدرسية",
+        },
+        category: {
+          en: "Retail & Bulk Stationery",
+          ar: "مكتبات وأدوات مدرسية",
+        },
+        floor: {
+          en: "Plaza South Promenade Unit 02",
+          ar: "الممشى الجنوبي – الوحدة 02",
+        },
+        unitNumber: "PLZ-02",
+        status: "open",
+        description: {
+          en: "Neighborhood stationery essentials, arts & crafts, student project supplies, and print services.",
+          ar: "كافة الاحتياجات المدرسية اليومية ومستلزمات الأنشطة الفنية والمجسمات والطباعة.",
+        },
+      },
+      {
+        id: "fp-sea-mar3i",
+        name: {
+          en: "Sea Mar3i Seafood Restaurant",
+          ar: "مطعم سي مرعي للمأكولات البحرية",
+        },
+        category: {
+          en: "Dining & F&B",
+          ar: "مطاعم ومأكولات بحرية",
+        },
+        floor: {
+          en: "Plaza Hospitality Corner Units 48-49",
+          ar: "ركن المطاعم – الوحدات 48-49",
+        },
+        unitNumber: "PLZ-48",
+        status: "open",
+        description: {
+          en: "Popular casual seafood dining and fresh fish delicacies serving plaza visitors and wholesale shoppers.",
+          ar: "أشهى وجبات الأسماك والمأكولات البحرية الطازجة لرواد ومتبضعي البلازا التجارية.",
+        },
+      },
+    ],
+    amenities: [
+      {
+        en: "Pedestrian-first paved plaza with illuminated water fountain and landscaped seating",
+        ar: "ممشى للمشاة مرصوف بالكامل مع نافورة مائية مضاءة واستراحات مظللة",
+      },
+      {
+        en: "Direct wholesale bulk purchase desk and corporate supply coordination office",
+        ar: "مكتب مخصص للتوريدات والطلبيات الكبرى للمدارس والشركات بأسعار الجملة",
+      },
+      {
+        en: "Dedicated rear logistics loading docks for delivery trucks and wholesale dispatch",
+        ar: "أرصفة خلفية مستقلة للشحن والتفريغ السريع لسيارات النقل والشاحنات",
+      },
+      {
+        en: "Atmospheric architectural LED perimeter lighting throughout walkways and fascias",
+        ar: "إضاءات معمارية متطورة (LED) تمتد عبر واجهات المحلات والممشى بالكامل",
+      },
+      {
+        en: "Comprehensive 24/7 security, electronic gates, and parking attendants",
+        ar: "حراسة وأمن على مدار الساعة وبوابات إلكترونية ومواقف سيارات منظمة",
+      },
+    ],
+  },
+  {
+    id: "mall-chillout-el-shorouk",
+    slug: "mall-chillout-el-shorouk",
+    name: {
+      en: "Mall ChillOut El Shorouk",
+      ar: "مول شل أوت الشروق",
+    },
+    tagline: {
+      en: "Integrated Commercial Lifestyle Zone, Family Arcade, Dining & Stationery Destination",
+      ar: "وجهة تجارية وترفيهية متكاملة – ألعاب أطفال، آركيد، كافيهات، ومجمع مكتبات كبرى بالشروق",
+    },
+    type: "retail",
+    status: "active",
+    category: {
+      en: "Commercial Lifestyle & Destination Mall",
+      ar: "مول تجاري وترفيهي متكامل",
+    },
+    description: {
+      en: "Mall ChillOut El Shorouk is a vibrant, full-scale commercial destination strategically situated on the Cairo-Ismailia Desert Highway. Conceived as an all-inclusive family and lifestyle hub, it integrates anchor supermarket shopping (Seoudi), cutting-edge family entertainment and arcade centers (Z Arcade), safe children's play arenas (Loly Land), specialty coffee shops and dessert lounges (Délice), and specialized stationery and school supply megastores mirroring the wholesale pricing advantages of Fagala Plaza.",
+      ar: "يعد مول شل أوت الشروق وجهة تجارية وترفيهية متكاملة تحتل موقعاً استراتيجياً حيوياً على طريق مصر-الإسماعيلية الصحراوي بمدينة الشروق. صُمم المول ليكون ملتقى تجارياً وعائلياً شاملاً، حيث يجمع بين التسوق الاستهلاكي الراقي عبر كبرى سلاسل السوبرماركت (سعودي ماركت)، ومراكز الترفيه والألعاب الإلكترونية الحديثة (Z Arcade)، ومناطق ألعاب الأطفال الآمنة (Loly Land)، والمقاهي المتخصصة ومحلات الحلويات (Délice)، إلى جانب مجمع مكتبات وأدوات مدرسية متطور يوفر مزايا وأسعار الجملة لرواد المول.",
+    },
+    fullOverview: {
+      en: "Master-planned across 26,000 square meters of Gross Leasable Area across multi-level commercial concourses, Mall ChillOut El Shorouk serves as the premier commercial magnet for El Shorouk, Badr, and the surrounding East Cairo developments. The mall offers a complete tenant mix: from daily gourmet grocery and fashion boutiques to wellness studios, beauty lounges, family restaurants, and high-volume school supplies retail. The development features multi-lane vehicular access, expansive customer surface parking, grand pedestrian porticos, and climate-controlled retail boulevards.",
+      ar: "صُمم مول شل أوت الشروق على مساحة تأجيرية تزيد عن 26,000 متر مربع موزعة على مساحات تجارية ذكية تلبي احتياجات الكتل السكنية لمدينة الشروق ومدينة بدر ومحاور شرق القاهرة. يقدم المول مزيجاً متوازناً من الأنشطة التجارية؛ بدءاً من سلع السوبرماركت الراقية والمتاجر الرياضية والأزياء، مروراً باستوديوهات اللياقة البدنية والعيادات، وصولاً إلى منطقة ترفيه عائلية واسعة ومجمع مكتبات وتوريدات مدرسية بأسعار منافسة، مع مواقف سيارات فسيحة وبوابات دخول مجهزة.",
+    },
+    mainImage: "/MallChilloutAlshrouk/IMG_5996.webp",
+    gallery: [
+      "/MallChilloutAlshrouk/IMG_5996.webp",
+      "/MallChilloutAlshrouk/IMG_5918.webp",
+      "/MallChilloutAlshrouk/IMG_7209.webp",
+      "/MallChilloutAlshrouk/IMG_6143.webp",
+      "/MallChilloutAlshrouk/IMG_0748.webp",
+      "/MallChilloutAlshrouk/IMG_6882.webp",
+      "/MallChilloutAlshrouk/IMG_6885.webp",
+      "/MallChilloutAlshrouk/IMG_6880.webp",
+      "/MallChilloutAlshrouk/IMG_9239.webp",
+      "/MallChilloutAlshrouk/IMG_7490.webp",
+    ],
+    location: {
+      address: {
+        en: "5J23+4PC, 21 Cairo - Ismailia Desert Rd, El Shorouk, Cairo Governorate 4923112, Egypt",
+        ar: "الرمز البريدي 5J23+4PC، 21 طريق مصر اسماعيلية الصحراوى، الشروق، محافظة القاهرة 4923112، مصر",
+      },
+      city: { en: "El Shorouk City, Cairo", ar: "مدينة الشروق، القاهرة" },
+      country: { en: "Egypt", ar: "مصر" },
+      coordinates: { lat: 30.1585, lng: 31.6067 },
+      googleMapsEmbedUrl:
+        "https://maps.google.com/maps?q=5J23%2B4PC%20%D9%85%D9%88%D9%84%20%D8%B4%D9%84%20%D8%A7%D9%88%D8%AA%20%D8%A7%D9%84%D8%B4%D8%B1%D9%88%D9%82&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      googleMapsDirectUrl: "https://maps.app.goo.gl/orJz3L8DPECmMGG38?g_st=iw",
     },
     contact: {
       phone: "+20 110 042 4829",
       altPhone: "+20 111 383 6660",
       email: "info@tafawok.co",
       leasingOffice: {
-        en: "Building 360 Leasing Directorate — Ground Floor Suite A",
-        ar: "إدارة التأجير التجاري بمبنى 360 – الطابق الأرضي جناح (أ)",
+        en: "Mall ChillOut Leasing & Tenant Directorate — Level 1 Office 12",
+        ar: "إدارة التأجير التجاري بمول شل أوت الشروق – الطابق الأول مكتب 12",
       },
     },
     keyStats: {
-      gla: "18,500 m²",
-      builtUpArea: "27,200 m²",
+      gla: "26,000 m²",
+      builtUpArea: "34,500 m²",
       floors: {
-        en: "G + 5 Floors + 3 Basements",
-        ar: "أرضي + 5 طوابق + 3 بدروم",
+        en: "Ground + 2 Levels + Outdoor Promenade",
+        ar: "أرضي + طابقين + ممشى خارجي ومواقف",
+      },
+      parkingCapacity: {
+        en: "650 Vehicles",
+        ar: "650 سيارة",
+      },
+      zoning: {
+        en: "Commercial Retail, Family Entertainment, F&B & Clinics",
+        ar: "تجاري تجزئة، ترفيه عائلي، مطاعم وعيادات",
+      },
+    },
+    specs: [
+      {
+        label: { en: "Gross Leasable Area", ar: "المساحة التأجيرية الإجمالية" },
+        value: "26,000",
+        unit: { en: "m²", ar: "م²" },
+      },
+      {
+        label: { en: "Total Commercial Units", ar: "إجمالي الوحدات والمحلات" },
+        value: "58",
+        unit: { en: "Units", ar: "وحدة تجارية" },
+      },
+      {
+        label: {
+          en: "Anchor Hypermarket Area",
+          ar: "مساحة السوبرماركت الرئيسي (سعودي)",
+        },
+        value: "4,800",
+        unit: { en: "m²", ar: "م²" },
+      },
+      {
+        label: {
+          en: "Family Entertainment & Arcade",
+          ar: "مساحة الترفيه والآركيد (Z Arcade)",
+        },
+        value: "3,200",
+        unit: { en: "m²", ar: "م²" },
+      },
+      {
+        label: {
+          en: "Customer Surface Parking",
+          ar: "مواقف سيارات مجهزة للزوار",
+        },
+        value: "650",
+        unit: { en: "Vehicles", ar: "مركبة" },
+      },
+      {
+        label: { en: "Average Monthly Footfall", ar: "متوسط الزوار شهرياً" },
+        value: "280,000+",
+        unit: { en: "Visitors", ar: "زائر شهرياً" },
+      },
+    ],
+    highlights: [
+      {
+        en: "Anchor presence of Seoudi Supermarket, generating heavy consistent daily household and gourmet footfall",
+        ar: "حضور رئيسي لسلسلة سعودي ماركت يوفر كثافة إقبال يومية مستمرة ومتميزة",
+      },
+      {
+        en: "Complete family entertainment destination: Z Arcade interactive gaming arena & Loly Land safe kids play area",
+        ar: "وجهة ترفيهية عائلية متكاملة: صالة زد آركيد للألعاب التفاعلية ومنطقة ألعاب الأطفال لولي لاند",
+      },
+      {
+        en: "Specialized Stationery & Educational Hub: High-capacity bookstore flagships (Alyanour, El-Azhary, Ashraf Ali Faid)",
+        ar: "مجمع مكتبات وتوريدات مدرسية وهندسية يضم كبرى الماركات (اليانور، الأزهري، وأشرف علي فايد)",
+      },
+      {
+        en: "Direct highway connectivity on Cairo-Ismailia Desert Road with multi-lane ingress and dedicated parking bays",
+        ar: "اتصال مباشر بطريق مصر-الإسماعيلية الصحراوي بمداخل متعددة ومواقف سيارات تتسع لـ 650 سيارة",
+      },
+    ],
+    stores: [
+      {
+        id: "mc-seoudi",
+        name: {
+          en: "Seoudi Supermarket",
+          ar: "سعودي ماركت – هايبر ماركت رئيسي",
+        },
+        category: {
+          en: "Anchor Gourmet Grocery & Supermarket",
+          ar: "سوبرماركت وسلع استهلاكية كبرى",
+        },
+        floor: {
+          en: "Ground Floor East Concourse",
+          ar: "الطابق الأرضي – الجناح الشرقي",
+        },
+        unitNumber: "ANCHOR-01",
+        status: "open",
+        description: {
+          en: "4,800 m² premier supermarket offering gourmet imported products, organic produce, fresh bakery, and butchery.",
+          ar: "هايبر ماركت متكامل يقدم أفخر المنتجات الغذائية والمستوردة والمخبوزات الطازجة.",
+        },
+        phone: "+20 2 19557",
+      },
+      {
+        id: "mc-z-arcade",
+        name: {
+          en: "Z Arcade Family Entertainment",
+          ar: "زد آركيد للألعاب والترفيه التفاعلي",
+        },
+        category: {
+          en: "Arcade & Entertainment",
+          ar: "ألعاب إلكترونية وترفيه عائلي",
+        },
+        floor: {
+          en: "Upper Entertainment Concourse",
+          ar: "الطابق العلوي – مجمع الألعاب",
+        },
+        unitNumber: "ENT-01",
+        status: "open",
+        description: {
+          en: "Cutting-edge arcade gaming, street basketball challenges, VR simulators, whack-a-mole, air hockey, and billiards.",
+          ar: "أحدث صالات الألعاب الإلكترونية: محاكيات الواقع الافتراضي، تحديات كرة السلة، بلياردو، وألعاب الجوائز.",
+        },
+      },
+      {
+        id: "mc-loly-land",
+        name: {
+          en: "Loly Land Kids Area",
+          ar: "لولي لاند لألعاب الأطفال",
+        },
+        category: {
+          en: "Kids Play Area & Parties",
+          ar: "ألعاب أطفال وتنظيم احتفالات",
+        },
+        floor: {
+          en: "Family Concourse Level 1",
+          ar: "الطابق الأول – ركن العائلات",
+        },
+        unitNumber: "KID-02",
+        status: "open",
+        description: {
+          en: "Safe padded soft play arena, toddler trampolines, slides, and birthday celebration suites.",
+          ar: "منطقة ألعاب حركية ناعمة وآمنة للأطفال، نطاطات، وزحاليق وقاعات مجهزة لأعياد الميلاد.",
+        },
+      },
+      {
+        id: "mc-alyanour",
+        name: {
+          en: "Alyanour Book Store & Stationery",
+          ar: "مكتبات اليانور – الشروق",
+        },
+        category: {
+          en: "Stationery & Educational Supplies",
+          ar: "مكتبات وأدوات مدرسية ولعب أطفال",
+        },
+        floor: {
+          en: "Commercial Promenade Unit 09",
+          ar: "الممشى التجاري – الوحدة 09",
+        },
+        unitNumber: "RET-09",
+        status: "open",
+        description: {
+          en: "All official school textbooks, curricula, photocopying, school backpacks, stationery, and creative toys at wholesale pricing.",
+          ar: "كافة الكتب الخارجية والأدوات المدرسية وتصوير المستندات ولعب الأطفال بأسعار الجملة والتجزئة.",
+        },
+        phone: "+20 110 192 9991",
+      },
+      {
+        id: "mc-stationery-hub",
+        name: {
+          en: "Stationery Hub — El-Azhary",
+          ar: "مجمع مكتبات الشروق – مؤسسة الأزهري",
+        },
+        category: {
+          en: "Engineering & Office Supplies",
+          ar: "أدوات كتابية ومدرسية وهندسية",
+        },
+        floor: {
+          en: "Retail Concourse Level 1",
+          ar: "الممشى التجاري – الطابق الأول",
+        },
+        unitNumber: "RET-15",
+        status: "open",
+        description: {
+          en: "High-grade office stationery, drafting supplies, scientific calculators, notebooks, and student geometry sets.",
+          ar: "أدوات ومستلزمات مدرسية وهندسية متطورة، كشاكيل، وأدوات رسم فني ومعماري.",
+        },
+      },
+      {
+        id: "mc-ashraf-aly",
+        name: {
+          en: "34 Ashraf Ali Faid",
+          ar: "مكتبات 34 أشرف علي فايد",
+        },
+        category: {
+          en: "Books & Curricula Supplies",
+          ar: "كتب ومستلزمات دراسية",
+        },
+        floor: {
+          en: "Ground Floor Promenade",
+          ar: "الطابق الأرضي – الممشى الخارجي",
+        },
+        unitNumber: "RET-04",
+        status: "open",
+        description: {
+          en: "Leading distributor of student textbooks, reference libraries, and comprehensive stationery kits.",
+          ar: "موزع رئيسي للكتب المدرسية والمناهج التعليمية والمستلزمات المدرسية المعتمدة.",
+        },
+      },
+      {
+        id: "mc-delice",
+        name: {
+          en: "Délice Coffee & Dessert",
+          ar: "ديليس كافيه وحلويات غربية",
+        },
+        category: {
+          en: "Cafes & Specialty Bakeries",
+          ar: "مقاهي وحلويات ومخبوزات",
+        },
+        floor: {
+          en: "Outdoor Piazza Terrace",
+          ar: "تراس البلازا الخارجي",
+        },
+        unitNumber: "CAFE-01",
+        status: "open",
+        description: {
+          en: "Artisanal specialty coffee, Belgian waffles, French pastries, and relaxing outdoor seating for families.",
+          ar: "قهوة مختصة راقية، حلويات فرنسية ومخبوزات طازجة مع جلسات خارجية عائلية مريحة.",
+        },
+      },
+      {
+        id: "mc-thunder",
+        name: {
+          en: "Thunder Sportswear",
+          ar: "ثندر للملابس الرياضية",
+        },
+        category: {
+          en: "Sportswear & Fitness Apparel",
+          ar: "ملابس رياضية وأحذية",
+        },
+        floor: {
+          en: "Retail Concourse Level 1",
+          ar: "الطابق الأول – ممر المتاجر",
+        },
+        unitNumber: "RET-21",
+        status: "open",
+        description: {
+          en: "Performance athletic apparel, gym gear, training footwear, and activewear for men and women.",
+          ar: "أحدث الملابس الرياضية وأحذية التدريب ومستلزمات اللياقة البدنية والنوادي الرياضية.",
+        },
+      },
+      {
+        id: "mc-prana",
+        name: {
+          en: "Prana Fitness & Dance Studio",
+          ar: "استوديو برانا للياقة والتدريب",
+        },
+        category: {
+          en: "Fitness & Wellness",
+          ar: "لياقة بدنية ورياضة",
+        },
+        floor: {
+          en: "Mezzanine Level Suite 05",
+          ar: "طابق الميزانين – جناح 05",
+        },
+        unitNumber: "FIT-05",
+        status: "open",
+        description: {
+          en: "Boutique group fitness classes, dance conditioning, yoga, and functional movement coaching.",
+          ar: "حصص لياقة بدنية جماعية، يوغا، وتدريب حركي بإشراف مدربين معتمدين.",
+        },
+      },
+      {
+        id: "mc-s-nails",
+        name: {
+          en: "S Nails Station & Beauty",
+          ar: "صالون إس نيلز للتجميل",
+        },
+        category: {
+          en: "Personal Care & Beauty",
+          ar: "عناية شخصية وتجميل",
+        },
+        floor: {
+          en: "First Floor Beauty Gallery",
+          ar: "الطابق الأول – جناح العناية",
+        },
+        unitNumber: "BEA-03",
+        status: "open",
+        description: {
+          en: "Full-service nail care, manicures, pedicures, and beauty wellness treatments.",
+          ar: "خدمات عناية متكاملة بالأظافر والجمال والعناية الشخصية في أجواء مريحة راقية.",
+        },
+      },
+    ],
+    amenities: [
+      {
+        en: "Central chilled-water air conditioning throughout indoor concourses and arcades",
+        ar: "تكييف مركزي متطور يغطي كافة الممرات وصالات الألعاب والمحلات",
+      },
+      {
+        en: "Expansive customer surface parking with designated family and accessible bays",
+        ar: "مواقف سيارات سطحية واسعة ومظللة مخصصة للعائلات وذوي الاحتياجات الخاصة",
+      },
+      {
+        en: "24/7 on-site property management, cleaning cadre, and full CCTV monitoring",
+        ar: "فريق إدارة مرافق وصيانة ونظافة دائم بالموقع مع مراقبة أمنية متواصلة",
+      },
+      {
+        en: "Outdoor landscaped dining terrace with shaded seating and decorative planters",
+        ar: "تراس خارجي منسق ومظلل للمقاهي والمطاعم مع مساحات خضراء",
+      },
+      {
+        en: "Comprehensive family conveniences: prayer rooms, baby changing suites, and accessible restrooms",
+        ar: "مرافق متكاملة للراحة العائلية تشمل مصليات مجهزة وغرف رعاية أطفال",
+      },
+    ],
+  },
+  {
+    id: "october-festival-mall",
+    slug: "october-festival-mall",
+    name: {
+      en: "October Festival Mall",
+      ar: "مول أكتوبر فيستيفال",
+    },
+    tagline: {
+      en: "Prime Commercial & Retail Destination on Gamal Abdel Nasser Axis, Northern Expansions",
+      ar: "الوجهة التجارية والتسويقية الرائدة بمحور جمال عبد الناصر – التوسعات الشمالية، 6 أكتوبر",
+    },
+    type: "retail",
+    status: "active",
+    category: {
+      en: "Commercial Retail & Quick-Commerce Hub",
+      ar: "مجمع تجاري ومتاجر تجزئة وتجارة سريعة",
+    },
+    description: {
+      en: "October Festival Mall is a premier commercial and retail development strategically located on Gamal Abdel Nasser Axis in the high-growth Northern Expansions of 6th of October City. Characterized by striking curved architectural facades, rich natural granite cladding, and wide double-height display frontages, the property hosts leading commercial operations including Noon Minutes (15-minute quick fulfillment depot) and Alyanour Mega Bookstore & Stationery (supplying schools, offices, and retail families at wholesale and retail rates), alongside prime 130 m²+ commercial retail spaces available for lease to major retail and F&B brands.",
+      ar: "يعد مول أكتوبر فيستيفال أحد أبرز المشروعات التجارية الراقية لشركة تفوق، بموقع استراتيجي على محور جمال عبد الناصر بمنطقة التوسعات الشمالية بمدينة السادس من أكتوبر. يتميز المول بواجهات معمارية منحنية مكسوة بالجرانيت الطبيعي الفاخر، ومساحات عرض زجاجية مزدوجة الارتفاع، ويستضيف أنشطة تجارية كبرى رائدة مثل مركز التجارة السريعة (نون مينتس Noon Minutes)، ومكتبات اليانور الكبرى للأدوات المكتبية والمدرسية والكتب (جملة وقطاعي)، إلى جانب وحدات ومحلات تجارية راقية بمساحات 130 م² معروضة للتأجير لكبرى العلامات التجارية العالمية والمحلية.",
+    },
+    fullOverview: {
+      en: "Engineered to institutional commercial standards, October Festival Mall commands a prominent position along Gamal Abdel Nasser Axis in the Northern Expansions of 6th of October City. Spanning 22,000 square meters of prime Gross Leasable Area across thoughtfully planned commercial floorplates, the development features high floor-to-ceiling clearances, high-capacity electrical substations, and generous perimeter parking for customer vehicles and rapid delivery fleets. Offering prime retail frontages of 130 m² for prestigious brands, the hub delivers exceptional commercial visibility and operational efficiency in West Cairo's most active urban node.",
+      ar: "شُيّد مشروع مول أكتوبر فيستيفال وفق أعلى المعايير الهندسية المؤسسية بموقع استراتيجي على محور جمال عبد الناصر بمنطقة التوسعات الشمالية بمدينة السادس من أكتوبر، على مساحة تأجيرية تبلغ 22,000 متر مربع من المسطحات التجارية المتطورة. صُمم المول بأسقف مرتفعة، وقدرات كهربائية عالية تلبي متطلبات التبريد والتشغيل السريع، ومواقف سيارات محيطية مريحة تخدم حركة الزوار وأساطيل التوصيل السريع. يوفر مساحات تجارية جاهزة بمساحة 130 م² فأكثر للبراندات الكبرى مع واجهات زجاجية واسعة وحركة مرور عالية، مما يجعله وجهة استثمارية وتجارية رائدة في غرب القاهرة.",
+    },
+    mainImage: "/OctoberMall/IMG_0384.webp",
+    gallery: [
+      "/OctoberMall/IMG_0384.webp",
+      "/OctoberMall/IMG_5293.webp",
+      "/OctoberMall/IMG_0378.webp",
+      "/OctoberMall/IMG_0381.webp",
+      "/OctoberMall/IMG_5294.webp",
+    ],
+    location: {
+      address: {
+        en: "Gamal Abdel Nasser Axis, Northern Expansions, 6th of October City, Giza Governorate 3231050, Egypt",
+        ar: "محور جمال عبد الناصر، التوسعات الشمالية، مدينة السادس من أكتوبر، محافظة الجيزة 3231050، مصر",
+      },
+      city: {
+        en: "6th of October City, Giza",
+        ar: "مدينة السادس من أكتوبر، الجيزة",
+      },
+      country: { en: "Egypt", ar: "مصر" },
+      coordinates: { lat: 29.9868, lng: 30.9325 },
+      googleMapsEmbedUrl:
+        "https://maps.google.com/maps?q=%D8%A7%D9%83%D8%AA%D9%88%D8%A8%D8%B1%20%D9%81%D9%8A%D8%B3%D8%AA%D9%8A%D9%81%D8%A7%D9%84%20%D8%B3%D9%8A%D8%AA%D9%89%20%D9%85%D8%AD%D9%88%D8%B1%20%D8%AC%D9%85%D8%A7%D9%84%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D9%86%D8%A7%D8%B5%D8%B1%20%D8%A7%D9%84%D8%AA%D9%88%D8%B3%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B4%D9%85%D8%A7%D9%84%D9%8A%D8%A9&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      googleMapsDirectUrl:
+        "https://maps.app.goo.gl/PBDCaRMpznhAWYic8?g_st=iw",
+    },
+    contact: {
+      phone: "+20 110 042 4829",
+      altPhone: "+20 111 383 6660",
+      email: "info@tafawok.co",
+      leasingOffice: {
+        en: "October Festival Mall Leasing Directorate — Unit 101",
+        ar: "إدارة التأجير التجاري بمول أكتوبر فيستيفال – الوحدة 101",
+      },
+    },
+    keyStats: {
+      gla: "22,000 m²",
+      builtUpArea: "28,500 m²",
+      floors: {
+        en: "Commercial Ground + Mezzanine + First Floor",
+        ar: "أرضي تجاري + ميزانين + طابق أول",
       },
       parkingCapacity: {
         en: "380 Vehicles",
         ar: "380 سيارة",
       },
       zoning: {
-        en: "Grade-A Commercial & Corporate Administrative",
-        ar: "تجاري وإداري معتمد فئة (أ)",
+        en: "Commercial Retail, Quick Commerce & Brand Showrooms",
+        ar: "تجاري تجزئة، تجارة سريعة ومعارض براندات",
       },
     },
     specs: [
       {
         label: { en: "Gross Leasable Area", ar: "المساحة التأجيرية الإجمالية" },
-        value: "18,500",
+        value: "22,000",
         unit: { en: "m²", ar: "م²" },
       },
       {
-        label: { en: "Floorplate Span", ar: "مساحة مسطح الطابق" },
-        value: "2,800",
+        label: {
+          en: "Standard Flagship Unit",
+          ar: "مساحة المحل النموذجي المتاح",
+        },
+        value: "130",
         unit: { en: "m²", ar: "م²" },
       },
       {
         label: { en: "Clear Ceiling Height", ar: "ارتفاع الأسقف الصافي" },
-        value: "3.85",
+        value: "4.2",
         unit: { en: "m", ar: "متر" },
       },
       {
-        label: { en: "Passenger Elevators", ar: "مصاعد الركاب السريعة" },
-        value: "6",
-        unit: { en: "High-speed units", ar: "مصاعد فائقة السرعة" },
-      },
-      {
         label: {
-          en: "Backup Power Generators",
-          ar: "مولدات الطاقة الاحتياطية",
+          en: "Customer Parking Slots",
+          ar: "مواقف سيارات الزوار والعملاء",
         },
-        value: "100%",
-        unit: { en: "Full N+1 Redundancy", ar: "تغطية كاملة N+1" },
-      },
-      {
-        label: { en: "Underground Parking", ar: "مواقف سيارات سفلية" },
         value: "380",
         unit: { en: "Slots", ar: "مكان مخصص" },
       },
+      {
+        label: {
+          en: "Fulfillment & Delivery Bays",
+          ar: "أرصفة أساطيل التوصيل السريع",
+        },
+        value: "12",
+        unit: { en: "Bays", ar: "أرصفة مجهزة" },
+      },
+      {
+        label: {
+          en: "Quick-Commerce Depot",
+          ar: "مركز التجارة السريعة (نون مينتس)",
+        },
+        value: "15",
+        unit: { en: "Min Delivery Radius", ar: "دقيقة للتوصيل" },
+      },
     ],
     highlights: [
       {
-        en: "Dual independent electrical feeds backed by 100% capacity Caterpillar diesel generators",
-        ar: "تغذية كهربائية مزدوجة مستقلة مدعومة بمولدات كاتربيلر احتياطية بنسبة 100%",
+        en: "Prime curved architectural design with premium polished granite cladding and soaring glass display vitrines",
+        ar: "تصميم معماري منحني فاخر بواجهات جرانيت طبيعي وواجهات زجاجية مزدوجة الارتفاع",
       },
       {
-        en: "Intelligent Building Management System (BMS) with high-efficiency VRF central cooling",
-        ar: "نظام إدارة مبنى ذكي (BMS) مع تكييف مركزي متطور وموفر للطاقة (VRF)",
+        en: "High-traffic commercial frontage offering 130 m² flagship spaces tailored for leading domestic & international brands",
+        ar: "واجهة تجارية ذات كثافة مرورية عالية توفر مساحات 130 م² مجهزة للبراندات الكبرى",
       },
       {
-        en: "High-security optical speed gates with biometric integration and 24/7 CCTV surveillance",
-        ar: "بوابات إلكترونية ذكية وفحص بالبصمة مع مراقبة أمنية بالكاميرات على مدار الساعة",
+        en: "Active operational anchor: Noon Minutes rapid 15-minute fulfillment depot driving continuous logistical and customer footfall",
+        ar: "تشغيل نشط لمركز نون مينتس (Noon Minutes) للتوصيل فائق السرعة خلال 15 دقيقة",
       },
       {
-        en: "LEED Gold design specifications with energy-reflective Low-E insulated acoustic double glazing",
-        ar: "معايير تصميمية مطابقة لشهادة LEED الذهبية بواجهات زجاجية عازلة للحرارة والصوت",
+        en: "Alyanour Mega Bookstore & Stationery center providing bulk educational, school, and office supplies at wholesale prices",
+        ar: "صرح مكتبات اليانور الضخم لتجارة الأدوات المكتبية والمدرسية والكتب بالجملة والقطاعي",
       },
     ],
     stores: [
       {
-        id: "s1",
+        id: "oct-noon",
         name: {
-          en: "National Commercial Bank Branch & Wealth Center",
-          ar: "فرع البنك التجاري ومركز كبار العملاء",
+          en: "Noon Minutes Rapid Fulfillment Hub",
+          ar: "نون مينتس – مركز التوصيل السريع 15 دقيقة",
         },
         category: {
-          en: "Banking & Financial Services",
-          ar: "خدمات مصرفية ومالية",
+          en: "Quick Commerce & Instant Logistics",
+          ar: "تجارة إلكترونية سريعة ولوجستيات",
         },
         floor: {
-          en: "Ground Floor — South Wing",
-          ar: "الطابق الأرضي – الجناح الجنوبي",
+          en: "Ground Logistics Frontage Unit 03",
+          ar: "الطابق الأرضي – الواجهة اللوجستية وحدة 03",
         },
-        unitNumber: "G-01",
+        unitNumber: "NOON-03",
         status: "open",
         description: {
-          en: "Full-service retail and corporate banking with 24/7 automated ATM vestibule.",
-          ar: "خدمات مصرفية متكاملة للأفراد والشركات مع صالة صراف آلي على مدار 24 ساعة.",
+          en: "Automated quick-commerce fulfillment depot powering 15-minute instant grocery, essentials, and electronics delivery across 6th of October City.",
+          ar: "مركز تلبية وتوصيل فوري يخدم مدينة السادس من أكتوبر لتوصيل السلع والطلبات خلال 15 دقيقة.",
         },
-        phone: "+20 2 2327 6001",
       },
       {
-        id: "s2",
+        id: "oct-alyanour",
         name: {
-          en: "TAFAWOK Regional Corporate Headquarters",
-          ar: "المقر الإقليمي لشركة تفوق",
-        },
-        category: { en: "Corporate Office", ar: "مقر إداري للشركة" },
-        floor: {
-          en: "Penthouse Suite — 5th Floor",
-          ar: "الطابق الخامس – جناح البنتهاوس",
-        },
-        unitNumber: "5-01",
-        status: "open",
-        description: {
-          en: "Executive leadership offices, boardrooms, and regional contracting management.",
-          ar: "مكاتب الإدارة العليا وقاعات الاجتماعات التنفيذية وإدارة المشروعات الإقليمية.",
-        },
-        phone: "+20 110 042 4829",
-      },
-      {
-        id: "s3",
-        name: {
-          en: "Apex Specialty Artisan Cafe & Business Lounge",
-          ar: "مقهى إيبكس المتخصص وصالة رجال الأعمال",
+          en: "Alyanour Mega Stationery & Educational Center",
+          ar: "مكتبات اليانور – مول أكتوبر فيستيفال",
         },
         category: {
-          en: "Dining & Executive Hospitality",
-          ar: "أطعمة وضيافة رجال الأعمال",
+          en: "Wholesale & Retail Stationery, Books & Toys",
+          ar: "كتب خارجية وأدوات مدرسية ولعب أطفال (جملة وقطاعي)",
         },
         floor: {
-          en: "Ground Floor Main Atrium",
-          ar: "الطابق الأرضي – بهو الاستقبال الرئيسي",
+          en: "Ground Commercial Galleria Units 01-02",
+          ar: "الطابق الأرضي – البهو التجاري وحدات 01-02",
         },
-        unitNumber: "G-04",
+        unitNumber: "OCT-01",
         status: "open",
         description: {
-          en: "Artisanal coffee, business meeting luncheons, and casual collaboration seating.",
-          ar: "قهوة مختصة، وجبات غداء لرجال الأعمال ومساحات مهيأة للاجتماعات السريعة.",
+          en: "Expansive multi-section bookstore offering bulk office procurement, school curricula, foreign textbooks, educational toys, and printing at wholesale and retail rates.",
+          ar: "معرض ضخم لبيع وتوريد الكتب الخارجية والأدوات المكتبية والمدرسية والطباعة ولعب الأطفال بأسعار الجملة والقطاعي.",
         },
+        phone: "+20 110 192 9991",
       },
       {
-        id: "s4",
+        id: "oct-flagship-130",
         name: {
-          en: "Multinational Energy Consultancy Group",
-          ar: "مجموعة استشارات الطاقة الدولية",
+          en: "Prime 130 m² Flagship Commercial Retail Showroom",
+          ar: "محل تجاري متميز 130 م² للإيجار للبراندات الكبرى",
         },
         category: {
-          en: "Professional Engineering Services",
-          ar: "استشارات هندسية وطاقة",
+          en: "Commercial Retail / Fashion / F&B",
+          ar: "مساحة تجارية حرة لكبرى العلامات",
         },
         floor: {
-          en: "3rd Floor Entire East Wing",
-          ar: "الطابق الثالث – الجناح الشرقي بالكامل",
+          en: "Ground Promenade Prime Corner",
+          ar: "الطابق الأرضي – الواجهة الركنية الرئيسية",
         },
-        unitNumber: "3-01 to 3-04",
-        status: "open",
-        description: {
-          en: "Petrochemical and green energy consulting operations across Egypt and the Gulf.",
-          ar: "عمليات استشارات الطاقة والبتروكيماويات والمشروعات المستدامة.",
-        },
-      },
-      {
-        id: "s5",
-        name: {
-          en: "Executive Conference & Hybrid Boardroom Center",
-          ar: "مركز المؤتمرات وقاعات الاجتماعات الهجينة",
-        },
-        category: { en: "Corporate Amenities", ar: "مرافق وخدمات المؤتمرات" },
-        floor: {
-          en: "2nd Floor Central Concourse",
-          ar: "الطابق الثاني – البهو الأوسط",
-        },
-        unitNumber: "2-08",
-        status: "open",
-        description: {
-          en: "State-of-the-art telepresence facilities, 120-seat auditorium, and private boardrooms.",
-          ar: "قاعة مؤتمرات تتسع لـ 120 مقعداً مجهزة بأحدث تقنيات البث الرقمي والترجمة.",
-        },
-      },
-      {
-        id: "s6",
-        name: {
-          en: "Prime Corner Commercial Showroom",
-          ar: "معرض تجاري ركني متميز",
-        },
-        category: {
-          en: "Commercial Retail / Flagship",
-          ar: "مساحة تجارية حصرية",
-        },
-        floor: {
-          en: "Ground Floor North Promenade",
-          ar: "الطابق الأرضي – الممشى الشمالي",
-        },
-        unitNumber: "G-06",
+        unitNumber: "OCT-130",
         status: "leased",
         description: {
-          en: "340 m² double-height glass corner showroom ideal for luxury automotive or tech flagship.",
-          ar: "معرض ركني بواجهات زجاجية مزدوجة الارتفاع بمساحة 340 م² مثالي للعلامات الفاخرة.",
-        },
-      },
-    ],
-    amenities: [
-      {
-        en: "High-speed optical elevators with destination dispatching",
-        ar: "مصاعد ذكية سريعة بنظام توجيه الوجهات المسبق",
-      },
-      {
-        en: "Dedicated courier reception & cargo delivery dock",
-        ar: "مدخل شحن واستلام بضائع مستقل للشركات",
-      },
-      {
-        en: "Executive rooftop terrace with panoramic New Cairo views",
-        ar: "شرفة تنفيذية على السطح بإطلالة بانورامية على القاهرة الجديدة",
-      },
-      {
-        en: "Electric Vehicle (EV) fast-charging stations in basement",
-        ar: "محطات شحن سريع للسيارات الكهربائية بالمواقف",
-      },
-      {
-        en: "Comprehensive 24/7 on-site facilities and maintenance crew",
-        ar: "فريق صيانة وتشغيل متواجد بالموقع على مدار 24 ساعة",
-      },
-    ],
-  },
-  {
-    id: "tafawok-retail",
-    slug: "tafawok-retail-center",
-    name: {
-      en: "Tafawok Commercial Mall & Retail Center",
-      ar: "مركز تفوق التجاري والمول",
-    },
-    tagline: {
-      en: "High-Footfall Regional Lifestyle, Retail & Family Entertainment Destination",
-      ar: "وجهة التسوق والترفيه العائلي الأولى بأعلى معدلات الكثافة والزيارة",
-    },
-    type: "retail",
-    status: "active",
-    category: {
-      en: "Retail & Destination Mall",
-      ar: "مراكز تجارية ومولات تسوق",
-    },
-    description: {
-      en: "Tafawok Commercial Mall is an expansive modern retail destination purposefully master-planned to serve the rapidly expanding residential and corporate districts. Anchored by major multinational hypermarkets, branded fashion retailers, lifestyle services, and diverse international dining avenues, the property commands exceptional footfall and retail vitality.",
-      ar: "مركز تفوق التجاري هو وجهة تسوق عصرية كبرى تم تخطيطها هندسياً لخدمة الكتل السكنية والتجارية المتنامية. يضم المركز كبرى سلاسل الهايبر ماركت العالمية، ومتاجر الموضة، والخدمات الحيوية، ومنطقة مطاعم عائلية متنوعة، مما يجعله وجهة تسوق رئيسية ذات كثافة إقبال استثنائية.",
-    },
-    fullOverview: {
-      en: "Boasting over 24,000 square meters of GLA distributed across four interconnected shopping concourses, Tafawok Retail Center features a soaring central glass dome, pedestrian-first boulevard connectivity, and an outdoor dining terrace. The center accommodates over 65 national and international retail brands, financial service centers, and comprehensive healthcare services.",
-      ar: "بمساحة تأجيرية تزيد عن 24,000 متر مربع موزعة على أربعة مستويات تسوق مترابطة، يتميز المول بقبة زجاجية سماوية عملاقة، وممرات مشاة فسيحة، وتراسات خارجية للمطاعم. يستوعب المركز أكثر من 65 علامة تجارية محلية وعالمية، ومراكز خدمات مصرفية وحكومية، ومجمعات طبية متخصصة.",
-    },
-    mainImage:
-      "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1581404476143-fb31d742929f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80",
-    ],
-    location: {
-      address: {
-        en: "Al-Bustan Commercial Sector, Regional Hub Arterial",
-        ar: "قطاع البستان التجاري – المحور الإقليمي الرئيسي",
-      },
-      city: { en: "Cairo Metropolitan", ar: "القاهرة الكبرى" },
-      country: { en: "Egypt", ar: "مصر" },
-      coordinates: { lat: 30.0444, lng: 31.2357 },
-      googleMapsEmbedUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110515.27581141753!2d31.2357116!3d30.0444196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1700000000000!5m2!1sen!2seg",
-      googleMapsDirectUrl:
-        "https://maps.google.com/?q=Al-Bustan+Commercial+Sector+Cairo",
-    },
-    contact: {
-      phone: "+20 111 383 6660",
-      altPhone: "+20 110 042 4829",
-      email: "info@tafawok.co",
-      leasingOffice: {
-        en: "Tafawok Mall Retail Leasing & Tenant Relations Office — Level 1",
-        ar: "مكتب تأجير المحلات وعلاقات المستأجرين – الطابق الأول",
-      },
-    },
-    keyStats: {
-      gla: "24,000 m²",
-      builtUpArea: "36,500 m²",
-      floors: {
-        en: "LG + G + 2 Floors",
-        ar: "أرضي منخفض + أرضي + 2 طابق",
-      },
-      parkingCapacity: {
-        en: "750 Vehicles",
-        ar: "750 سيارة",
-      },
-      zoning: {
-        en: "Regional Commercial Retail, Entertainment & F&B",
-        ar: "تجاري تجزئة، ترفيه عائلي ومطاعم",
-      },
-    },
-    specs: [
-      {
-        label: { en: "Gross Leasable Area", ar: "المساحة التأجيرية الإجمالية" },
-        value: "24,000",
-        unit: { en: "m²", ar: "م²" },
-      },
-      {
-        label: { en: "Total Retail Units", ar: "إجمالي المحلات والمعارض" },
-        value: "68",
-        unit: { en: "Units", ar: "وحدة تجارية" },
-      },
-      {
-        label: {
-          en: "Anchor Tenant Footprint",
-          ar: "مساحة المتجر الرئيسي (الهايبر)",
-        },
-        value: "6,200",
-        unit: { en: "m²", ar: "م²" },
-      },
-      {
-        label: {
-          en: "Surface & Covered Parking",
-          ar: "مواقف سيارات سطحية ومغطاة",
-        },
-        value: "750",
-        unit: { en: "Vehicles", ar: "مركبة" },
-      },
-      {
-        label: { en: "Average Monthly Footfall", ar: "متوسط الزوار الشهري" },
-        value: "350,000+",
-        unit: { en: "Visitors", ar: "زائر شهرياً" },
-      },
-      {
-        label: {
-          en: "Public Escalators & Lifts",
-          ar: "السلالم المتحركة والمصاعد",
-        },
-        value: "14",
-        unit: { en: "Units", ar: "وحدة نقل متطورة" },
-      },
-    ],
-    highlights: [
-      {
-        en: "Anchor tenancy agreement with Grand Hypermarket providing guaranteed baseline daily visitor volume",
-        ar: "عقد إيجار رئيسي مع جراند هايبر ماركت يضمن تدفقاً يومياً هائلاً من المتسوقين",
-      },
-      {
-        en: "Dedicated family entertainment zone and safe indoor play arena driving weekend family retention",
-        ar: "منطقة ترفيه عائلي وصالة ألعاب آمنة للأطفال ترفع من معدل بقاء الزوار في عطلات نهاية الأسبوع",
-      },
-      {
-        en: "Outdoor European-style landscaped promenade for dining and open-air branded kiosks",
-        ar: "ممشى خارجي منسق ومصمم على الطراز الأوروبي للمطاعم والمقاهي والأكشاك التجارية",
-      },
-      {
-        en: "Heavy-duty loading bays with independent freight elevators directly servicing retail storerooms",
-        ar: "أرصفة تفريغ بضائع للشاحنات الثقيلة مع مصاعد شحن مخصصة تخدم مستودعات المحلات مباشرة",
-      },
-    ],
-    stores: [
-      {
-        id: "r1",
-        name: {
-          en: "Grand Hypermarket Regional Flagship",
-          ar: "جراند هايبر ماركت – الفرع الإقليمي الأكبر",
-        },
-        category: {
-          en: "Anchor Grocery & Household Goods",
-          ar: "هايبر ماركت وسلع استهلاكية كبرى",
-        },
-        floor: {
-          en: "Lower Ground Floor Concourse",
-          ar: "طابق التسوق الأرضي المنخفض",
-        },
-        unitNumber: "LG-01",
-        status: "open",
-        description: {
-          en: "6,200 m² full-format hypermarket featuring imported foods, electronics, bakery, and fresh markets.",
-          ar: "هايبر ماركت متكامل على مساحة 6,200 م² يشمل الأغذية والأجهزة والمخبوزات الطازجة.",
-        },
-        phone: "+20 2 2327 6080",
-      },
-      {
-        id: "r2",
-        name: {
-          en: "CarePlus 24/7 Community Pharmacy & Wellness",
-          ar: "صيدلية كير بلس على مدار 24 ساعة",
-        },
-        category: {
-          en: "Healthcare & Pharmaceuticals",
-          ar: "أدوية ومستحضرات صحية",
-        },
-        floor: {
-          en: "Ground Floor Main Entrance",
-          ar: "الطابق الأرضي بجوار البوابة الرئيسية",
-        },
-        unitNumber: "G-12",
-        status: "open",
-        description: {
-          en: "Comprehensive prescription fulfillment, cosmetics, and organic wellness supplements.",
-          ar: "صيدلية شاملة ومستحضرات تجميل ومكملات غذائية مع خدمة التوصيل السريع.",
-        },
-      },
-      {
-        id: "r3",
-        name: {
-          en: "Moda Italia & International Fashion Brands",
-          ar: "مودا إيطاليا ومتاجر الموضة العالمية",
-        },
-        category: {
-          en: "Fashion, Apparel & Footwear",
-          ar: "أزياء وملابس وأحذية راقية",
-        },
-        floor: {
-          en: "First Floor Boulevard",
-          ar: "الطابق الأول – ممر الموضة الرئيسي",
-        },
-        unitNumber: "1-18",
-        status: "open",
-        description: {
-          en: "Multi-brand designer apparel, Italian leather footwear, and formal tailoring.",
-          ar: "أحدث صيحات الأزياء والأحذية الجلدية الإيطالية والملابس الرسمية والكاجوال.",
-        },
-      },
-      {
-        id: "r4",
-        name: {
-          en: "SmartTech Electronics & Mobile Gadget Store",
-          ar: "سمارت تك للأجهزة والإلكترونيات والهواتف",
-        },
-        category: {
-          en: "Consumer Electronics & IT",
-          ar: "أجهزة إلكترونية وهواتف ذكية",
-        },
-        floor: {
-          en: "First Floor Central Galleria",
-          ar: "الطابق الأول – البهو الأوسط",
-        },
-        unitNumber: "1-25",
-        status: "open",
-        description: {
-          en: "Authorized retailer for smartphones, laptops, audio systems, and smart home devices.",
-          ar: "موزع معتمد للهواتف الذكية وأجهزة الكمبيوتر والأجهزة المنزلية الذكية.",
-        },
-      },
-      {
-        id: "r5",
-        name: {
-          en: "Fiesta Family Entertainment & VR Arcade",
-          ar: "مدينة ألعاب فييستا والترفيه التفاعلي",
-        },
-        category: {
-          en: "Family Entertainment & Kids",
-          ar: "ترفيه عائلي وألعاب إلكترونية",
-        },
-        floor: {
-          en: "Second Floor Top Promenade",
-          ar: "الطابق الثاني – منطقة الألعاب",
-        },
-        unitNumber: "2-01",
-        status: "open",
-        description: {
-          en: "Virtual reality simulators, bowling lanes, toddler soft play, and prize arcades.",
-          ar: "ألعاب الواقع الافتراضي، صالة بولينغ، ومنطقة ألعاب حركية آمنة للأطفال الصغار.",
-        },
-      },
-      {
-        id: "r6",
-        name: {
-          en: "Telecom Triple-Play Customer Service Center",
-          ar: "مركز خدمة عملاء شركات الاتصالات",
-        },
-        category: {
-          en: "Public & Telecom Services",
-          ar: "خدمات الاتصالات والمدفوعات",
-        },
-        floor: {
-          en: "Ground Floor West Arcade",
-          ar: "الطابق الأرضي – الممشى الغربي",
-        },
-        unitNumber: "G-19",
-        status: "open",
-        description: {
-          en: "Authorized operator desk for mobile contracts, fiber subscriptions, and bill settlements.",
-          ar: "خدمات الاشتراكات، شحن الرصيد، ودفع الفواتير لجميع مشغلي الاتصالات.",
-        },
-      },
-    ],
-    amenities: [
-      {
-        en: "Central air conditioning with hospital-grade HEPA air filtration",
-        ar: "تكييف مركزي متطور مع فلاتر تنقية هواء طبية HEPA",
-      },
-      {
-        en: "Prayer halls for men and women with ablution facilities",
-        ar: "مصليات واسعة للرجال والنساء مجهزة بالكامل",
-      },
-      {
-        en: "Baby changing rooms and accessible facilities on all floors",
-        ar: "غرف رعاية أطفال وتسهيلات متكاملة لذوي الاحتياجات الخاصة",
-      },
-      {
-        en: "24/7 security patrol, central monitoring, and emergency response",
-        ar: "دوريات أمنية وغرفة مراقبة مركزية وطاقم طوارئ مدرب",
-      },
-      {
-        en: "Integrated bank ATMs and digital currency exchange counters",
-        ar: "ماكينات صراف آلي لكبرى البنوك ومكاتب صرافة معتمدة",
-      },
-    ],
-  },
-  {
-    id: "tafawok-logistics",
-    slug: "tafawok-logistics-park",
-    name: {
-      en: "Tafawok Commercial Logistics & Business Complex",
-      ar: "مجمع تفوق التجاري واللوجستي",
-    },
-    tagline: {
-      en: "Integrated Industrial Showrooms, Engineering Hubs & Strategic Warehousing Depot",
-      ar: "معارض تجارية متطورة ومستودعات ومكاتب هندسية متكاملة",
-    },
-    type: "logistics",
-    status: "active",
-    category: {
-      en: "Logistics & Commercial Complex",
-      ar: "مجمع لوجستي وتجاري",
-    },
-    description: {
-      en: "Tafawok Commercial Logistics & Business Complex bridges heavy industrial procurement with front-facing commercial trade. Designed with expansive column-free distribution bays, high-clearance industrial showrooms, and administrative engineering suites, it serves as the operational epicenter for EPC contractors, energy equipment distributors, and industrial supply companies.",
-      ar: "يمثل مجمع تفوق اللوجستي والتجاري حلقة الوصل بين التوريدات الصناعية الكبرى والتجارة المباشرة. صُمم المجمع بمستودعات خالية من الأعمدة الداخلية، ومعارض تجارية ذات ارتفاعات استثنائية، ومكاتب إدارية وهندسية، ليكون مركزاً لشركات المقاولات الكبرى وموردي قطاعات الطاقة والصناعة.",
-    },
-    fullOverview: {
-      en: "Occupying 35,000 square meters of prime industrial-commercial land, the development features grade-level and dock-high hydraulic loading pits, heavy-floor loading capacity (up to 7.5 tons/m²), certified fire suppression systems (NFPA compliant), and dedicated bonded storage. It hosts leading global manufacturers and regional distributors of steel pipes, valves, MEP fixtures, and technical infrastructure systems.",
-      ar: "يشغل المجمع مساحة 35,000 متر مربع من الأراضي التجارية والصناعية المتميزة، ويتميز بأرصفة شحن هيدروليكية متطورة، وأرضيات خرسانية فائقة التحمل (تتحمل حتى 7.5 طن/م²)، وشبكات إطفاء حريق أوتوماتيكية مطابقة لمعايير NFPA الدولية. يضم مقرات لكبرى الشركات المصنعة والموزعة للأنابيب والصمامات والمعدات الكهروميكانيكية.",
-    },
-    mainImage:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80",
-    ],
-    location: {
-      address: {
-        en: "Strategic Logistics & Heavy Supply Corridor, Greater Cairo Industrial Ring",
-        ar: "محور التوريدات واللوجستيات الاستراتيجي – الطريق الدائري الصناعي للقاهرة",
-      },
-      city: {
-        en: "Greater Cairo Industrial Corridor",
-        ar: "القطاع الصناعي للقاهرة الكبرى",
-      },
-      country: { en: "Egypt", ar: "مصر" },
-      coordinates: { lat: 30.1255, lng: 31.3912 },
-      googleMapsEmbedUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110488.75627254924!2d31.3912!3d30.1255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145815cf485b0001%3A0x8e82ef3740263f31!2sCairo%20Industrial%20Area!5e0!3m2!1sen!2seg!4v1700000000000!5m2!1sen!2seg",
-      googleMapsDirectUrl:
-        "https://maps.google.com/?q=Greater+Cairo+Industrial+Corridor",
-    },
-    contact: {
-      phone: "+20 110 042 4829",
-      altPhone: "+20 111 383 6660",
-      email: "info@tafawok.co",
-      leasingOffice: {
-        en: "Industrial Assets & Trade Facility Management Office — Bay 1",
-        ar: "إدارة الأصول الصناعية والخدمات اللوجستية – المبنى الإداري (1)",
-      },
-    },
-    keyStats: {
-      gla: "35,000 m²",
-      builtUpArea: "42,000 m²",
-      floors: {
-        en: "Depots + G+2 Offices",
-        ar: "مستودعات + أرضي + 2 مكاتب",
-      },
-      parkingCapacity: {
-        en: "120 Trucks + 220 Cars",
-        ar: "120 شاحنة + 220 سيارة",
-      },
-      zoning: {
-        en: "Commercial Logistics, Engineering Trade & Showrooms",
-        ar: "لوجستي تجاري، معارض صناعية ومكاتب هندسية",
-      },
-    },
-    specs: [
-      {
-        label: { en: "Gross Leasable Area", ar: "المساحة التأجيرية الإجمالية" },
-        value: "35,000",
-        unit: { en: "m²", ar: "م²" },
-      },
-      {
-        label: {
-          en: "Clear Internal Height",
-          ar: "الارتفاع الداخلي الصافي للتخزين",
-        },
-        value: "11.5",
-        unit: { en: "m", ar: "متر" },
-      },
-      {
-        label: { en: "Floor Load Capacity", ar: "قوة تحمل الأرضيات الخرسانية" },
-        value: "7.5",
-        unit: { en: "Tons/m²", ar: "طن / م²" },
-      },
-      {
-        label: {
-          en: "Hydraulic Dock Levelers",
-          ar: "أرصفة التحميل الهيدروليكية",
-        },
-        value: "16",
-        unit: { en: "Bays", ar: "رصيف تحميل آلي" },
-      },
-      {
-        label: {
-          en: "Heavy Truck Staging Area",
-          ar: "ساحة انتظار الشاحنات الكبرى",
-        },
-        value: "120",
-        unit: { en: "Trucks", ar: "شاحنة تريلا" },
-      },
-      {
-        label: { en: "Fire Protection Rating", ar: "شبكة مكافحة الحريق" },
-        value: "NFPA-13",
-        unit: { en: "ESFR Sprinkler System", ar: "مرشات مياه سريعة الاستجابة" },
-      },
-    ],
-    highlights: [
-      {
-        en: "Direct immediate access to major international trade arterial highways, minimizing transit congestion",
-        ar: "اتصال فوري مباشر بالطرق الحرة والسريعة، مما يوفر زمن نقل البضائع والشاحنات",
-      },
-      {
-        en: "Heavy concrete flooring with quartz dry-shake topping resistant to chemical abrasion and forklift wear",
-        ar: "أرضيات خرسانية معالجة بمادة الكوارتز لمقاومة المواد الكيميائية والاحتكاك الشديد",
-      },
-      {
-        en: "Advanced perimeter security with automated vehicle scale weighbridges and container inspection bays",
-        ar: "أمن محيطي متكامل مع موازين بسكول إلكترونية للشاحنات ومناطق فحص الحاويات",
-      },
-      {
-        en: "Equipped for climate-sensitive materials with zoned temperature control and thermal roof insulation",
-        ar: "جاهزية لتخزين المواد الحساسة للحرارة مع عزل حراري للأسقف وأنظمة تحكم مناخي",
-      },
-    ],
-    stores: [
-      {
-        id: "l1",
-        name: {
-          en: "TAFAWOK Industrial Piping & Valve Regional Depot",
-          ar: "مستودع تفوق الإقليمي للأنابيب والصمامات",
-        },
-        category: {
-          en: "Industrial Procurement & Distribution",
-          ar: "توريدات وتوزيع المواد الصناعية",
-        },
-        floor: { en: "Depot Bay Alpha 1", ar: "المستودع الرئيسي (أ-1)" },
-        unitNumber: "DEPOT-01",
-        status: "open",
-        description: {
-          en: "Certified inventory of carbon steel, duplex pipes, fittings, and Achech Europe valves.",
-          ar: "مخزون معتمد من أنابيب الصلب الكربوني والدوبلكس ومحابس أشك الأوروبية.",
+          en: "130 m² high-visibility glass-fronted commercial store featuring heavy foot traffic, dedicated customer parking, and high exposure for major retail brands.",
+          ar: "محل تجاري بمساحة 130 م² بواجهة زجاجية عريضة، حركة مرور مرتفعة، ومواقف سيارات متاحة – مخصص للبراندات الكبرى والشهيرة.",
         },
         phone: "+20 110 042 4829",
       },
       {
-        id: "l2",
+        id: "oct-express-dispatch",
         name: {
-          en: "Precision MEP & HVAC Equipment Trade Showroom",
-          ar: "معرض معدات التكييف وأنظمة MEP المتطورة",
+          en: "October Express Courier & Trade Services",
+          ar: "مركز خدمات الشحن والتجارة السريعة",
         },
         category: {
-          en: "Commercial Engineering Showroom",
-          ar: "معرض تجاري هندسي",
+          en: "Courier, Postal & Business Services",
+          ar: "خدمات الشحن والبريد السريع",
         },
         floor: {
-          en: "Highway Frontage Showroom 03",
-          ar: "معرض الواجهة الرئيسية رقم 3",
+          en: "First Floor Suite 104",
+          ar: "الطابق الأول – جناح 104",
         },
-        unitNumber: "SH-03",
+        unitNumber: "OCT-104",
         status: "open",
         description: {
-          en: "Interactive display of chillers, pumps, air handling units, and electrical switchgear.",
-          ar: "عرض حي لمبردات الشيلر والمضخات ومحطات معالجة الهواء ولوحات التوزيع الكهربائي.",
-        },
-      },
-      {
-        id: "l3",
-        name: {
-          en: "Regional EPC Heavy Equipment Logistics Dispatch",
-          ar: "مركز إدارة أسطول معدات المشروعات الكبرى",
-        },
-        category: {
-          en: "Logistics & Fleet Operations",
-          ar: "عمليات النقل واللوجستيات",
-        },
-        floor: {
-          en: "Administration Wing Level 1",
-          ar: "المبنى الإداري – الطابق الأول",
-        },
-        unitNumber: "ADM-102",
-        status: "open",
-        description: {
-          en: "Control room managing crane fleets, flatbed transport, and project mobilization.",
-          ar: "غرفة تحكم مركزية لإدارة الأوناش العملاقة وأساطيل النقل الثقيل للمواقع.",
-        },
-      },
-      {
-        id: "l4",
-        name: {
-          en: "Metrology & Material Testing Certification Lab",
-          ar: "معمل الفحص واختبار المواد المعتمد",
-        },
-        category: { en: "Quality Control & Testing", ar: "مختبرات فحص الجودة" },
-        floor: { en: "Technical Facility Unit 08", ar: "الوحدة الفنية رقم 8" },
-        unitNumber: "LAB-08",
-        status: "open",
-        description: {
-          en: "Non-destructive testing (NDT), hydrostatic pressure testing, and metallurgical inspection.",
-          ar: "اختبارات الضغط الهيدروستاتيكي، الفحص الإشعاعي غير الإتلافي NDT وشهادات المطابقة.",
+          en: "Express parcel delivery hub, business correspondence center, and fulfillment services for commercial tenants.",
+          ar: "خدمات شحن الطرود والبريد السريع والتوزيع الداخلي لخدمة المتاجر والمستأجرين والمواطنين.",
         },
       },
     ],
     amenities: [
       {
-        en: "Integrated weighbridge scale up to 100 metric tons",
-        ar: "ميزان بسكول إلكتروني للشاحنات حتى 100 طن",
+        en: "Prominent curved architectural frontage cladded in high-grade natural polished granite",
+        ar: "واجهة معمارية منحنية فخمة من الجرانيت الطبيعي المصقول مع زجاج بانورامي",
       },
       {
-        en: "Separate dedicated truck logistics gate and passenger car entrance",
-        ar: "بوابة منفصلة لدخول الشاحنات الثقيلة وأخرى لسيارات الموظفين والزوار",
+        en: "Dedicated vehicle parking zone directly flanking the commercial display concourses",
+        ar: "مواقف سيارات مخصصة تقع مباشرة أمام الممشى والمعارض التجارية",
       },
       {
-        en: "Driver rest facilities, cafeteria, and logistics management office",
-        ar: "استراحة مجهزة للسائقين وكافيتريا ومكاتب تخليص جمركي",
+        en: "High-capacity loading docks with automated access control for delivery and logistics fleets",
+        ar: "أرصفة تحميل وتفريغ متطورة تدعم أساطيل التجارة السريعة والسيارات اللوجستية",
       },
       {
-        en: "Solar panel micro-grid providing clean daytime auxiliary electricity",
-        ar: "محطة طاقة شمسية على الأسطح لتوليد الكهرباء النظيفة",
+        en: "Round-the-clock 24/7 security patrol, electronic surveillance, and professional property management",
+        ar: "حراسة أمنية متكاملة 24 ساعة، كاميرات مراقبة، وفريق إدارة مرافق وصيانة مباشر من تفوق",
+      },
+      {
+        en: "Three-phase high-voltage power distribution and standby generator provisions for uninterrupted retail operations",
+        ar: "تغذية كهربائية ثلاثية الأطوار مع جاهزية المولدات لضمان استمرارية الأعمال والمتاجر",
       },
     ],
   },
@@ -2049,12 +2205,12 @@ export const CEO_PROFILE: CeoProfile = {
         ar: "المطور الرئيسي وراعي الأصول العقارية التجارية",
       },
       scope: {
-        en: "77,500 m² Prime Commercial Portfolio (New Cairo & Greater Cairo Corridor)",
-        ar: "محفظة الأصول التجارية بمساحة 77,500 م² (التجمع الخامس ومحاور القاهرة الكبرى)",
+        en: "64,500 m² Prime Commercial Portfolio (Nasr City, El Shorouk & 6th of October)",
+        ar: "محفظة الأصول التجارية بمساحة 64,500 م² (مدينة نصر، الشروق، و6 أكتوبر)",
       },
       highlight: {
-        en: "Spearheading development and management of Building 360 Business Park, Tafawok Retail Center, and Logistics Park.",
-        ar: "قيادة تطوير وتشغيل مجمع مبنى 360 الإداري، ومول تفوق التجاري، ومجمع تفوق اللوجستي المتطور.",
+        en: "Spearheading development and management of Fagala Plaza, Mall ChillOut El Shorouk, and October Festival Mall.",
+        ar: "قيادة تطوير وتشغيل مجمع فجالة بلازا بمدينة نصر، ومول شل أوت الشروق، ومول أكتوبر فيستيفال.",
       },
     },
   ],

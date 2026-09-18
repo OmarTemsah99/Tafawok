@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useLocaleStore } from "@/stores/useLocaleStore"
-import { PROPERTIES } from "@/content/cre-data"
+import { COMPANY_IDENTITY } from "@/content/cre-data"
 import {
   ExternalLink,
   MapPin,
@@ -21,9 +21,15 @@ export function HqMap({ className = "" }: HqMapProps) {
   const { t, locale } = useLocaleStore()
   const isRtl = locale === "ar"
 
-  // Headquarters is located at Building 360 Business Park
-  const hqProperty = PROPERTIES[0]
-  const location = hqProperty.location
+  // Headquarters is located at Company HQ (New Cairo)
+  const location = {
+    address: COMPANY_IDENTITY.headquarters.address,
+    city: { en: "New Cairo", ar: "القاهرة الجديدة" },
+    country: { en: "Egypt", ar: "مصر" },
+    coordinates: { lat: 30.0135, lng: 31.4287 },
+    googleMapsEmbedUrl: COMPANY_IDENTITY.headquarters.googleMapsEmbed,
+    googleMapsDirectUrl: COMPANY_IDENTITY.headquarters.googleMapsLink,
+  }
 
   const arterialPillars = [
     {

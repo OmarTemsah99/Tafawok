@@ -655,3 +655,40 @@ Chronological decision log tracking major architectural milestones and engineeri
     - `npm run build` (`next build`): All 14 static and dynamic routes compiled and pre-rendered successfully in ~800ms via Turbopack.
   - **Final Platform Status:**
     - All 7 project phases complete, fully tested, and verified.
+
+---
+
+## Milestone 8.0: Authentic Commercial Portfolio Integration (Fagala Plaza, Mall ChillOut El Shorouk, October Festival Mall)
+
+- **Date:** September 2026
+- **Scope:**
+  - **Fagala Plaza (`fagala-plaza`):**
+    - High-volume commercial wholesale and retail stationery plaza in Nasr City (10th District, `29WJ+879`, Cairo).
+    - Modern architectural evolution of Cairo's historic El Fagala market, providing institutional wholesale ("gomla") pricing for schools, universities, and corporate offices, while offering parents affordable, high-grade school supplies.
+    - Anchors: Bernasos (since 1918), Samir & Aly Outlet, Alyanour Mega Bookstore, El-Azhary Engineering & Stationery, Galal Import & Trading, Ashraf Aly Faid, Belal Stationery, and Sea Mar3i Seafood Restaurant.
+    - Assets: Replaced mock photography with real photography from `/public/FagalaPlaza/` (Samir & Aly Outlet storefront, Bernasos & Galal promenade, evening fountain illumination, daylight open plaza).
+    - Google Maps link and embed integrated: `https://maps.app.goo.gl/CQn1vuvLMWFmSq9S7?g_st=iw`.
+  - **Mall ChillOut El Shorouk (`mall-chillout-el-shorouk`):**
+    - Full-scale destination commercial and family lifestyle mall on the Cairo-Ismailia Desert Highway (`5J23+4PC`, El Shorouk City, Cairo).
+    - Complete commercial zone featuring Seoudi Supermarket anchor, Z Arcade interactive gaming & VR center, Loly Land kids play arena, Délice specialty coffee & dessert lounge, and a high-capacity stationery & books hub (Alyanour, El-Azhary, Ashraf Ali Faid, B Stationery) matching wholesale pricing advantages.
+    - Assets: Replaced mock photography with real photography from `/public/MallChilloutAlshrouk/` (wide daytime exterior facade with Seoudi, Loly Land, Alyanour and TAFAWOK billboard, Seoudi portico, Z Arcade games, and illuminated directory portal).
+    - Google Maps link and embed integrated: `https://maps.app.goo.gl/orJz3L8DPECmMGG38?g_st=iw`.
+  - **October Festival Mall (`october-festival-mall`):**
+    - Prime commercial, retail, and quick-commerce development situated along the high-traffic Gamal Abdel Nasser Axis in the Northern Expansions of 6th of October City (`محور جمال عبد الناصر، التوسعات الشمالية، 6 أكتوبر`).
+    - Curved architectural design with natural polished granite cladding, 130 m²+ glass-fronted flagship retail stores for rent, Noon Minutes rapid 15-minute quick fulfillment depot, and Alyanour Mega Bookstore & Stationery Center (wholesale and retail).
+    - Assets: Replaced mock photography with real photography from `/public/OctoberMall/` (curved granite facade, Alyanour interior concourse with shoppers, Noon Minutes delivery hub, and 130 m² flagship retail frontage).
+    - Google Maps link and coordinates integrated: `https://maps.app.goo.gl/PBDCaRMpznhAWYic8?g_st=iw`.
+  - **Platform-Wide Synchronization:**
+    - Updated [`content/cre-data.ts`](file:///Users/omartemsah/webProjects/tafawok/content/cre-data.ts): `NAV_ITEMS`, `CORPORATE_METRICS` (64,500 m² GLA, 1,450+ parking slots), `PROPERTIES`, and CEO career timeline.
+    - Updated [`components/layout/PropertyDropdown.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/layout/PropertyDropdown.tsx) and [`components/layout/MobileNav.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/layout/MobileNav.tsx) icon mappings and links.
+    - Updated [`components/home/FeaturedProperties.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/home/FeaturedProperties.tsx) and [`components/home/ScrollExpandShowcase.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/home/ScrollExpandShowcase.tsx) to showcase real project photography and dynamic titles.
+    - Decoupled [`components/contact/HqMap.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/contact/HqMap.tsx) to use `COMPANY_IDENTITY.headquarters` directly.
+    - Updated bilingual dictionaries [`locales/en.json`](file:///Users/omartemsah/webProjects/tafawok/locales/en.json) and [`locales/ar.json`](file:///Users/omartemsah/webProjects/tafawok/locales/ar.json).
+  - **Quality Gates:**
+    - Next.js production build (`next build`) succeeded with 0 errors. All routes pre-rendered statically.
+  - **Refinements (Accordion & ScrollExpand Showcase):**
+    - Updated [`components/home/FeaturedProperties.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/home/FeaturedProperties.tsx): Streamlined `AccordionGallery` to exactly 3 items corresponding to the 3 portfolio locations (Fagala Plaza, Mall ChillOut El Shorouk, October Festival Mall).
+    - Updated [`components/home/ScrollExpandShowcase.tsx`](file:///Users/omartemsah/webProjects/tafawok/components/home/ScrollExpandShowcase.tsx): Swapped the expanding canvas image to `IMG_5918` (`/MallChilloutAlshrouk/IMG_5918.webp` — the illuminated nighttime facade showcasing Ashraf Ali Faid & Seoudi), harmonizing all textual overlays, metrics, and CTA links with Mall ChillOut El Shorouk.
+    - Added `IMG_5918.webp` to `Mall ChillOut El Shorouk` photography gallery in [`content/cre-data.ts`](file:///Users/omartemsah/webProjects/tafawok/content/cre-data.ts).
+    - Rotated the last two images in Mall ChillOut gallery (`IMG_9239.webp` and `IMG_7490.webp`) 90° clockwise from landscape into their intended portrait orientation.
+

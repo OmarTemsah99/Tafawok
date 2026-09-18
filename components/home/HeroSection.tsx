@@ -86,8 +86,8 @@ export function HeroSection() {
                 <TrendingUp className="size-3.5 shrink-0 text-primary" />
                 <span>
                   {isRtl
-                    ? "مساحات تأجير تفوق 77,500 م²"
-                    : "77,500+ m² Commercial GLA"}
+                    ? "مساحات تأجير تفوق 64,500 م²"
+                    : "64,500+ m² Commercial GLA"}
                 </span>
               </div>
             </div>

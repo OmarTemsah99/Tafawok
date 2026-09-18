@@ -13,7 +13,8 @@ export function ScrollExpandShowcase() {
   const isArabic = locale === "ar"
   const ArrowIcon = isArabic ? ArrowLeft : ArrowRight
 
-  const flagship = PROPERTIES[0]
+  const flagship = PROPERTIES[1]
+  const showcaseImage = "/MallChilloutAlshrouk/IMG_5918.webp"
 
   const [isMobile, setIsMobile] = React.useState(false)
 
@@ -40,19 +41,19 @@ export function ScrollExpandShowcase() {
 
           <p className="mt-3 max-w-2xl text-xs text-muted-foreground sm:text-sm">
             {isArabic
-              ? "مرر لفتح المشهد المعماري بالكامل واكتشاف تفاصيل صرح مبنى 360 للأعمال بالقاهرة الجديدة"
-              : "Scroll down to expand the stage and enter Building 360 Business Park in New Cairo"}
+              ? `مرر لفتح المشهد المعماري بالكامل واكتشاف تفاصيل صرح ${t(flagship.name)} في ${t(flagship.location.city)}`
+              : `Scroll down to expand the stage and explore ${t(flagship.name)} in ${t(flagship.location.city)}`}
           </p>
         </div>
       </div>
 
       {/* The ScrollExpand Interactive Canvas */}
       <ScrollExpand
-        src={flagship.mainImage}
+        src={showcaseImage}
         alt={t(flagship.name)}
         title={t({
-          en: "BUILDING 360 // PRIME OFFICE CAMPUS",
-          ar: "مبنى 360 للأعمال // القاهرة الجديدة",
+          en: `${flagship.name.en.toUpperCase()} // ${flagship.location.city.en.toUpperCase()}`,
+          ar: `${flagship.name.ar} // ${flagship.location.city.ar}`,
         })}
         scrollHint={t("home.scrollToExpand")}
         useWindowScroll
